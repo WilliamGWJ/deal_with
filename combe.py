@@ -4,6 +4,7 @@
 
 import os
 import sys
+import re
 import urllib.request
 
 
@@ -28,7 +29,6 @@ def translate(querystr, to_l="zh", from_l="en"):
 for dir, _, filenames in os.walk('srt_en'):
     f_n = 0
     for filename in filenames:
-        # 将srt_en转换为Unicode编码
         srt_en_file = os.path.join('srt_en', filename)
         with open(srt_en_file, 'r', encoding="utf-8") as file_ens:
             file_en = file_ens.readlines()
@@ -39,7 +39,7 @@ for dir, _, filenames in os.walk('srt_en'):
             for i in range(n):
                 file_end.write(file_en[i])
                 if i % 4 == 2:
-                    file_end.write(translate(file_en[i]))
+                    file_end.write(translate(file_en[i])+'\n')
                     print('Done line({})'.format(i//4))
         print('Done file {}'.format(f_n))
         f_n += 1

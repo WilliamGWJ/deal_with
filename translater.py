@@ -1,5 +1,6 @@
 import urllib.request
 import sys
+import re
 
 
 typ = sys.getfilesystemencoding()
@@ -20,4 +21,15 @@ def translate(querystr, to_l="zh", from_l="en"):
     return target
 
 
-# print(translate("After numerous media reports, Nike Business (China) Co., Ltd. finally issued a fourth statement to consumers yesterday:"))
+with open('test.txt') as file_ens:
+    file_en = file_ens.read()
+
+
+a = re.subn('\n', '', file_en)
+a = translate(file_en)
+c = re.subn(',', '\n', a)
+print(a)
+print(b)
+print(c)
+
+# print(translate(""))
