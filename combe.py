@@ -40,7 +40,7 @@ for dir, _, filenames in os.walk('srt_en'):
                 file_end.write(file_en[i])
                 if i % 4 == 2:
                     file_end.write(translate(file_en[i]))
-                    print('Done line({})'.format(i))
+                    print('Done line({})'.format(i//4))
         print('Done file {}'.format(f_n))
         f_n += 1
 
