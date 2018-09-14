@@ -1,0 +1,180 @@
+﻿1
+00:00:00,000 --> 00:00:05,029
+[Music]
+
+2
+00:00:05,029 --> 00:00:08,370
+did you know that tensorflow j/s isn't
+
+3
+00:00:08,370 --> 00:00:10,170
+just for JavaScript on the backend with
+
+4
+00:00:10,170 --> 00:00:12,860
+node but can also be used in the browser
+
+5
+00:00:12,860 --> 00:00:15,870
+yes you can train models in the browser
+
+6
+00:00:15,870 --> 00:00:18,510
+with JavaScript and not only that you
+
+7
+00:00:18,510 --> 00:00:21,300
+can run inference too and if that wasn't
+
+8
+00:00:21,300 --> 00:00:22,949
+enough you can have models that you've
+
+9
+00:00:22,949 --> 00:00:25,260
+trained elsewhere and run inference on
+
+10
+00:00:25,260 --> 00:00:28,800
+those in the browser using javascript so
+
+11
+00:00:28,800 --> 00:00:31,380
+today's tip is how do I get my browser
+
+12
+00:00:31,380 --> 00:00:34,110
+ready for tensorflow and this one's
+
+13
+00:00:34,110 --> 00:00:36,180
+almost cheating it's a little too easy
+
+14
+00:00:36,180 --> 00:00:38,579
+so let's start with the simplest web
+
+15
+00:00:38,579 --> 00:00:40,559
+page imaginable we'll save and run it
+
+16
+00:00:40,559 --> 00:00:42,570
+and we'll see that we just get an empty
+
+17
+00:00:42,570 --> 00:00:45,899
+page so let's add a script tag to the
+
+18
+00:00:45,899 --> 00:00:47,969
+head and we'll add the tensorflow dot
+
+19
+00:00:47,969 --> 00:00:52,050
+j/s script to that we can save and run
+
+20
+00:00:52,050 --> 00:00:53,910
+it again and now look at the page
+
+21
+00:00:53,910 --> 00:00:56,219
+there's not allowed to see right now so
+
+22
+00:00:56,219 --> 00:00:57,899
+let's add a div to the page and we'll
+
+23
+00:00:57,899 --> 00:00:59,070
+output to that later
+
+24
+00:00:59,070 --> 00:01:01,260
+so now let's add a simple script for
+
+25
+00:01:01,260 --> 00:01:03,239
+training a model to infer a linear
+
+26
+00:01:03,239 --> 00:01:06,150
+relationship we'll create a model and
+
+27
+00:01:06,150 --> 00:01:08,430
+just add a single layer to it and we'll
+
+28
+00:01:08,430 --> 00:01:10,170
+specify the loss function and the
+
+29
+00:01:10,170 --> 00:01:12,450
+optimizer after that we'll specify a
+
+30
+00:01:12,450 --> 00:01:14,610
+couple of tensors for the values one
+
+31
+00:01:14,610 --> 00:01:16,229
+tensor has the X values and the other
+
+32
+00:01:16,229 --> 00:01:18,240
+has the Y there's a relationship between
+
+33
+00:01:18,240 --> 00:01:21,509
+them which is y equals 2x minus 1 but
+
+34
+00:01:21,509 --> 00:01:24,360
+the models going to infer that we train
+
+35
+00:01:24,360 --> 00:01:27,540
+the model with model dot fit and then
+
+36
+00:01:27,540 --> 00:01:29,700
+we'll output the prediction for y where
+
+37
+00:01:29,700 --> 00:01:31,950
+x equals 10 now of course it should be
+
+38
+00:01:31,950 --> 00:01:34,049
+about 19 so let's take a look and see
+
+39
+00:01:34,049 --> 00:01:37,530
+and we actually get pretty close so
+
+40
+00:01:37,530 --> 00:01:39,210
+there's your start in using tensorflow
+
+41
+00:01:39,210 --> 00:01:41,100
+with javascript I do hope this was a
+
+42
+00:01:41,100 --> 00:01:43,049
+useful primer for you for more great
+
+43
+00:01:43,049 --> 00:01:44,700
+videos like this one hit that subscribe
+
+44
+00:01:44,700 --> 00:01:46,860
+button and we'll see you there
+
+45
+00:01:46,860 --> 00:01:56,060
+[Music]
+

@@ -1,0 +1,872 @@
+﻿1
+00:00:00,030 --> 00:00:02,370
+everybody and welcome to the tensorflow
+
+2
+00:00:02,370 --> 00:00:03,899
+developer summit and welcome to the
+
+3
+00:00:03,899 --> 00:00:05,609
+tents of hope cafe at this summit I'm
+
+4
+00:00:05,609 --> 00:00:07,319
+Laurence Moroney and it's my honor to
+
+5
+00:00:07,319 --> 00:00:09,510
+chat with Jeff Dean and the keynote has
+
+6
+00:00:09,510 --> 00:00:11,790
+just finished Jeff Gray keynote thank
+
+7
+00:00:11,790 --> 00:00:13,290
+you thank you I really love the part
+
+8
+00:00:13,290 --> 00:00:14,340
+where you were talking about like you
+
+9
+00:00:14,340 --> 00:00:15,780
+know looking at changing the future
+
+10
+00:00:15,780 --> 00:00:17,220
+using tensorflow and some of the great
+
+11
+00:00:17,220 --> 00:00:19,080
+stuff that we're doing so could you tell
+
+12
+00:00:19,080 --> 00:00:20,609
+me a little bit more about it sure I
+
+13
+00:00:20,609 --> 00:00:23,279
+mean I think over the last four or five
+
+14
+00:00:23,279 --> 00:00:25,320
+years we've really seen tremendous
+
+15
+00:00:25,320 --> 00:00:27,300
+developments in a lot of sort of core
+
+16
+00:00:27,300 --> 00:00:28,980
+areas of machine learning research being
+
+17
+00:00:28,980 --> 00:00:32,219
+turned from sort of research ideas into
+
+18
+00:00:32,219 --> 00:00:33,780
+things that are actually practical
+
+19
+00:00:33,780 --> 00:00:35,250
+things that you can use to solve
+
+20
+00:00:35,250 --> 00:00:37,530
+problems across a really wide set of
+
+21
+00:00:37,530 --> 00:00:40,020
+domains right and I think that's part of
+
+22
+00:00:40,020 --> 00:00:42,059
+the excitement is we know that things
+
+23
+00:00:42,059 --> 00:00:44,219
+like computer vision that works well
+
+24
+00:00:44,219 --> 00:00:46,559
+speech recognition you know
+
+25
+00:00:46,559 --> 00:00:49,379
+understanding language and sequences all
+
+26
+00:00:49,379 --> 00:00:51,030
+these things can be applied in so many
+
+27
+00:00:51,030 --> 00:00:52,440
+different areas of the world it's just
+
+28
+00:00:52,440 --> 00:00:54,600
+amazing and you know in the keynote I
+
+29
+00:00:54,600 --> 00:00:57,210
+sort of highlighted things through the
+
+30
+00:00:57,210 --> 00:00:58,890
+lens of the National Academy of
+
+31
+00:00:58,890 --> 00:01:00,809
+Engineering in the United States they
+
+32
+00:01:00,809 --> 00:01:03,329
+put out a list of these 14 grand
+
+33
+00:01:03,329 --> 00:01:07,950
+engineering challenges I talked about 14
+
+34
+00:01:07,950 --> 00:01:14,220
+of yeah so you highlighted two of them
+
+35
+00:01:14,220 --> 00:01:16,170
+right yeah yeah
+
+36
+00:01:16,170 --> 00:01:19,350
+one was engineering the tools of
+
+37
+00:01:19,350 --> 00:01:20,520
+scientific discovery and I think
+
+38
+00:01:20,520 --> 00:01:22,770
+actually tensorflow itself is a kind of
+
+39
+00:01:22,770 --> 00:01:24,840
+a key part of that because machine
+
+40
+00:01:24,840 --> 00:01:27,420
+learning is very clearly impacting many
+
+41
+00:01:27,420 --> 00:01:28,710
+different scientific domains and
+
+42
+00:01:28,710 --> 00:01:32,130
+engineering domains today and so for
+
+43
+00:01:32,130 --> 00:01:33,720
+example our group has done some research
+
+44
+00:01:33,720 --> 00:01:37,140
+on how to use machine learning to tackle
+
+45
+00:01:37,140 --> 00:01:38,880
+quantum chemistry problems right and
+
+46
+00:01:38,880 --> 00:01:40,530
+like that's not immediately an obvious
+
+47
+00:01:40,530 --> 00:01:42,600
+fit in most people's minds but you can
+
+48
+00:01:42,600 --> 00:01:45,030
+actually train a machine learning model
+
+49
+00:01:45,030 --> 00:01:47,759
+that emulates the behavior of a very
+
+50
+00:01:47,759 --> 00:01:50,329
+expensive more traditional HPC style
+
+51
+00:01:50,329 --> 00:01:53,189
+quantum chemistry simulator and you get
+
+52
+00:01:53,189 --> 00:01:55,740
+essentially the same accuracy but it's
+
+53
+00:01:55,740 --> 00:01:57,329
+three hundred thousand times faster and
+
+54
+00:01:57,329 --> 00:01:59,490
+so that just wood is a fundamentally
+
+55
+00:01:59,490 --> 00:02:01,049
+different kind of tool for chemists
+
+56
+00:02:01,049 --> 00:02:02,070
+right if you have something that's three
+
+57
+00:02:02,070 --> 00:02:03,659
+hundred thousand done faster you know
+
+58
+00:02:03,659 --> 00:02:05,250
+you can imagine screening a hundred
+
+59
+00:02:05,250 --> 00:02:06,960
+million candidate molecule
+
+60
+00:02:06,960 --> 00:02:09,090
+configurations and finding the ten
+
+61
+00:02:09,090 --> 00:02:10,229
+thousand that are most interesting
+
+62
+00:02:10,229 --> 00:02:12,360
+whereas you couldn't do that before and
+
+63
+00:02:12,360 --> 00:02:13,620
+it also means that more
+
+64
+00:02:13,620 --> 00:02:15,330
+research opportunities can open up right
+
+65
+00:02:15,330 --> 00:02:17,790
+because your 300 times 300 thousand
+
+66
+00:02:17,790 --> 00:02:19,319
+times faster means that there's more
+
+67
+00:02:19,319 --> 00:02:20,549
+bandwidth to try different things
+
+68
+00:02:20,549 --> 00:02:22,019
+different experiments that's right and
+
+69
+00:02:22,019 --> 00:02:24,450
+like all of the 14 challenges sort of
+
+70
+00:02:24,450 --> 00:02:26,640
+four of them were related to things that
+
+71
+00:02:26,640 --> 00:02:28,890
+I think better understanding of chemical
+
+72
+00:02:28,890 --> 00:02:31,500
+properties of and materials were going
+
+73
+00:02:31,500 --> 00:02:32,819
+to be pretty important in things like
+
+74
+00:02:32,819 --> 00:02:34,560
+you know making solar energy more
+
+75
+00:02:34,560 --> 00:02:37,980
+affordable or things like that and so
+
+76
+00:02:37,980 --> 00:02:39,810
+machine learning clearly can tackle
+
+77
+00:02:39,810 --> 00:02:42,510
+those things but engineering the tools
+
+78
+00:02:42,510 --> 00:02:44,190
+of scientists scientific discovery is a
+
+79
+00:02:44,190 --> 00:02:46,980
+pretty broad area and one of the things
+
+80
+00:02:46,980 --> 00:02:48,299
+I talked about was being able to
+
+81
+00:02:48,299 --> 00:02:51,629
+automate solving of new problems with
+
+82
+00:02:51,629 --> 00:02:53,190
+machine learning I think one of the
+
+83
+00:02:53,190 --> 00:02:54,930
+problems in the world is there so much
+
+84
+00:02:54,930 --> 00:02:57,180
+potential for applying machine learning
+
+85
+00:02:57,180 --> 00:02:58,890
+to different problems but there's a
+
+86
+00:02:58,890 --> 00:03:01,560
+fairly limited set of people that have
+
+87
+00:03:01,560 --> 00:03:04,109
+the skills and expertise to really do
+
+88
+00:03:04,109 --> 00:03:06,090
+that effectively I'm by democratizing
+
+89
+00:03:06,090 --> 00:03:07,079
+that you're broadening that base of
+
+90
+00:03:07,079 --> 00:03:08,720
+people that's right you can happen in
+
+91
+00:03:08,720 --> 00:03:10,769
+one of the other things he spoke about
+
+92
+00:03:10,769 --> 00:03:12,599
+which was close to my heart was really
+
+93
+00:03:12,599 --> 00:03:14,549
+health care and you spoke about like the
+
+94
+00:03:14,549 --> 00:03:17,040
+diabetic retinopathy retinopathy yes I
+
+95
+00:03:17,040 --> 00:03:19,709
+could never say the word like it's just
+
+96
+00:03:19,709 --> 00:03:22,349
+amazing like how they did scale of a
+
+97
+00:03:22,349 --> 00:03:24,630
+machine learn system can approach that
+
+98
+00:03:24,630 --> 00:03:26,579
+and even surpass that of many humans now
+
+99
+00:03:26,579 --> 00:03:30,060
+right I mean I think the realization and
+
+100
+00:03:30,060 --> 00:03:32,519
+an advances in computer vision you know
+
+101
+00:03:32,519 --> 00:03:35,400
+mean that the same pretty much the same
+
+102
+00:03:35,400 --> 00:03:37,889
+technology that is powering labeling
+
+103
+00:03:37,889 --> 00:03:39,660
+your google photos with like is that a
+
+104
+00:03:39,660 --> 00:03:41,819
+picture of a mountain or a Labrador it
+
+105
+00:03:41,819 --> 00:03:43,980
+can be applied to medical imaging
+
+106
+00:03:43,980 --> 00:03:46,139
+problems and our group has been doing a
+
+107
+00:03:46,139 --> 00:03:48,359
+lot of work in many different sort of
+
+108
+00:03:48,359 --> 00:03:50,540
+domains and medical imaging
+
+109
+00:03:50,540 --> 00:03:53,540
+ophthalmology pathology radiology
+
+110
+00:03:53,540 --> 00:03:55,709
+dermatology kinds of problems we're sort
+
+111
+00:03:55,709 --> 00:03:57,900
+of farthest along and started the
+
+112
+00:03:57,900 --> 00:03:59,579
+earliest on ophthalmology problems
+
+113
+00:03:59,579 --> 00:04:01,379
+because it's a very unmet need around
+
+114
+00:04:01,379 --> 00:04:03,359
+the world they're just in many parts of
+
+115
+00:04:03,359 --> 00:04:04,290
+the world they just aren't enough
+
+116
+00:04:04,290 --> 00:04:06,930
+opthamologist to screen people for this
+
+117
+00:04:06,930 --> 00:04:09,720
+disease diabetic retinopathy and it's a
+
+118
+00:04:09,720 --> 00:04:11,340
+very serious and degenerative eye
+
+119
+00:04:11,340 --> 00:04:12,299
+disease so you can actually lose your
+
+120
+00:04:12,299 --> 00:04:14,819
+vision if it's not diagnosed in time but
+
+121
+00:04:14,819 --> 00:04:16,650
+if you catch it in time then it's very
+
+122
+00:04:16,650 --> 00:04:17,010
+treatable
+
+123
+00:04:17,010 --> 00:04:18,599
+yeah and it's a beautiful symmetry that
+
+124
+00:04:18,599 --> 00:04:20,039
+computer vision is helping real vision
+
+125
+00:04:20,039 --> 00:04:23,280
+that's right
+
+126
+00:04:23,280 --> 00:04:24,690
+I only thought of it when you said
+
+127
+00:04:24,690 --> 00:04:28,770
+computer visionary and then I mean the
+
+128
+00:04:28,770 --> 00:04:30,389
+one thing that we showed in the keynote
+
+129
+00:04:30,389 --> 00:04:31,710
+that was really inspiring was their
+
+130
+00:04:31,710 --> 00:04:34,020
+cassava and the example of cassava and
+
+131
+00:04:34,020 --> 00:04:35,730
+using like mobile phones that diagnosed
+
+132
+00:04:35,730 --> 00:04:38,190
+and leave right the if it and I know you
+
+133
+00:04:38,190 --> 00:04:39,630
+grew up we spent some of your childhood
+
+134
+00:04:39,630 --> 00:04:41,370
+in Africa yeah I actually moved around
+
+135
+00:04:41,370 --> 00:04:43,770
+quite a bit as a kid and one of the
+
+136
+00:04:43,770 --> 00:04:46,290
+places that I lived was in East Africa
+
+137
+00:04:46,290 --> 00:04:48,330
+in northwestern Uganda for a year when I
+
+138
+00:04:48,330 --> 00:04:50,400
+was five I also spent six months in
+
+139
+00:04:50,400 --> 00:04:54,389
+Somalia when I was 13 but in Uganda in
+
+140
+00:04:54,389 --> 00:04:56,700
+that particular area cassava is sort of
+
+141
+00:04:56,700 --> 00:04:58,560
+one of the fundamental crops that's
+
+142
+00:04:58,560 --> 00:05:00,540
+grown to sort of provide most of the
+
+143
+00:05:00,540 --> 00:05:04,050
+basic nutrition for for meals and you
+
+144
+00:05:04,050 --> 00:05:05,790
+know when I was five we were living in
+
+145
+00:05:05,790 --> 00:05:08,790
+this very rural small village of like
+
+146
+00:05:08,790 --> 00:05:11,700
+thousand people so it's a very agrarian
+
+147
+00:05:11,700 --> 00:05:13,860
+kind of kind of area I used to love to
+
+148
+00:05:13,860 --> 00:05:15,240
+go out in the fields and kind of help
+
+149
+00:05:15,240 --> 00:05:18,870
+pull up cassava and things and so
+
+150
+00:05:18,870 --> 00:05:21,600
+actually when I saw this this video of a
+
+151
+00:05:21,600 --> 00:05:24,229
+group at Penn State and at the ìiî TA
+
+152
+00:05:24,229 --> 00:05:26,880
+Institute in Tanzania that it done some
+
+153
+00:05:26,880 --> 00:05:30,570
+work on diagnosis of disease versus not
+
+154
+00:05:30,570 --> 00:05:33,419
+disease cassava leaves essentially do
+
+155
+00:05:33,419 --> 00:05:35,220
+you take pictures of leaves and then you
+
+156
+00:05:35,220 --> 00:05:37,200
+can tell you know is this a healthy
+
+157
+00:05:37,200 --> 00:05:38,970
+plant or is a disease and if it's
+
+158
+00:05:38,970 --> 00:05:41,940
+diseased you know what you should do to
+
+159
+00:05:41,940 --> 00:05:44,640
+treat it and and that's like a very
+
+160
+00:05:44,640 --> 00:05:46,350
+useful and and fundamental thing that
+
+161
+00:05:46,350 --> 00:05:48,780
+you can do and it relies on machine
+
+162
+00:05:48,780 --> 00:05:50,970
+learning and computer vision and sort of
+
+163
+00:05:50,970 --> 00:05:53,280
+an app crafted so that farmers can do
+
+164
+00:05:53,280 --> 00:05:54,900
+this but it's almost the stuff of sci-fi
+
+165
+00:05:54,900 --> 00:05:57,120
+right that you if you told me five years
+
+166
+00:05:57,120 --> 00:05:58,320
+ago that you could go out with a mobile
+
+167
+00:05:58,320 --> 00:05:59,669
+phone and start looking at leaves and
+
+168
+00:05:59,669 --> 00:06:01,110
+then diagnose if their disease they're
+
+169
+00:06:01,110 --> 00:06:02,820
+not it would be it'd be hard to believe
+
+170
+00:06:02,820 --> 00:06:04,169
+but now it's possible and now it's
+
+171
+00:06:04,169 --> 00:06:06,030
+happening there's so many potential
+
+172
+00:06:06,030 --> 00:06:07,229
+applications of this and you know
+
+173
+00:06:07,229 --> 00:06:08,669
+another one of my favorites is the
+
+174
+00:06:08,669 --> 00:06:11,039
+Google Translate app which has the
+
+175
+00:06:11,039 --> 00:06:13,110
+ability to like you turn on the camera
+
+176
+00:06:13,110 --> 00:06:15,330
+on your phone and you hover over text in
+
+177
+00:06:15,330 --> 00:06:17,060
+another language and it superimposes
+
+178
+00:06:17,060 --> 00:06:19,680
+translated text oh yes and so that
+
+179
+00:06:19,680 --> 00:06:21,360
+relies on many different kinds of
+
+180
+00:06:21,360 --> 00:06:22,620
+machine learning in there there's like
+
+181
+00:06:22,620 --> 00:06:24,450
+the computer vision to do the OCR to
+
+182
+00:06:24,450 --> 00:06:26,430
+recognize the text and then there's
+
+183
+00:06:26,430 --> 00:06:28,440
+another machine learning model to
+
+184
+00:06:28,440 --> 00:06:30,030
+actually do the translation from one
+
+185
+00:06:30,030 --> 00:06:31,740
+language to another and then another
+
+186
+00:06:31,740 --> 00:06:33,960
+model to figure out how to superimpose
+
+187
+00:06:33,960 --> 00:06:34,810
+the text
+
+188
+00:06:34,810 --> 00:06:37,419
+back in the font that you were actually
+
+189
+00:06:37,419 --> 00:06:39,639
+seeing it in in the original vertical
+
+190
+00:06:39,639 --> 00:06:42,160
+and hovered over and it's just like very
+
+191
+00:06:42,160 --> 00:06:45,610
+cool how you know these magical
+
+192
+00:06:45,610 --> 00:06:48,310
+experiences can be crafted from you know
+
+193
+00:06:48,310 --> 00:06:50,050
+a few core machine learning models
+
+194
+00:06:50,050 --> 00:06:51,490
+stitched together in the right way and
+
+195
+00:06:51,490 --> 00:06:52,930
+it also makes the world a smaller place
+
+196
+00:06:52,930 --> 00:06:55,150
+right so I mean I spend a lot of time
+
+197
+00:06:55,150 --> 00:06:56,560
+traveling and like exactly that
+
+198
+00:06:56,560 --> 00:06:58,510
+translation thing that it saved me from
+
+199
+00:06:58,510 --> 00:06:59,889
+embarrassing myself by ordering
+
+200
+00:06:59,889 --> 00:07:01,260
+something I don't like
+
+201
+00:07:01,260 --> 00:07:03,430
+especially in languages where the script
+
+202
+00:07:03,430 --> 00:07:05,139
+is even very different than the script
+
+203
+00:07:05,139 --> 00:07:07,000
+her familiar with I think that's you
+
+204
+00:07:07,000 --> 00:07:08,860
+know you just feel very lost and this
+
+205
+00:07:08,860 --> 00:07:10,450
+can make you feel lots long yeah it's
+
+206
+00:07:10,450 --> 00:07:11,740
+amazing stuff and I think we're only
+
+207
+00:07:11,740 --> 00:07:13,720
+just getting started right absolutely so
+
+208
+00:07:13,720 --> 00:07:15,700
+thank you so much Jeff that's been a
+
+209
+00:07:15,700 --> 00:07:17,020
+real pleasure thank you very much
+
+210
+00:07:17,020 --> 00:07:18,910
+pleasure chatting minute and thanks
+
+211
+00:07:18,910 --> 00:07:20,830
+everybody for watching if you have any
+
+212
+00:07:20,830 --> 00:07:22,030
+questions for me or if you have any
+
+213
+00:07:22,030 --> 00:07:23,350
+questions for Jeff just please leave
+
+214
+00:07:23,350 --> 00:07:24,700
+them in the comments below and don't
+
+215
+00:07:24,700 --> 00:07:25,750
+forget to hit that subscribe button
+
+216
+00:07:25,750 --> 00:07:27,510
+thank you
+
+217
+00:07:27,510 --> 00:07:44,080
+[Music]
+
+218
+00:07:44,080 --> 00:07:46,139
+you
+

@@ -1,0 +1,3748 @@
+﻿1
+00:00:05,600 --> 00:00:08,880
+hello welcome to this tensorflow session
+
+2
+00:00:08,880 --> 00:00:13,019
+about rain enforcement learning so this
+
+3
+00:00:13,019 --> 00:00:16,410
+is you Han I'm Martin and today we would
+
+4
+00:00:16,410 --> 00:00:19,730
+like to build a neural network with you
+
+5
+00:00:19,730 --> 00:00:24,660
+do you know about neural networks if I
+
+6
+00:00:24,660 --> 00:00:27,570
+say a serious question if I say softmax
+
+7
+00:00:27,570 --> 00:00:30,510
+or cross-entropy raise your hand if you
+
+8
+00:00:30,510 --> 00:00:32,180
+know what that is
+
+9
+00:00:32,180 --> 00:00:34,680
+like half the audience okay very quick
+
+10
+00:00:34,680 --> 00:00:38,100
+primer this is a neural network ok
+
+11
+00:00:38,100 --> 00:00:40,890
+layers of neurons those neurons they
+
+12
+00:00:40,890 --> 00:00:43,050
+always do the same thing they do a
+
+13
+00:00:43,050 --> 00:00:46,190
+weighted sum of all of their inputs and
+
+14
+00:00:46,190 --> 00:00:51,270
+then you can layer them in layers the
+
+15
+00:00:51,270 --> 00:00:53,340
+neurons in the first layer they do a
+
+16
+00:00:53,340 --> 00:00:55,500
+weighted sum of let's say pixels if we
+
+17
+00:00:55,500 --> 00:00:58,170
+are analyzing images the neurons in the
+
+18
+00:00:58,170 --> 00:01:00,440
+second layer will be doing weighted sum
+
+19
+00:01:00,440 --> 00:01:04,369
+sums of outputs from the first layer and
+
+20
+00:01:04,369 --> 00:01:08,220
+if you are building a classifier let's
+
+21
+00:01:08,220 --> 00:01:09,810
+say here probably you want to classify
+
+22
+00:01:09,810 --> 00:01:12,270
+those little square images into
+
+23
+00:01:12,270 --> 00:01:14,850
+airplanes and known airplanes you will
+
+24
+00:01:14,850 --> 00:01:18,720
+end up on a last layer which has as many
+
+25
+00:01:18,720 --> 00:01:22,200
+neurons as you have classes and if those
+
+26
+00:01:22,200 --> 00:01:25,290
+weights are configured correctly we'll
+
+27
+00:01:25,290 --> 00:01:27,720
+get to that then one of those neurons
+
+28
+00:01:27,720 --> 00:01:30,329
+will have a strong output on certain
+
+29
+00:01:30,329 --> 00:01:31,920
+images and tell you this is an airplane
+
+30
+00:01:31,920 --> 00:01:33,990
+or the other one we have us will have a
+
+31
+00:01:33,990 --> 00:01:36,210
+stronger output it will tell you no this
+
+32
+00:01:36,210 --> 00:01:39,869
+is not an airplane ok there is one more
+
+33
+00:01:39,869 --> 00:01:41,460
+thing in this there are activation
+
+34
+00:01:41,460 --> 00:01:44,909
+functions so a little bit more details
+
+35
+00:01:44,909 --> 00:01:48,420
+about what a neuron does for those who
+
+36
+00:01:48,420 --> 00:01:51,450
+like it you have the full oops right
+
+37
+00:01:51,450 --> 00:01:54,180
+here you have the the full transfer
+
+38
+00:01:54,180 --> 00:01:56,460
+function here so you see it's a weighted
+
+39
+00:01:56,460 --> 00:01:59,369
+sum plus something called the bias
+
+40
+00:01:59,369 --> 00:02:01,110
+that's just an additional degree of
+
+41
+00:02:01,110 --> 00:02:03,540
+freedom and then you feed this through
+
+42
+00:02:03,540 --> 00:02:05,820
+an activation function and in neural
+
+43
+00:02:05,820 --> 00:02:08,039
+networks that is always a non-linear
+
+44
+00:02:08,039 --> 00:02:10,890
+function and to simplify for us here
+
+45
+00:02:10,890 --> 00:02:12,819
+only to activation for
+
+46
+00:02:12,819 --> 00:02:16,780
+that counts so for all the intermediate
+
+47
+00:02:16,780 --> 00:02:20,109
+layers the white layers really that's
+
+48
+00:02:20,109 --> 00:02:21,639
+the simplest function you can imagine
+
+49
+00:02:21,639 --> 00:02:23,590
+you have it on the graphic okay
+
+50
+00:02:23,590 --> 00:02:26,379
+just this it's nonlinear we love it
+
+51
+00:02:26,379 --> 00:02:28,689
+everyone uses that let's not go any
+
+52
+00:02:28,689 --> 00:02:31,689
+further on the last layer though if
+
+53
+00:02:31,689 --> 00:02:35,079
+you're building a classifier typically
+
+54
+00:02:35,079 --> 00:02:38,170
+what you use is the soft max activation
+
+55
+00:02:38,170 --> 00:02:40,719
+function and that is an exponential
+
+56
+00:02:40,719 --> 00:02:44,650
+followed by a normalization so here I
+
+57
+00:02:44,650 --> 00:02:46,480
+have different classifier that
+
+58
+00:02:46,480 --> 00:02:49,930
+classifies in ten classes and you'll
+
+59
+00:02:49,930 --> 00:02:52,299
+have your weighted sums coming out of
+
+60
+00:02:52,299 --> 00:02:55,000
+your ten final neurons and what you do
+
+61
+00:02:55,000 --> 00:02:57,159
+in soft max is that you elevate all of
+
+62
+00:02:57,159 --> 00:02:59,290
+them to the exponential and then you
+
+63
+00:02:59,290 --> 00:03:01,269
+compute the norm of that vector of ten
+
+64
+00:03:01,269 --> 00:03:02,949
+elements and you divide everything by
+
+65
+00:03:02,949 --> 00:03:05,949
+ignore the effect of that since
+
+66
+00:03:05,949 --> 00:03:07,810
+exponential is it's a very steeply
+
+67
+00:03:07,810 --> 00:03:11,500
+increasing function is that it will pull
+
+68
+00:03:11,500 --> 00:03:14,079
+the winner apart I made a little
+
+69
+00:03:14,079 --> 00:03:16,569
+animation to show you like this this is
+
+70
+00:03:16,569 --> 00:03:19,000
+after soft max this is before soft max
+
+71
+00:03:19,000 --> 00:03:22,780
+so yours you see much clearer which of
+
+72
+00:03:22,780 --> 00:03:25,239
+those neurons is indicating the winning
+
+73
+00:03:25,239 --> 00:03:27,909
+class okay that's why it's called soft
+
+74
+00:03:27,909 --> 00:03:30,040
+max it pulls the winner at parts like a
+
+75
+00:03:30,040 --> 00:03:32,379
+max but it doesn't completely destroy
+
+76
+00:03:32,379 --> 00:03:33,849
+the rest of the information that's why
+
+77
+00:03:33,849 --> 00:03:37,540
+it's a soft version of Max okay so just
+
+78
+00:03:37,540 --> 00:03:39,250
+those two activation functions with that
+
+79
+00:03:39,250 --> 00:03:42,689
+we can build the stuff we want to build
+
+80
+00:03:42,689 --> 00:03:45,540
+so now coming out of our neural network
+
+81
+00:03:45,540 --> 00:03:48,939
+we have our let's say here ten final
+
+82
+00:03:48,939 --> 00:03:51,699
+neurons producing values which have been
+
+83
+00:03:51,699 --> 00:03:53,919
+normalized between zero and one we can
+
+84
+00:03:53,919 --> 00:03:56,310
+say those values or probabilities okay
+
+85
+00:03:56,310 --> 00:03:59,229
+the probability of this image being in
+
+86
+00:03:59,229 --> 00:04:02,500
+this class how are we going to determine
+
+87
+00:04:02,500 --> 00:04:05,310
+the the weights in those weighted sums
+
+88
+00:04:05,310 --> 00:04:09,909
+initially it's all just you know random
+
+89
+00:04:09,909 --> 00:04:12,729
+so initially our network doesn't do
+
+90
+00:04:12,729 --> 00:04:17,630
+anything actually so useful
+
+91
+00:04:17,630 --> 00:04:20,389
+we do this through supervised learning
+
+92
+00:04:20,389 --> 00:04:22,910
+so you provided images which you have
+
+93
+00:04:22,910 --> 00:04:24,740
+labeled beforehand you know what they
+
+94
+00:04:24,740 --> 00:04:27,590
+are and all those images your network is
+
+95
+00:04:27,590 --> 00:04:29,210
+going to output this set of
+
+96
+00:04:29,210 --> 00:04:31,310
+probabilities but you know what the
+
+97
+00:04:31,310 --> 00:04:33,320
+correct answer is because you are doing
+
+98
+00:04:33,320 --> 00:04:37,340
+supervised learning so you will include
+
+99
+00:04:37,340 --> 00:04:40,250
+your correct answer in a format that
+
+100
+00:04:40,250 --> 00:04:43,130
+looks like what the network is producing
+
+101
+00:04:43,130 --> 00:04:45,919
+it's the simplest encoding you can think
+
+102
+00:04:45,919 --> 00:04:48,050
+of it's called one hot encoding and
+
+103
+00:04:48,050 --> 00:04:50,180
+basically it's a bunch of zeros with
+
+104
+00:04:50,180 --> 00:04:52,370
+just one one in the middle that's the
+
+105
+00:04:52,370 --> 00:04:54,320
+index of the class you want so here to
+
+106
+00:04:54,320 --> 00:04:56,539
+represent 2/6 I have a vector of zeros
+
+107
+00:04:56,539 --> 00:04:59,690
+with a 1 in the sixth position and now
+
+108
+00:04:59,690 --> 00:05:02,510
+those vectors look very similar I can
+
+109
+00:05:02,510 --> 00:05:05,240
+compute the distance between them and
+
+110
+00:05:05,240 --> 00:05:07,550
+the good of the people who studied this
+
+111
+00:05:07,550 --> 00:05:08,900
+in a classifier
+
+112
+00:05:08,900 --> 00:05:11,600
+they tell us don't use any distance use
+
+113
+00:05:11,600 --> 00:05:14,930
+the cross-entropy distance why I don't
+
+114
+00:05:14,930 --> 00:05:16,970
+know they are smarter than me I just
+
+115
+00:05:16,970 --> 00:05:19,880
+follow in the entropy the cross-entropy
+
+116
+00:05:19,880 --> 00:05:22,700
+distance is computed like this so you
+
+117
+00:05:22,700 --> 00:05:26,570
+multiply element by element the elements
+
+118
+00:05:26,570 --> 00:05:28,580
+of the vector the known answer from the
+
+119
+00:05:28,580 --> 00:05:30,620
+top by the logarithm of the
+
+120
+00:05:30,620 --> 00:05:32,510
+probabilities you got from your neural
+
+121
+00:05:32,510 --> 00:05:34,370
+network and you then sum that up across
+
+122
+00:05:34,370 --> 00:05:37,880
+the vector this is the distance between
+
+123
+00:05:37,880 --> 00:05:40,370
+what the network has predicted and the
+
+124
+00:05:40,370 --> 00:05:43,310
+correct answer that's what you want if
+
+125
+00:05:43,310 --> 00:05:45,470
+you want to train a neural network you
+
+126
+00:05:45,470 --> 00:05:47,360
+get this it's called an error function
+
+127
+00:05:47,360 --> 00:05:50,479
+or a loss function from there on tensor
+
+128
+00:05:50,479 --> 00:05:52,520
+flow can take over and do the training
+
+129
+00:05:52,520 --> 00:05:55,960
+for you you just need an error function
+
+130
+00:05:55,960 --> 00:05:58,760
+so in a nutshell those are the
+
+131
+00:05:58,760 --> 00:06:01,250
+ingredients in our part that I want you
+
+132
+00:06:01,250 --> 00:06:02,150
+to be aware of
+
+133
+00:06:02,150 --> 00:06:03,949
+you have neurons you know the way it
+
+134
+00:06:03,949 --> 00:06:07,250
+sounds you have only two activation
+
+135
+00:06:07,250 --> 00:06:10,280
+functions that you can use either the
+
+136
+00:06:10,280 --> 00:06:11,780
+rayleigh activation function on
+
+137
+00:06:11,780 --> 00:06:14,300
+intermediate layers or if you build a
+
+138
+00:06:14,300 --> 00:06:17,599
+classifier on the last layer softmax and
+
+139
+00:06:17,599 --> 00:06:19,849
+the error function that we are going to
+
+140
+00:06:19,849 --> 00:06:22,580
+use is the cross entropy error function
+
+141
+00:06:22,580 --> 00:06:25,789
+that I had on the previous slide okay
+
+142
+00:06:25,789 --> 00:06:30,110
+all good on this bit of code this is how
+
+143
+00:06:30,110 --> 00:06:32,870
+you would write it in tensor flow so
+
+144
+00:06:32,870 --> 00:06:35,229
+there is a high level API in tensor flow
+
+145
+00:06:35,229 --> 00:06:37,969
+layers where you can instantiate an
+
+146
+00:06:37,969 --> 00:06:41,690
+entire layer at once you see I
+
+147
+00:06:41,690 --> 00:06:44,900
+instantiate the first layer here has 200
+
+148
+00:06:44,900 --> 00:06:47,479
+neurons and is activated by the Rayleigh
+
+149
+00:06:47,479 --> 00:06:50,090
+activation function it's this layer here
+
+150
+00:06:50,090 --> 00:06:54,110
+and this also instantiates the weights
+
+151
+00:06:54,110 --> 00:06:56,630
+and biases for this layer in the
+
+152
+00:06:56,630 --> 00:06:58,400
+background you don't see that it's in
+
+153
+00:06:58,400 --> 00:07:00,409
+the background I have a second layer
+
+154
+00:07:00,409 --> 00:07:04,729
+here which is this one is just 20
+
+155
+00:07:04,729 --> 00:07:06,770
+neurons again radio activation function
+
+156
+00:07:06,770 --> 00:07:08,900
+and this I need to do do this little
+
+157
+00:07:08,900 --> 00:07:12,349
+final layer so it's a dense layer again
+
+158
+00:07:12,349 --> 00:07:15,110
+with two neurons and even if you do
+
+159
+00:07:15,110 --> 00:07:16,760
+don't see it on the screen it is
+
+160
+00:07:16,760 --> 00:07:19,610
+activated by softmax but you don't see
+
+161
+00:07:19,610 --> 00:07:22,880
+it because I use its output in the cross
+
+162
+00:07:22,880 --> 00:07:25,190
+entropy function which has softmax built
+
+163
+00:07:25,190 --> 00:07:28,279
+in so it is a soft max layer it's just
+
+164
+00:07:28,279 --> 00:07:29,960
+that you don't see region soft packs in
+
+165
+00:07:29,960 --> 00:07:31,210
+the code
+
+166
+00:07:31,210 --> 00:07:36,800
+finally this here is my error function
+
+167
+00:07:36,800 --> 00:07:38,990
+which is the distance between the
+
+168
+00:07:38,990 --> 00:07:40,400
+correct answer here
+
+169
+00:07:40,400 --> 00:07:43,700
+one hot encoded and the output from my
+
+170
+00:07:43,700 --> 00:07:47,029
+neural network once I have that I can
+
+171
+00:07:47,029 --> 00:07:50,029
+give it to tensorflow take an optimizer
+
+172
+00:07:50,029 --> 00:07:53,389
+ask it to optimize this loss and the
+
+173
+00:07:53,389 --> 00:07:55,840
+magic will happen so what is this magic
+
+174
+00:07:55,840 --> 00:08:00,909
+tensorflow will take this error function
+
+175
+00:08:00,909 --> 00:08:03,409
+differentiate it relatively to all the
+
+176
+00:08:03,409 --> 00:08:05,090
+weights and all the biases all the
+
+177
+00:08:05,090 --> 00:08:07,639
+trainable variables in the system and
+
+178
+00:08:07,639 --> 00:08:09,110
+that gives it something that is
+
+179
+00:08:09,110 --> 00:08:11,779
+mathematically called a gradient and by
+
+180
+00:08:11,779 --> 00:08:14,450
+following this gradient it can figure
+
+181
+00:08:14,450 --> 00:08:16,940
+out how to adjust the weights and biases
+
+182
+00:08:16,940 --> 00:08:19,610
+in the neural network in a way that
+
+183
+00:08:19,610 --> 00:08:22,159
+makes this error smaller that makes the
+
+184
+00:08:22,159 --> 00:08:23,510
+difference between what the network
+
+185
+00:08:23,510 --> 00:08:25,159
+products and what we know to be true
+
+186
+00:08:25,159 --> 00:08:29,570
+smaller that's supervised learning so
+
+187
+00:08:29,570 --> 00:08:33,020
+that was the primary now why what do we
+
+188
+00:08:33,020 --> 00:08:37,250
+want to build today we would like with
+
+189
+00:08:37,250 --> 00:08:40,579
+you to build a neural network that plays
+
+190
+00:08:40,579 --> 00:08:41,279
+the
+
+191
+00:08:41,279 --> 00:08:44,999
+of pong but just from the pixels of the
+
+192
+00:08:44,999 --> 00:08:47,970
+game it's notoriously difficult to
+
+193
+00:08:47,970 --> 00:08:50,129
+explain to a computer and the rules of
+
+194
+00:08:50,129 --> 00:08:51,930
+the game and the strategies and all that
+
+195
+00:08:51,930 --> 00:08:54,480
+so you want to do way of all that and
+
+196
+00:08:54,480 --> 00:08:57,689
+just give it the pixels and find some
+
+197
+00:08:57,689 --> 00:09:01,170
+learning algorithm that will where it
+
+198
+00:09:01,170 --> 00:09:03,720
+will learn to play this game and of
+
+199
+00:09:03,720 --> 00:09:05,430
+course that is not the goal in itself
+
+200
+00:09:05,430 --> 00:09:09,240
+because figuring out how to program a
+
+201
+00:09:09,240 --> 00:09:11,660
+paddle to win Punk is it's super easy
+
+202
+00:09:11,660 --> 00:09:14,370
+you just always stay in front of the
+
+203
+00:09:14,370 --> 00:09:16,199
+ball you know and and you win all the
+
+204
+00:09:16,199 --> 00:09:16,649
+time
+
+205
+00:09:16,649 --> 00:09:20,279
+and actually we will train again such a
+
+206
+00:09:20,279 --> 00:09:23,249
+computer-controlled agent the goal here
+
+207
+00:09:23,249 --> 00:09:25,850
+is to explore learning algorithms
+
+208
+00:09:25,850 --> 00:09:28,589
+because this has applications hopefully
+
+209
+00:09:28,589 --> 00:09:32,009
+way beyond Punk so this looks like a
+
+210
+00:09:32,009 --> 00:09:34,680
+classifier we just learned how to build
+
+211
+00:09:34,680 --> 00:09:36,899
+a classifier you know we have the pixels
+
+212
+00:09:36,899 --> 00:09:39,389
+we will build on your own network and it
+
+213
+00:09:39,389 --> 00:09:41,999
+has three possible outcomes this is a
+
+214
+00:09:41,999 --> 00:09:44,579
+position in which you want to go up stay
+
+215
+00:09:44,579 --> 00:09:47,370
+still or you want to go down okay let's
+
+216
+00:09:47,370 --> 00:09:49,290
+try to do this by the book in a
+
+217
+00:09:49,290 --> 00:09:53,370
+classifier so we have a single
+
+218
+00:09:53,370 --> 00:09:55,889
+intermediate layer of neurons activated
+
+219
+00:09:55,889 --> 00:09:58,740
+with already of course and then a last
+
+220
+00:09:58,740 --> 00:10:00,779
+layer where there's three neurons
+
+221
+00:10:00,779 --> 00:10:03,199
+activated by softmax
+
+222
+00:10:03,199 --> 00:10:07,110
+we use the cross entropy loss so you
+
+223
+00:10:07,110 --> 00:10:09,300
+have the function here it's the distance
+
+224
+00:10:09,300 --> 00:10:13,379
+between the probabilities that this
+
+225
+00:10:13,379 --> 00:10:15,720
+policy network it's called the policy
+
+226
+00:10:15,720 --> 00:10:18,990
+Network predicts probability of going up
+
+227
+00:10:18,990 --> 00:10:23,420
+still or going down in the correct move
+
+228
+00:10:23,420 --> 00:10:28,290
+but what is the correct move I don't
+
+229
+00:10:28,290 --> 00:10:31,259
+know do you know you have no Martin
+
+230
+00:10:31,259 --> 00:10:33,899
+you're exactly right here unlike in the
+
+231
+00:10:33,899 --> 00:10:36,509
+supervised learning problem we actually
+
+232
+00:10:36,509 --> 00:10:37,800
+don't know what's correct move to play
+
+233
+00:10:37,800 --> 00:10:38,480
+here
+
+234
+00:10:38,480 --> 00:10:41,009
+however the environment requires that we
+
+235
+00:10:41,009 --> 00:10:43,529
+keep making moves of going up or staying
+
+236
+00:10:43,529 --> 00:10:45,240
+still or moving down to the progress
+
+237
+00:10:45,240 --> 00:10:48,240
+together so what we're gonna do is we're
+
+238
+00:10:48,240 --> 00:10:49,500
+gonna same for the move
+
+239
+00:10:49,500 --> 00:10:52,350
+which means picking one of the three
+
+240
+00:10:52,350 --> 00:10:54,330
+possible moves of moving the pedal up
+
+241
+00:10:54,330 --> 00:10:56,910
+Staines - you're going down randomly but
+
+242
+00:10:56,910 --> 00:10:58,470
+not completely randomly though we're
+
+243
+00:10:58,470 --> 00:11:00,090
+going to pick the move based on the
+
+244
+00:11:00,090 --> 00:11:02,250
+output of the network so for example if
+
+245
+00:11:02,250 --> 00:11:05,220
+the network stays the output probability
+
+246
+00:11:05,220 --> 00:11:07,980
+of going up is 0.8 then we should make
+
+247
+00:11:07,980 --> 00:11:10,050
+it so that there's 80% of chance which
+
+248
+00:11:10,050 --> 00:11:12,210
+choose to move up as our next vote
+
+249
+00:11:12,210 --> 00:11:14,370
+all right so now we know how to play the
+
+250
+00:11:14,370 --> 00:11:15,960
+game the policy network gives us
+
+251
+00:11:15,960 --> 00:11:18,480
+probabilities we are all alone a loaded
+
+252
+00:11:18,480 --> 00:11:20,580
+dice and pick from that and we know what
+
+253
+00:11:20,580 --> 00:11:24,990
+next moves to play but initially this
+
+254
+00:11:24,990 --> 00:11:27,360
+network is initialized with a random
+
+255
+00:11:27,360 --> 00:11:29,790
+weights so it will be playing random
+
+256
+00:11:29,790 --> 00:11:32,250
+moves how is that how does that inform
+
+257
+00:11:32,250 --> 00:11:35,400
+us about the correct move to play I need
+
+258
+00:11:35,400 --> 00:11:36,930
+to put the correct move in my formula
+
+259
+00:11:36,930 --> 00:11:38,610
+that's right so in this case we really
+
+260
+00:11:38,610 --> 00:11:41,070
+want the correct both to mean moves that
+
+261
+00:11:41,070 --> 00:11:43,170
+will lead to winning yeah we don't know
+
+262
+00:11:43,170 --> 00:11:45,630
+that until someone has score a point and
+
+263
+00:11:45,630 --> 00:11:47,190
+so that's what we're gonna do
+
+264
+00:11:47,190 --> 00:11:49,950
+only when someone either our pet or the
+
+265
+00:11:49,950 --> 00:11:52,080
+opponent hello has scored the point do
+
+266
+00:11:52,080 --> 00:11:54,330
+we know we have played well or not so
+
+267
+00:11:54,330 --> 00:11:56,700
+whenever somebody stores who are gonna
+
+268
+00:11:56,700 --> 00:11:59,280
+give ourself a reward if our pedo scores
+
+269
+00:11:59,280 --> 00:11:59,940
+the point
+
+270
+00:11:59,940 --> 00:12:01,890
+we'll give ourselves the positive one
+
+271
+00:12:01,890 --> 00:12:05,010
+reward point and if the opponent cattle
+
+272
+00:12:05,010 --> 00:12:06,690
+scores don't give ourself a negative one
+
+273
+00:12:06,690 --> 00:12:08,460
+reward point and then we're going to
+
+274
+00:12:08,460 --> 00:12:10,230
+structure our loss function slightly
+
+275
+00:12:10,230 --> 00:12:17,760
+differently than before over here once
+
+276
+00:12:17,760 --> 00:12:21,240
+again over here you see some a loss
+
+277
+00:12:21,240 --> 00:12:23,490
+function very much like the process
+
+278
+00:12:23,490 --> 00:12:25,920
+should be function we saw before now in
+
+279
+00:12:25,920 --> 00:12:27,720
+the middle here is the main difference
+
+280
+00:12:27,720 --> 00:12:30,600
+where instead of the correct label in
+
+281
+00:12:30,600 --> 00:12:33,030
+supervised learning problem we're just
+
+282
+00:12:33,030 --> 00:12:34,710
+going to put the same whole move in
+
+283
+00:12:34,710 --> 00:12:37,440
+there the move we played the move that
+
+284
+00:12:37,440 --> 00:12:40,590
+we happen to play and well some of the
+
+285
+00:12:40,590 --> 00:12:42,480
+moves may not be really moves our
+
+286
+00:12:42,480 --> 00:12:44,610
+helpers and so that's why every loss
+
+287
+00:12:44,610 --> 00:12:46,740
+function lost value is multiplied by the
+
+288
+00:12:46,740 --> 00:12:49,440
+reward out front this way boosts that
+
+289
+00:12:49,440 --> 00:12:51,990
+eventually lead to a winning point will
+
+290
+00:12:51,990 --> 00:12:54,120
+get encouraged and moves that lead to a
+
+291
+00:12:54,120 --> 00:12:56,250
+losing point will be discouraged over
+
+292
+00:12:56,250 --> 00:12:58,710
+time okay so you do this for every move
+
+293
+00:12:58,710 --> 00:13:00,840
+I can see how with this little
+
+294
+00:13:00,840 --> 00:13:03,230
+modification it could
+
+295
+00:13:03,230 --> 00:13:06,920
+to some learning but putting back my
+
+296
+00:13:06,920 --> 00:13:09,650
+mathematicians hat on I see a big
+
+297
+00:13:09,650 --> 00:13:12,100
+problem here you have this sample move
+
+298
+00:13:12,100 --> 00:13:15,170
+that is a picking operation a sampling
+
+299
+00:13:15,170 --> 00:13:18,560
+operation you pick one out of three that
+
+300
+00:13:18,560 --> 00:13:23,180
+is not differentiable and to apply you
+
+301
+00:13:23,180 --> 00:13:25,580
+know the minimization and a gradient
+
+302
+00:13:25,580 --> 00:13:28,070
+descent and all that the last function
+
+303
+00:13:28,070 --> 00:13:31,280
+must be differentiable you're right
+
+304
+00:13:31,280 --> 00:13:34,280
+Marty I see the hard question here the
+
+305
+00:13:34,280 --> 00:13:36,740
+simple move here it actually does depend
+
+306
+00:13:36,740 --> 00:13:39,380
+down the modest ways and biases but the
+
+307
+00:13:39,380 --> 00:13:41,390
+sampling operation is not differentiable
+
+308
+00:13:41,390 --> 00:13:43,370
+and so we're not going to differentiate
+
+309
+00:13:43,370 --> 00:13:45,410
+that instead we're going to look at the
+
+310
+00:13:45,410 --> 00:13:47,890
+sample moves as if they're constants and
+
+311
+00:13:47,890 --> 00:13:51,230
+then we play many games across many many
+
+312
+00:13:51,230 --> 00:13:53,720
+moves to get a lot of data treating all
+
+313
+00:13:53,720 --> 00:13:55,400
+of these sample moves as if they're
+
+314
+00:13:55,400 --> 00:13:58,160
+constant cancer labels and only
+
+315
+00:13:58,160 --> 00:14:00,170
+differentiating the probabilities that
+
+316
+00:14:00,170 --> 00:14:03,410
+our output by the model in blue here on
+
+317
+00:14:03,410 --> 00:14:05,600
+the screen and those probabilities
+
+318
+00:14:05,600 --> 00:14:08,390
+directly depend on the models ways and
+
+319
+00:14:08,390 --> 00:14:10,400
+biases and we can differentiate those
+
+320
+00:14:10,400 --> 00:14:12,860
+with respect with the ways and biases
+
+321
+00:14:12,860 --> 00:14:15,140
+this way we still get a valid gradient
+
+322
+00:14:15,140 --> 00:14:16,460
+and we can apply gradient descent
+
+323
+00:14:16,460 --> 00:14:19,100
+techniques oh okay so you kind of
+
+324
+00:14:19,100 --> 00:14:21,620
+cheated the part that is problematic
+
+325
+00:14:21,620 --> 00:14:23,600
+just regarded as constant you're going
+
+326
+00:14:23,600 --> 00:14:25,490
+to play many games with the same neural
+
+327
+00:14:25,490 --> 00:14:27,580
+network accumulate those plate moves
+
+328
+00:14:27,580 --> 00:14:30,050
+accumulate those rewards whenever you
+
+329
+00:14:30,050 --> 00:14:31,400
+know that you scored a point you
+
+330
+00:14:31,400 --> 00:14:34,160
+accumulate those rewards and and then
+
+331
+00:14:34,160 --> 00:14:36,320
+you plug that in and you only
+
+332
+00:14:36,320 --> 00:14:37,840
+differentiate relatively to the
+
+333
+00:14:37,840 --> 00:14:40,040
+predicted probabilities and yes you're
+
+334
+00:14:40,040 --> 00:14:41,630
+right that still gives you a gradient
+
+335
+00:14:41,630 --> 00:14:43,940
+that depends on weights and biases so we
+
+336
+00:14:43,940 --> 00:14:46,190
+should be able to do that ok I get it
+
+337
+00:14:46,190 --> 00:14:49,780
+this is clever so this will actually
+
+338
+00:14:49,780 --> 00:14:54,230
+strain probably very slowly here we want
+
+339
+00:14:54,230 --> 00:14:56,600
+to show you the minimum amount of stuff
+
+340
+00:14:56,600 --> 00:15:00,170
+you need to do to get it to Train but in
+
+341
+00:15:00,170 --> 00:15:02,360
+the minimal amount there are still two
+
+342
+00:15:02,360 --> 00:15:04,610
+little improvements that you always want
+
+343
+00:15:04,610 --> 00:15:07,910
+to do the first one is to discount the
+
+344
+00:15:07,910 --> 00:15:11,240
+rewards so probably if you lost the
+
+345
+00:15:11,240 --> 00:15:13,760
+point you did something wrong in the
+
+346
+00:15:13,760 --> 00:15:16,130
+three five seven
+
+347
+00:15:16,130 --> 00:15:18,650
+moves right before you lost that point
+
+348
+00:15:18,650 --> 00:15:21,440
+and probably before that you bounced the
+
+349
+00:15:21,440 --> 00:15:24,010
+ball correctly a couple of times and
+
+350
+00:15:24,010 --> 00:15:26,810
+that is that was correct you don't want
+
+351
+00:15:26,810 --> 00:15:27,920
+to discourage that
+
+352
+00:15:27,920 --> 00:15:30,680
+so it's customary to discount the
+
+353
+00:15:30,680 --> 00:15:32,210
+rewards through time backwards through
+
+354
+00:15:32,210 --> 00:15:34,490
+time with some exponential discount
+
+355
+00:15:34,490 --> 00:15:36,230
+factor so that the moves you played
+
+356
+00:15:36,230 --> 00:15:38,750
+closest the scoring point are the ones
+
+357
+00:15:38,750 --> 00:15:44,630
+that count the most so you see the here
+
+358
+00:15:44,630 --> 00:15:46,730
+we discounted them with a factor of 1/2
+
+359
+00:15:46,730 --> 00:15:50,540
+for instance and and then there is this
+
+360
+00:15:50,540 --> 00:15:53,000
+normalization step so what is that yeah
+
+361
+00:15:53,000 --> 00:15:53,900
+that's very interesting
+
+362
+00:15:53,900 --> 00:15:56,240
+so in experiments that we notice putting
+
+363
+00:15:56,240 --> 00:15:57,860
+in the normalizations that really help
+
+364
+00:15:57,860 --> 00:16:00,100
+training to make learning faster
+
+365
+00:16:00,100 --> 00:16:02,090
+therefore multiple ways to think about
+
+366
+00:16:02,090 --> 00:16:03,560
+this the way I like to think about this
+
+367
+00:16:03,560 --> 00:16:05,780
+is in the context of playing again you
+
+368
+00:16:05,780 --> 00:16:08,090
+see at the beginning of the time the
+
+369
+00:16:08,090 --> 00:16:10,460
+model only has randomized weights and
+
+370
+00:16:10,460 --> 00:16:12,410
+biases so it's gonna make a random moves
+
+371
+00:16:12,410 --> 00:16:14,870
+so most of time is not going to make the
+
+372
+00:16:14,870 --> 00:16:16,850
+right boat only once and wire is gonna
+
+373
+00:16:16,850 --> 00:16:18,380
+score a point but that's really by
+
+374
+00:16:18,380 --> 00:16:20,780
+chance by accident and most of time is
+
+375
+00:16:20,780 --> 00:16:22,550
+gonna lose points and we didn't want to
+
+376
+00:16:22,550 --> 00:16:24,650
+find a way to necessarily put more ways
+
+377
+00:16:24,650 --> 00:16:27,950
+to the very rare winning moves there so
+
+378
+00:16:27,950 --> 00:16:29,420
+they can learn what are the corrective
+
+379
+00:16:29,420 --> 00:16:32,360
+moves and performing is normalizing and
+
+380
+00:16:32,360 --> 00:16:34,160
+we were stabbed here naturally gives a
+
+381
+00:16:34,160 --> 00:16:36,890
+very nice boost to the rare when they
+
+382
+00:16:36,890 --> 00:16:38,780
+move so it does not get lost in you know
+
+383
+00:16:38,780 --> 00:16:41,810
+a ton of losing moves okay so let's go
+
+384
+00:16:41,810 --> 00:16:44,450
+let's train this but we need to play the
+
+385
+00:16:44,450 --> 00:16:47,240
+game and accumulate enough data to
+
+386
+00:16:47,240 --> 00:16:50,390
+compute this everything that we need for
+
+387
+00:16:50,390 --> 00:16:52,610
+this function here okay so those are the
+
+388
+00:16:52,610 --> 00:16:55,160
+sample moves we need the rewards and we
+
+389
+00:16:55,160 --> 00:16:58,190
+also need those probabilities which the
+
+390
+00:16:58,190 --> 00:17:00,290
+network can compute from us from the
+
+391
+00:17:00,290 --> 00:17:03,170
+pixels so we are going to collect the
+
+392
+00:17:03,170 --> 00:17:08,170
+pixels during gameplay that's how our
+
+393
+00:17:08,170 --> 00:17:11,030
+data set collected data set looks like
+
+394
+00:17:11,030 --> 00:17:12,920
+okay you have one column with the move
+
+395
+00:17:12,920 --> 00:17:15,620
+you actually played one column where you
+
+396
+00:17:15,620 --> 00:17:17,510
+would like to see the probabilities
+
+397
+00:17:17,510 --> 00:17:19,220
+predicted at that point but you were
+
+398
+00:17:19,220 --> 00:17:20,810
+actually going to store just the game
+
+399
+00:17:20,810 --> 00:17:22,699
+board and run the network to get the
+
+400
+00:17:22,699 --> 00:17:24,920
+probabilities in the last column with
+
+401
+00:17:24,920 --> 00:17:27,350
+the rewards you see there is a plus one
+
+402
+00:17:27,350 --> 00:17:29,400
+or minus one reward on
+
+403
+00:17:29,400 --> 00:17:31,920
+removed and scored a point and on all
+
+404
+00:17:31,920 --> 00:17:35,010
+the other moves you discount that reward
+
+405
+00:17:35,010 --> 00:17:37,050
+backwards in time with some exponential
+
+406
+00:17:37,050 --> 00:17:41,250
+discount so that's what we want to chew
+
+407
+00:17:41,250 --> 00:17:44,760
+and once you have this maybe you notice
+
+408
+00:17:44,760 --> 00:17:46,590
+in the formula you just multiply those
+
+409
+00:17:46,590 --> 00:17:49,260
+three columns together and sum all of
+
+410
+00:17:49,260 --> 00:17:51,510
+that that's power loss that's how the
+
+411
+00:17:51,510 --> 00:17:56,730
+loss is computed let's build it you
+
+412
+00:17:56,730 --> 00:18:00,030
+implemented this this this this demo so
+
+413
+00:18:00,030 --> 00:18:01,620
+can you walk us through the code let's
+
+414
+00:18:01,620 --> 00:18:06,840
+do that so up here you see a few
+
+415
+00:18:06,840 --> 00:18:07,410
+tensorflow
+
+416
+00:18:07,410 --> 00:18:09,810
+placeholders you should really think of
+
+417
+00:18:09,810 --> 00:18:11,820
+them as function arguments that are
+
+418
+00:18:11,820 --> 00:18:15,180
+required to compute alpha values for
+
+419
+00:18:15,180 --> 00:18:16,980
+models and so with three placeholders
+
+420
+00:18:16,980 --> 00:18:18,750
+for the input one for the observation
+
+421
+00:18:18,750 --> 00:18:20,250
+remember this really means the
+
+422
+00:18:20,250 --> 00:18:21,600
+difference between two consecutive
+
+423
+00:18:21,600 --> 00:18:24,510
+frames unit game play actually yes
+
+424
+00:18:24,510 --> 00:18:27,090
+because we didn't say that actually just
+
+425
+00:18:27,090 --> 00:18:28,530
+in the game of pong you don't really
+
+426
+00:18:28,530 --> 00:18:30,540
+train from the pixels because you don't
+
+427
+00:18:30,540 --> 00:18:32,550
+see the direction of the ball with from
+
+428
+00:18:32,550 --> 00:18:34,980
+just the picture but you train from the
+
+429
+00:18:34,980 --> 00:18:36,900
+Delta between two frames because there
+
+430
+00:18:36,900 --> 00:18:38,580
+you see the direction of the ball that's
+
+431
+00:18:38,580 --> 00:18:40,530
+the only wrinkle we are doing here which
+
+432
+00:18:40,530 --> 00:18:42,660
+is specific to pong all the rest is
+
+433
+00:18:42,660 --> 00:18:44,130
+reinforcement learning vanilla
+
+434
+00:18:44,130 --> 00:18:45,660
+reinforcement learning that applies to
+
+435
+00:18:45,660 --> 00:18:47,910
+many other problems that's right yeah
+
+436
+00:18:47,910 --> 00:18:50,940
+and for the actions placeholder is just
+
+437
+00:18:50,940 --> 00:18:53,010
+going to hold all the simple to move the
+
+438
+00:18:53,010 --> 00:18:54,600
+moves that the model happen to decide to
+
+439
+00:18:54,600 --> 00:18:57,060
+play and the rewards placeholder work
+
+440
+00:18:57,060 --> 00:18:59,940
+collect all the discounted rewards now
+
+441
+00:18:59,940 --> 00:19:01,230
+with those as impose we're ready to
+
+442
+00:19:01,230 --> 00:19:03,330
+build a model the networks really simple
+
+443
+00:19:03,330 --> 00:19:05,460
+is like the one marketing show before it
+
+444
+00:19:05,460 --> 00:19:08,340
+has a single dense layer a single ten
+
+445
+00:19:08,340 --> 00:19:10,440
+hidden layer with activation of the
+
+446
+00:19:10,440 --> 00:19:12,540
+riilu function 200 neurons
+
+447
+00:19:12,540 --> 00:19:15,900
+followed by a soft max layer you don't
+
+448
+00:19:15,900 --> 00:19:18,660
+receive calling us off the max function
+
+449
+00:19:18,660 --> 00:19:21,030
+here and that's really because the next
+
+450
+00:19:21,030 --> 00:19:23,670
+step the sampling operation already
+
+451
+00:19:23,670 --> 00:19:26,820
+takes in Logies which is the lab values
+
+452
+00:19:26,820 --> 00:19:28,380
+you get before you cross off max
+
+453
+00:19:28,380 --> 00:19:30,060
+function and it came to perform
+
+454
+00:19:30,060 --> 00:19:32,730
+multinomial sampling which just means
+
+455
+00:19:32,730 --> 00:19:35,460
+you output a random number of zero one
+
+456
+00:19:35,460 --> 00:19:37,710
+or two for the three classes that we
+
+457
+00:19:37,710 --> 00:19:40,230
+need output based on the probability you
+
+458
+00:19:40,230 --> 00:19:41,510
+specify the lot by the long
+
+459
+00:19:41,510 --> 00:19:43,880
+and this one has the softbox built-in so
+
+460
+00:19:43,880 --> 00:19:45,890
+already building this is a soft wax
+
+461
+00:19:45,890 --> 00:19:48,230
+layer okay we don't see it on the cover
+
+462
+00:19:48,230 --> 00:19:51,500
+but it is okay and just the parentheses
+
+463
+00:19:51,500 --> 00:19:53,630
+for those not familiar with a tensor
+
+464
+00:19:53,630 --> 00:19:56,300
+flow tensor flow builds and note a graph
+
+465
+00:19:56,300 --> 00:19:59,690
+of operations in memory so that's why
+
+466
+00:19:59,690 --> 00:20:01,880
+out of multi monomial we get an
+
+467
+00:20:01,880 --> 00:20:04,040
+operation and then we will have an
+
+468
+00:20:04,040 --> 00:20:05,900
+additional step to run it and actually
+
+469
+00:20:05,900 --> 00:20:08,230
+get those predictions out and
+
+470
+00:20:08,230 --> 00:20:11,090
+placeholders or the data you need to put
+
+471
+00:20:11,090 --> 00:20:13,280
+in when you actually run a node to be
+
+472
+00:20:13,280 --> 00:20:17,540
+able to get a numerical result out okay
+
+473
+00:20:17,540 --> 00:20:19,970
+so we have everything we need to play
+
+474
+00:20:19,970 --> 00:20:22,880
+the game still nothing to Train so let's
+
+475
+00:20:22,880 --> 00:20:26,120
+do the training part for training we
+
+476
+00:20:26,120 --> 00:20:28,820
+need a loss function so our beloved
+
+477
+00:20:28,820 --> 00:20:32,390
+cross my cross entropy loss function
+
+478
+00:20:32,390 --> 00:20:35,590
+computing the distance between our
+
+479
+00:20:35,590 --> 00:20:38,360
+actions so the moves we actually played
+
+480
+00:20:38,360 --> 00:20:41,690
+and logits which are from the previous
+
+481
+00:20:41,690 --> 00:20:44,060
+screen that's what the network predicts
+
+482
+00:20:44,060 --> 00:20:49,400
+from the pixels and then we modify it to
+
+483
+00:20:49,400 --> 00:20:51,920
+you to use using the reinforcement
+
+484
+00:20:51,920 --> 00:20:54,020
+learning paradigm we modified by
+
+485
+00:20:54,020 --> 00:20:58,160
+multiplying this per move loss by the
+
+486
+00:20:58,160 --> 00:21:02,120
+rewards by the per move rewards and now
+
+487
+00:21:02,120 --> 00:21:05,270
+with the with those rewards moves
+
+488
+00:21:05,270 --> 00:21:07,280
+leading to a scoring point will be
+
+489
+00:21:07,280 --> 00:21:09,260
+encouraged moves leading to a losing
+
+490
+00:21:09,260 --> 00:21:12,410
+point will be discouraged so now we have
+
+491
+00:21:12,410 --> 00:21:15,440
+our error function tensorflow can take
+
+492
+00:21:15,440 --> 00:21:18,440
+over we pick one of the optimizers in
+
+493
+00:21:18,440 --> 00:21:20,330
+the library and simply ask this
+
+494
+00:21:20,330 --> 00:21:22,640
+optimizer to minimize our loss function
+
+495
+00:21:22,640 --> 00:21:25,160
+which gives us a training operation and
+
+496
+00:21:25,160 --> 00:21:27,080
+we will when we will on the next slide
+
+497
+00:21:27,080 --> 00:21:30,290
+run this training operation feeding in
+
+498
+00:21:30,290 --> 00:21:32,570
+all the data we collected during
+
+499
+00:21:32,570 --> 00:21:36,410
+gameplay that is where the the gradient
+
+500
+00:21:36,410 --> 00:21:37,700
+will be computed and that's the
+
+501
+00:21:37,700 --> 00:21:40,310
+operation when run that will modify the
+
+502
+00:21:40,310 --> 00:21:43,120
+weights and biases in our policy network
+
+503
+00:21:43,120 --> 00:21:47,030
+so let's play this game this is what you
+
+504
+00:21:47,030 --> 00:21:50,740
+need to do to play one game in 21 points
+
+505
+00:21:50,740 --> 00:21:53,480
+so the technical wrinkle is that
+
+506
+00:21:53,480 --> 00:21:54,169
+intensive
+
+507
+00:21:54,169 --> 00:21:56,029
+if you want to actually execute one of
+
+508
+00:21:56,029 --> 00:21:57,919
+those operations you need a session so
+
+509
+00:21:57,919 --> 00:22:00,440
+we define a session and then in a loop
+
+510
+00:22:00,440 --> 00:22:03,559
+we play a game so first we get the
+
+511
+00:22:03,559 --> 00:22:05,809
+pixels from the game stage compute the
+
+512
+00:22:05,809 --> 00:22:07,190
+Delta between two frames
+
+513
+00:22:07,190 --> 00:22:09,649
+okay that's technical and then we run
+
+514
+00:22:09,649 --> 00:22:12,649
+session not run this sample operation
+
+515
+00:22:12,649 --> 00:22:15,919
+remember sample operation is what we got
+
+516
+00:22:15,919 --> 00:22:20,269
+from our picking multinomial function so
+
+517
+00:22:20,269 --> 00:22:23,330
+that's what decides the next move to
+
+518
+00:22:23,330 --> 00:22:28,159
+play then we use a punk simulator here
+
+519
+00:22:28,159 --> 00:22:31,249
+from open AI gem we can give it this
+
+520
+00:22:31,249 --> 00:22:33,019
+move to play and it will play the move
+
+521
+00:22:33,019 --> 00:22:35,570
+and give us a new game state give us a
+
+522
+00:22:35,570 --> 00:22:37,879
+reward if we score the point and give us
+
+523
+00:22:37,879 --> 00:22:40,220
+information on whether this game in 21
+
+524
+00:22:40,220 --> 00:22:42,529
+points is finished ok that's what we
+
+525
+00:22:42,529 --> 00:22:45,769
+need now we simply log all that stuff we
+
+526
+00:22:45,769 --> 00:22:47,690
+log the pixels we log the move we played
+
+527
+00:22:47,690 --> 00:22:51,109
+we lock the reward if we got one so we
+
+528
+00:22:51,109 --> 00:22:53,929
+know how to play one game and we will
+
+529
+00:22:53,929 --> 00:22:56,090
+come and play many of those games to
+
+530
+00:22:56,090 --> 00:22:58,399
+collect a large backlog of moves right
+
+531
+00:22:58,399 --> 00:23:00,169
+that's right playing games in
+
+532
+00:23:00,169 --> 00:23:01,609
+reinforcement learning or in our
+
+533
+00:23:01,609 --> 00:23:02,989
+experiment really is a way of collecting
+
+534
+00:23:02,989 --> 00:23:05,359
+data now that we have collected love
+
+535
+00:23:05,359 --> 00:23:07,730
+data playing one game only ten games why
+
+536
+00:23:07,730 --> 00:23:10,700
+not we can start processing rewards as
+
+537
+00:23:10,700 --> 00:23:13,159
+we plan to will discount the rewards so
+
+538
+00:23:13,159 --> 00:23:14,899
+that the moves that did not get any
+
+539
+00:23:14,899 --> 00:23:17,239
+reward during gameplay now case a
+
+540
+00:23:17,239 --> 00:23:19,730
+discounted reward based on whether or
+
+541
+00:23:19,730 --> 00:23:21,499
+not they eventually led to winning or
+
+542
+00:23:21,499 --> 00:23:23,359
+losing points and how far they are from
+
+543
+00:23:23,359 --> 00:23:25,460
+the moves that actually won or lost a
+
+544
+00:23:25,460 --> 00:23:27,049
+point and then we normalize those
+
+545
+00:23:27,049 --> 00:23:29,119
+rewards as we explained before now
+
+546
+00:23:29,119 --> 00:23:31,190
+already we have all the data in place we
+
+547
+00:23:31,190 --> 00:23:32,179
+have observations
+
+548
+00:23:32,179 --> 00:23:34,730
+that's the differences between game
+
+549
+00:23:34,730 --> 00:23:37,159
+frames the action stuff happens to plate
+
+550
+00:23:37,159 --> 00:23:39,080
+and the rewards so that we know if those
+
+551
+00:23:39,080 --> 00:23:41,450
+actions were good or bad and then we're
+
+552
+00:23:41,450 --> 00:23:43,129
+ready to call the training up and
+
+553
+00:23:43,129 --> 00:23:44,779
+training out is what we saw a couple
+
+554
+00:23:44,779 --> 00:23:46,789
+slides before where we had optimized
+
+555
+00:23:46,789 --> 00:23:49,009
+already initialized and this is going to
+
+556
+00:23:49,009 --> 00:23:50,629
+do the heavy lifting and compute the
+
+557
+00:23:50,629 --> 00:23:52,789
+gradients for us and modify the weights
+
+558
+00:23:52,789 --> 00:23:54,889
+just slightly suppose we played 10 games
+
+559
+00:23:54,889 --> 00:23:57,230
+we modify the way slightly and then
+
+560
+00:23:57,230 --> 00:23:58,639
+we'll go back and play more games to get
+
+561
+00:23:58,639 --> 00:24:00,320
+even more data and repeat the process
+
+562
+00:24:00,320 --> 00:24:03,780
+and expectation or the hope is that
+
+563
+00:24:03,780 --> 00:24:05,400
+the model will let you play a little
+
+564
+00:24:05,400 --> 00:24:07,740
+better every time I'm a bit skeptical do
+
+565
+00:24:07,740 --> 00:24:09,110
+you really think this is going to work
+
+566
+00:24:09,110 --> 00:24:11,400
+well sometimes we see the model I should
+
+567
+00:24:11,400 --> 00:24:12,900
+forget to play a little bit worse
+
+568
+00:24:12,900 --> 00:24:16,350
+so we'll see okay live demo like that
+
+569
+00:24:16,350 --> 00:24:24,690
+all let's go let's run this game so this
+
+570
+00:24:24,690 --> 00:24:26,280
+is a live demo I'm not completely sure
+
+571
+00:24:26,280 --> 00:24:28,830
+that we are going to win but we shall
+
+572
+00:24:28,830 --> 00:24:33,330
+see so Brown on this side is the
+
+573
+00:24:33,330 --> 00:24:35,610
+computer-controlled paddle very simple
+
+574
+00:24:35,610 --> 00:24:37,530
+algorithm is just stays in front of the
+
+575
+00:24:37,530 --> 00:24:40,470
+ball at all times so there is only one
+
+576
+00:24:40,470 --> 00:24:43,080
+way to win to win it's vertical velocity
+
+577
+00:24:43,080 --> 00:24:46,350
+is limited so you have to hit the ball
+
+578
+00:24:46,350 --> 00:24:48,000
+on the very side of the paddle to say is
+
+579
+00:24:48,000 --> 00:24:50,640
+to send to send it at a very steep angle
+
+580
+00:24:50,640 --> 00:24:54,360
+and then you can overcome the vertical
+
+581
+00:24:54,360 --> 00:24:56,100
+velocity of the opponent that's the only
+
+582
+00:24:56,100 --> 00:24:59,850
+way to score on the right in green we
+
+583
+00:24:59,850 --> 00:25:03,419
+have our neural network controlled agent
+
+584
+00:25:03,419 --> 00:25:06,510
+in its slightly behind them so we'll see
+
+585
+00:25:06,510 --> 00:25:09,600
+if it wins and if you want I want this
+
+586
+00:25:09,600 --> 00:25:12,169
+side of the room to cheer for ground and
+
+587
+00:25:12,169 --> 00:25:15,320
+this side of the room to cheer for AI
+
+588
+00:25:15,320 --> 00:25:21,620
+okay it's very even right now one thing
+
+589
+00:25:21,620 --> 00:25:27,059
+yeah go go go
+
+590
+00:25:27,059 --> 00:25:30,730
+ai is willing hey I is winning I'm happy
+
+591
+00:25:30,730 --> 00:25:32,500
+because this is a live demo there is no
+
+592
+00:25:32,500 --> 00:25:34,980
+guarantee that a I will win actually win
+
+593
+00:25:34,980 --> 00:25:37,240
+one thing that is interesting here
+
+594
+00:25:37,240 --> 00:25:41,140
+actually is that this is learning from
+
+595
+00:25:41,140 --> 00:25:44,320
+just the pixels so initially the AI had
+
+596
+00:25:44,320 --> 00:25:47,559
+no idea of even which what game it was
+
+597
+00:25:47,559 --> 00:25:49,210
+playing what the rules were
+
+598
+00:25:49,210 --> 00:25:51,610
+it had even no idea which paddle it was
+
+599
+00:25:51,610 --> 00:25:53,920
+playing okay and we didn't have to
+
+600
+00:25:53,920 --> 00:25:56,679
+explain that we just give the pixels and
+
+601
+00:25:56,679 --> 00:25:59,050
+on scoring points we get a public if we
+
+602
+00:25:59,050 --> 00:26:01,420
+give a positive or a negative reward and
+
+603
+00:26:01,420 --> 00:26:04,210
+that's it from that it learns and you
+
+604
+00:26:04,210 --> 00:26:06,700
+see you see those emerging strategies
+
+605
+00:26:06,700 --> 00:26:08,860
+like what I said hitting the ball on the
+
+606
+00:26:08,860 --> 00:26:11,170
+side and sending again at a very steep
+
+607
+00:26:11,170 --> 00:26:13,809
+angle is the only way of winning and it
+
+608
+00:26:13,809 --> 00:26:14,470
+picked that up
+
+609
+00:26:14,470 --> 00:26:16,690
+we never explain it it's just an
+
+610
+00:26:16,690 --> 00:26:19,600
+emerging strategy this is looking good
+
+611
+00:26:19,600 --> 00:26:21,790
+pretty close yeah it's looking good it's
+
+612
+00:26:21,790 --> 00:26:24,030
+it's a bit close but it's looking good
+
+613
+00:26:24,030 --> 00:26:27,280
+you think well when okay next point I
+
+614
+00:26:27,280 --> 00:26:31,210
+want a loud cheer what AI wins because I
+
+615
+00:26:31,210 --> 00:26:33,900
+hope this is going to work
+
+616
+00:26:33,900 --> 00:26:36,700
+hey 20 okay one more one more
+
+617
+00:26:36,700 --> 00:26:42,760
+yeah good job your hand this is
+
+618
+00:26:42,760 --> 00:26:44,640
+fantastic
+
+619
+00:26:44,640 --> 00:26:50,770
+all right so what was going on during
+
+620
+00:26:50,770 --> 00:26:53,590
+gameplay actually remember how this
+
+621
+00:26:53,590 --> 00:26:59,110
+network was built right here so neurons
+
+622
+00:26:59,110 --> 00:27:02,830
+in this very first layer they have a
+
+623
+00:27:02,830 --> 00:27:05,050
+connection to every pixel of the board
+
+624
+00:27:05,050 --> 00:27:07,150
+did you weighted sum of all the pixels
+
+625
+00:27:07,150 --> 00:27:10,179
+in the board alright so they have a
+
+626
+00:27:10,179 --> 00:27:12,280
+weight for every pixel and it's fairly
+
+627
+00:27:12,280 --> 00:27:14,320
+easy to represent those weights on the
+
+628
+00:27:14,320 --> 00:27:17,230
+board and see what those neurons are
+
+629
+00:27:17,230 --> 00:27:20,260
+seeing on the board so let's try to do
+
+630
+00:27:20,260 --> 00:27:25,240
+that right here oops we pick H of those
+
+631
+00:27:25,240 --> 00:27:28,800
+200 neurons and here we visualize
+
+632
+00:27:28,800 --> 00:27:30,940
+superimposed on the board the weights
+
+633
+00:27:30,940 --> 00:27:34,840
+that have been trained and to the
+
+634
+00:27:34,840 --> 00:27:36,700
+untrained eye doesn't see much
+
+635
+00:27:36,700 --> 00:27:38,970
+here's maybe you can enlighten us a
+
+636
+00:27:38,970 --> 00:27:41,860
+marketing we're looking at what the
+
+637
+00:27:41,860 --> 00:27:43,810
+model sees so rather what the model
+
+638
+00:27:43,810 --> 00:27:45,970
+cares about when you sees the game
+
+639
+00:27:45,970 --> 00:27:48,220
+pixels that we gave it you see that one
+
+640
+00:27:48,220 --> 00:27:50,320
+of neurons apparently Hedren pretty much
+
+641
+00:27:50,320 --> 00:27:52,000
+nothing it's still looking like the
+
+642
+00:27:52,000 --> 00:27:53,050
+white noise at the beginning of
+
+643
+00:27:53,050 --> 00:27:57,940
+initialization that contribute much to
+
+644
+00:27:57,940 --> 00:27:59,530
+the gameplay but for the only other
+
+645
+00:27:59,530 --> 00:28:00,700
+neurons you see some interesting
+
+646
+00:28:00,700 --> 00:28:02,830
+patterns there we see a few things that
+
+647
+00:28:02,830 --> 00:28:04,630
+the model seems to put a lot of weights
+
+648
+00:28:04,630 --> 00:28:06,820
+on it cares a lot about where the
+
+649
+00:28:06,820 --> 00:28:08,770
+opponent paddle is and where is the
+
+650
+00:28:08,770 --> 00:28:10,930
+moving it not cares about the balls
+
+651
+00:28:10,930 --> 00:28:13,180
+trajectory across the game board and
+
+652
+00:28:13,180 --> 00:28:15,280
+quaint Rossini also cares a whole lot
+
+653
+00:28:15,280 --> 00:28:17,080
+about where its own paddle is on the
+
+654
+00:28:17,080 --> 00:28:19,300
+right because like Martin pointed out
+
+655
+00:28:19,300 --> 00:28:19,780
+before
+
+656
+00:28:19,780 --> 00:28:22,120
+at the beginning of learning the model
+
+657
+00:28:22,120 --> 00:28:23,410
+could even know which pedo is playing
+
+658
+00:28:23,410 --> 00:28:25,630
+and so he has to learn to remember
+
+659
+00:28:25,630 --> 00:28:27,940
+that's important piece of information to
+
+660
+00:28:27,940 --> 00:28:30,340
+be able to play game well and when you
+
+661
+00:28:30,340 --> 00:28:31,330
+think about this this is really
+
+662
+00:28:31,330 --> 00:28:33,400
+consistent with how we human beings will
+
+663
+00:28:33,400 --> 00:28:35,560
+believe consists of importing
+
+664
+00:28:35,560 --> 00:28:37,330
+informations to be able to play the game
+
+665
+00:28:37,330 --> 00:28:40,750
+well so we wanted to show this to you
+
+666
+00:28:40,750 --> 00:28:44,610
+not to show our prowess at pong
+
+667
+00:28:44,610 --> 00:28:50,070
+although it worked but mostly to explore
+
+668
+00:28:50,070 --> 00:28:53,530
+training algorithms and you see mostly
+
+669
+00:28:53,530 --> 00:28:55,150
+in your networks you do supervised
+
+670
+00:28:55,150 --> 00:28:58,870
+training and in nature well sometimes
+
+671
+00:28:58,870 --> 00:29:00,910
+when we teach people it looks like
+
+672
+00:29:00,910 --> 00:29:02,850
+supervised training probably in class
+
+673
+00:29:02,850 --> 00:29:05,770
+the teacher says this is you know the
+
+674
+00:29:05,770 --> 00:29:07,510
+Eiffel Tower and the people say ok
+
+675
+00:29:07,510 --> 00:29:10,030
+that's the Eiffel Tower and so on but if
+
+676
+00:29:10,030 --> 00:29:12,340
+you think about a kitten jumping on a
+
+677
+00:29:12,340 --> 00:29:14,470
+furball and missing it and jumping again
+
+678
+00:29:14,470 --> 00:29:17,500
+until it catches it and there is no
+
+679
+00:29:17,500 --> 00:29:19,300
+teacher there it has to figure out a
+
+680
+00:29:19,300 --> 00:29:22,120
+sequence of moves and it gets a reward
+
+681
+00:29:22,120 --> 00:29:24,490
+from catching the ball or not catching
+
+682
+00:29:24,490 --> 00:29:26,530
+it so it looks like in nature there are
+
+683
+00:29:26,530 --> 00:29:29,110
+multiple ways of training our own neural
+
+684
+00:29:29,110 --> 00:29:31,270
+networks and one of them is probably
+
+685
+00:29:31,270 --> 00:29:34,720
+quite close to this reinforcement
+
+686
+00:29:34,720 --> 00:29:39,730
+learning way of kitchen you have you you
+
+687
+00:29:39,730 --> 00:29:41,830
+build this model is there some other
+
+688
+00:29:41,830 --> 00:29:44,600
+thoughts it inspired you yeah
+
+689
+00:29:44,600 --> 00:29:48,890
+I have a technical insights maybe for
+
+690
+00:29:48,890 --> 00:29:52,100
+you as a takeaway message in run
+
+691
+00:29:52,100 --> 00:29:53,630
+experiments we see that there are some
+
+692
+00:29:53,630 --> 00:29:55,120
+steps which are not differentiable
+
+693
+00:29:55,120 --> 00:29:57,530
+particularly in this case sampling a
+
+694
+00:29:57,530 --> 00:29:59,510
+move are the probability output from a
+
+695
+00:29:59,510 --> 00:30:01,250
+network and playing a game I get a
+
+696
+00:30:01,250 --> 00:30:04,160
+reward back yes those factors really do
+
+697
+00:30:04,160 --> 00:30:05,930
+depend on the model itself but in a now
+
+698
+00:30:05,930 --> 00:30:06,830
+differentiable way
+
+699
+00:30:06,830 --> 00:30:08,690
+and so even with the powerful tools like
+
+700
+00:30:08,690 --> 00:30:11,060
+tensor flow you wouldn't be able to very
+
+701
+00:30:11,060 --> 00:30:12,920
+naively view the lost function and run
+
+702
+00:30:12,920 --> 00:30:14,660
+gradient descent training but there are
+
+703
+00:30:14,660 --> 00:30:16,040
+ways to get around it and that's exactly
+
+704
+00:30:16,040 --> 00:30:18,340
+the techniques were showing today so
+
+705
+00:30:18,340 --> 00:30:20,060
+what you're saying is that the
+
+706
+00:30:20,060 --> 00:30:21,770
+reinforcement learning can solve many
+
+707
+00:30:21,770 --> 00:30:24,380
+more problems that just Punk and it's a
+
+708
+00:30:24,380 --> 00:30:27,530
+way of getting around some non
+
+709
+00:30:27,530 --> 00:30:29,480
+differential step that you find in your
+
+710
+00:30:29,480 --> 00:30:34,610
+problem great that's great so what is
+
+711
+00:30:34,610 --> 00:30:37,070
+this going we want to show you a couple
+
+712
+00:30:37,070 --> 00:30:39,230
+of things from the lab because this has
+
+713
+00:30:39,230 --> 00:30:43,610
+had mostly lab applications and then one
+
+714
+00:30:43,610 --> 00:30:49,490
+last thing what is this this is very
+
+715
+00:30:49,490 --> 00:30:51,290
+interesting everyone what we're
+
+716
+00:30:51,290 --> 00:30:53,690
+witnessing here is a human expert of
+
+717
+00:30:53,690 --> 00:30:56,090
+pancake flipping trying to teach a
+
+718
+00:30:56,090 --> 00:30:58,610
+robotic arm doing the same thing and
+
+719
+00:30:58,610 --> 00:31:01,220
+there's a model in the back supporting
+
+720
+00:31:01,220 --> 00:31:04,220
+the robotic arm whose output controls
+
+721
+00:31:04,220 --> 00:31:06,920
+the joints movement or the motors in it
+
+722
+00:31:06,920 --> 00:31:09,430
+what angle was speed to move toward and
+
+723
+00:31:09,430 --> 00:31:12,890
+the goal of this is to flip the pancake
+
+724
+00:31:12,890 --> 00:31:15,170
+in the pink it's not just any regular
+
+725
+00:31:15,170 --> 00:31:16,700
+pin cable rather is instrumented with
+
+726
+00:31:16,700 --> 00:31:18,740
+sensors so that it knows even be flipped
+
+727
+00:31:18,740 --> 00:31:21,620
+if you land it on the floor or on the
+
+728
+00:31:21,620 --> 00:31:23,930
+table or Bank in the frame head doesn't
+
+729
+00:31:23,930 --> 00:31:27,430
+seem to be working is trying is trying
+
+730
+00:31:27,430 --> 00:31:30,170
+in another experiment and so what is the
+
+731
+00:31:30,170 --> 00:31:32,150
+reward here the reward probably is that
+
+732
+00:31:32,150 --> 00:31:34,100
+if you flip the pancake correctly then
+
+733
+00:31:34,100 --> 00:31:35,660
+you get the positive reward and
+
+734
+00:31:35,660 --> 00:31:36,830
+otherwise negative reward
+
+735
+00:31:36,830 --> 00:31:38,960
+okay and speaking of reward function in
+
+736
+00:31:38,960 --> 00:31:42,170
+another experiment I was gonna say the
+
+737
+00:31:42,170 --> 00:31:44,510
+experimenters say the reward to be a
+
+738
+00:31:44,510 --> 00:31:47,360
+small amount of positive rewards for any
+
+739
+00:31:47,360 --> 00:31:49,490
+moments the pancakes on the floor and
+
+740
+00:31:49,490 --> 00:31:52,400
+that machine learned but why learned was
+
+741
+00:31:52,400 --> 00:31:54,290
+to free the pancake as high as possible
+
+742
+00:31:54,290 --> 00:31:56,700
+to maximize pancake airborne high
+
+743
+00:31:56,700 --> 00:31:58,020
+never thought I would say something like
+
+744
+00:31:58,020 --> 00:32:00,030
+that that way you can maximize the
+
+745
+00:32:00,030 --> 00:32:01,650
+reward just because you take a long time
+
+746
+00:32:01,650 --> 00:32:03,510
+for YouTube laying on the floor that's
+
+747
+00:32:03,510 --> 00:32:05,310
+kind of funny but actually it's it's
+
+748
+00:32:05,310 --> 00:32:07,020
+it's it's a nice illustration of the
+
+749
+00:32:07,020 --> 00:32:08,760
+fact that you can change the learn
+
+750
+00:32:08,760 --> 00:32:11,640
+behavior by changing your lost function
+
+751
+00:32:11,640 --> 00:32:17,070
+exactly you have learned oh thanks yeah
+
+752
+00:32:17,070 --> 00:32:19,680
+cool we know how to play pong and flip
+
+753
+00:32:19,680 --> 00:32:20,460
+pancakes
+
+754
+00:32:20,460 --> 00:32:24,630
+that's significant progress deepmind
+
+755
+00:32:24,630 --> 00:32:26,340
+also published this video so they use
+
+756
+00:32:26,340 --> 00:32:29,010
+reinforcement learning and they built
+
+757
+00:32:29,010 --> 00:32:31,920
+those skeletal models here the neural
+
+758
+00:32:31,920 --> 00:32:35,460
+network is predicting the power to send
+
+759
+00:32:35,460 --> 00:32:37,560
+to the simulated muscles and joints of
+
+760
+00:32:37,560 --> 00:32:40,620
+these models and the reward is basically
+
+761
+00:32:40,620 --> 00:32:42,660
+a positive reward whenever you manage to
+
+762
+00:32:42,660 --> 00:32:45,300
+move forward in a negative reward when
+
+763
+00:32:45,300 --> 00:32:47,490
+you either move backward or when you
+
+764
+00:32:47,490 --> 00:32:49,110
+fall through a hole or when you just
+
+765
+00:32:49,110 --> 00:32:52,280
+crumpled to the ground the rest is just
+
+766
+00:32:52,280 --> 00:32:54,660
+reinforcement learning as we have shown
+
+767
+00:32:54,660 --> 00:32:57,660
+you today so all of these behaviors are
+
+768
+00:32:57,660 --> 00:33:00,870
+emerging behaviors nobody taught those
+
+769
+00:33:00,870 --> 00:33:03,660
+models and look you have some wonderful
+
+770
+00:33:03,660 --> 00:33:05,520
+emerging behaviors it's coming in a
+
+771
+00:33:05,520 --> 00:33:08,030
+couple of seconds look at this jump
+
+772
+00:33:08,030 --> 00:33:11,220
+after this those are nice jumps but
+
+773
+00:33:11,220 --> 00:33:13,860
+there is a much nicer one in a second
+
+774
+00:33:13,860 --> 00:33:15,900
+you will see a jump or the athletic jump
+
+775
+00:33:15,900 --> 00:33:18,660
+with the model swinging arms to get
+
+776
+00:33:18,660 --> 00:33:22,590
+momentum then lifting one leg cushioning
+
+777
+00:33:22,590 --> 00:33:24,420
+right here look at this this is a
+
+778
+00:33:24,420 --> 00:33:27,660
+fantastic athletic jump it looks like
+
+779
+00:33:27,660 --> 00:33:30,090
+from the from the Olympics and it's a
+
+780
+00:33:30,090 --> 00:33:36,990
+completely emerging behavior optimized
+
+781
+00:33:36,990 --> 00:33:38,640
+way of walking around in why do I not
+
+782
+00:33:38,640 --> 00:33:41,210
+see people doing this I mean I could but
+
+783
+00:33:41,210 --> 00:33:44,100
+well you know there are multiple ways of
+
+784
+00:33:44,100 --> 00:33:46,170
+running probably the the last function
+
+785
+00:33:46,170 --> 00:33:49,620
+didn't have any factor discouraging you
+
+786
+00:33:49,620 --> 00:33:53,220
+know useless movements so again by
+
+787
+00:33:53,220 --> 00:33:54,540
+modifying the last function you get
+
+788
+00:33:54,540 --> 00:33:56,760
+different behaviors and actually one
+
+789
+00:33:56,760 --> 00:33:58,890
+last one not this one this one is kind
+
+790
+00:33:58,890 --> 00:34:01,830
+of funny yes still playing around but I
+
+791
+00:34:01,830 --> 00:34:04,920
+la I like the look here it figured out
+
+792
+00:34:04,920 --> 00:34:07,490
+how to run sideways this
+
+793
+00:34:07,490 --> 00:34:09,260
+fantastic yes there are two ways of
+
+794
+00:34:09,260 --> 00:34:10,909
+running and it did figure out how to
+
+795
+00:34:10,909 --> 00:34:15,830
+move sideways this one you probably seen
+
+796
+00:34:15,830 --> 00:34:20,510
+this is move 74 in Game four of alphago
+
+797
+00:34:20,510 --> 00:34:23,810
+versus Lise at all and that's the one
+
+798
+00:34:23,810 --> 00:34:26,060
+move that Lisa told late
+
+799
+00:34:26,060 --> 00:34:27,950
+that was called the God move and he's a
+
+800
+00:34:27,950 --> 00:34:30,679
+world famous for just that he played one
+
+801
+00:34:30,679 --> 00:34:32,840
+correct move and managed to gain to win
+
+802
+00:34:32,840 --> 00:34:36,110
+one game against alphago he lost four to
+
+803
+00:34:36,110 --> 00:34:40,879
+one which is fantastic and alphago also
+
+804
+00:34:40,879 --> 00:34:43,429
+uses reinforcement learning not exactly
+
+805
+00:34:43,429 --> 00:34:45,740
+the same way here it was an entirely
+
+806
+00:34:45,740 --> 00:34:49,060
+built out of reinforcement learning okay
+
+807
+00:34:49,060 --> 00:34:52,340
+because for turn-based games the
+
+808
+00:34:52,340 --> 00:34:54,649
+algorithm for winning is actually quite
+
+809
+00:34:54,649 --> 00:34:56,540
+easy you just play all the moves to the
+
+810
+00:34:56,540 --> 00:34:58,640
+end and then pick the ones that leads to
+
+811
+00:34:58,640 --> 00:35:01,610
+positive outcomes the only problem is
+
+812
+00:35:01,610 --> 00:35:03,230
+that you can't compute that there are
+
+813
+00:35:03,230 --> 00:35:05,540
+too many of them so you use what is
+
+814
+00:35:05,540 --> 00:35:08,030
+called a value function you unroll on
+
+815
+00:35:08,030 --> 00:35:09,680
+your couple of moves and then you use
+
+816
+00:35:09,680 --> 00:35:11,810
+something that looks at the board and
+
+817
+00:35:11,810 --> 00:35:13,400
+tells you this is good for white and
+
+818
+00:35:13,400 --> 00:35:16,070
+good for black or good for black and
+
+819
+00:35:16,070 --> 00:35:18,020
+that's what they built using
+
+820
+00:35:18,020 --> 00:35:20,240
+reinforcement learning and I find it
+
+821
+00:35:20,240 --> 00:35:22,100
+interesting because it kind of emulates
+
+822
+00:35:22,100 --> 00:35:25,640
+the way we humans solve this problem
+
+823
+00:35:25,640 --> 00:35:27,770
+this is a very visual game we have a
+
+824
+00:35:27,770 --> 00:35:30,530
+very powerful visual cortex when we look
+
+825
+00:35:30,530 --> 00:35:31,250
+at the board
+
+826
+00:35:31,250 --> 00:35:33,290
+go is a game of influence and we see
+
+827
+00:35:33,290 --> 00:35:36,109
+that in this region black has a strong
+
+828
+00:35:36,109 --> 00:35:38,480
+influence in this region wide has a
+
+829
+00:35:38,480 --> 00:35:40,310
+strong presence so we can kind of
+
+830
+00:35:40,310 --> 00:35:42,470
+process that and what they built is a
+
+831
+00:35:42,470 --> 00:35:44,600
+value function that does kind of the
+
+832
+00:35:44,600 --> 00:35:47,359
+same thing and allows them to unroll the
+
+833
+00:35:47,359 --> 00:35:49,580
+move to a much shallower depth because
+
+834
+00:35:49,580 --> 00:35:51,800
+after just a couple of moves their value
+
+835
+00:35:51,800 --> 00:35:53,330
+function built using a reinforcement
+
+836
+00:35:53,330 --> 00:35:55,970
+learning tells them this is great for
+
+837
+00:35:55,970 --> 00:36:00,590
+white or good for black so these are
+
+838
+00:36:00,590 --> 00:36:03,870
+results from the lab
+
+839
+00:36:03,870 --> 00:36:07,320
+let's try to do something reals so some
+
+840
+00:36:07,320 --> 00:36:10,620
+application what if we build a neural
+
+841
+00:36:10,620 --> 00:36:13,350
+network it's a recurrent neural network
+
+842
+00:36:13,350 --> 00:36:15,390
+okay that's a different architecture of
+
+843
+00:36:15,390 --> 00:36:17,700
+neural network but for what you have to
+
+844
+00:36:17,700 --> 00:36:20,010
+know it still has weights and biases in
+
+845
+00:36:20,010 --> 00:36:22,080
+the middle okay and this neural network
+
+846
+00:36:22,080 --> 00:36:23,850
+of recurrent neural networks are good
+
+847
+00:36:23,850 --> 00:36:26,040
+for producing sequences so let's say we
+
+848
+00:36:26,040 --> 00:36:28,830
+build one that produces sequences of
+
+849
+00:36:28,830 --> 00:36:33,270
+characters int we structure it so that
+
+850
+00:36:33,270 --> 00:36:35,850
+those characters actually represent a
+
+851
+00:36:35,850 --> 00:36:38,610
+neural network yeah when you don't let
+
+852
+00:36:38,610 --> 00:36:40,950
+work is a sequence of layers so you can
+
+853
+00:36:40,950 --> 00:36:43,200
+figure out a syntax for saying this is
+
+854
+00:36:43,200 --> 00:36:45,060
+my first layer this is how big it is and
+
+855
+00:36:45,060 --> 00:36:47,490
+blah blah blah so why not produce a
+
+856
+00:36:47,490 --> 00:36:49,350
+sequence of characters that represents a
+
+857
+00:36:49,350 --> 00:36:53,280
+neural network what if then we train
+
+858
+00:36:53,280 --> 00:36:55,770
+this neural network on some problem we
+
+859
+00:36:55,770 --> 00:36:58,890
+care about let's say scoring airplanes
+
+860
+00:36:58,890 --> 00:37:01,650
+in pictures so this will train to a
+
+861
+00:37:01,650 --> 00:37:06,630
+given accuracy what if now we take this
+
+862
+00:37:06,630 --> 00:37:10,470
+accuracy and make it a reward in a
+
+863
+00:37:10,470 --> 00:37:14,610
+reinforcement learning algorithm so this
+
+864
+00:37:14,610 --> 00:37:16,830
+accuracy becomes the reward and we apply
+
+865
+00:37:16,830 --> 00:37:19,050
+reinforcement learning which allows us
+
+866
+00:37:19,050 --> 00:37:21,570
+to modify the weights and biases in our
+
+867
+00:37:21,570 --> 00:37:24,000
+original neural network to produce a
+
+868
+00:37:24,000 --> 00:37:26,610
+better neural network architecture it's
+
+869
+00:37:26,610 --> 00:37:28,740
+not just tuning the parameters we are
+
+870
+00:37:28,740 --> 00:37:30,720
+changing the shape of the network that
+
+871
+00:37:30,720 --> 00:37:32,970
+works better for our problem the problem
+
+872
+00:37:32,970 --> 00:37:35,880
+we hear about we get a neural network
+
+873
+00:37:35,880 --> 00:37:38,490
+that is generating a neural network for
+
+874
+00:37:38,490 --> 00:37:41,220
+our specific problem it's called new
+
+875
+00:37:41,220 --> 00:37:42,570
+neural architecture search and we
+
+876
+00:37:42,570 --> 00:37:45,540
+actually published the paper on this and
+
+877
+00:37:45,540 --> 00:37:49,410
+I find this a very nice application of a
+
+878
+00:37:49,410 --> 00:37:51,600
+technology designed initially to beat
+
+879
+00:37:51,600 --> 00:37:54,180
+Punk so Martin you're saying we have
+
+880
+00:37:54,180 --> 00:37:56,910
+neural networks now learn to build other
+
+881
+00:37:56,910 --> 00:38:02,730
+neural networks yes Steve man yep so you
+
+882
+00:38:02,730 --> 00:38:06,000
+you had to finish you build this demo so
+
+883
+00:38:06,000 --> 00:38:07,830
+can you tell us a word about the tools
+
+884
+00:38:07,830 --> 00:38:10,230
+that you used yeah definitely so we used
+
+885
+00:38:10,230 --> 00:38:11,370
+on tensorflow
+
+886
+00:38:11,370 --> 00:38:14,970
+for for the model itself and his support
+
+887
+00:38:14,970 --> 00:38:15,540
+for
+
+888
+00:38:15,540 --> 00:38:17,490
+tracking the metrics of during the
+
+889
+00:38:17,490 --> 00:38:19,440
+process training I really don't want to
+
+890
+00:38:19,440 --> 00:38:20,910
+run the training on my laptop but I
+
+891
+00:38:20,910 --> 00:38:22,890
+probably could so I used a cloud which
+
+892
+00:38:22,890 --> 00:38:25,590
+is running energy for the training the
+
+893
+00:38:25,590 --> 00:38:27,510
+model that was playing the game that we
+
+894
+00:38:27,510 --> 00:38:29,250
+saw before I like them all took maybe
+
+895
+00:38:29,250 --> 00:38:31,170
+about one day of training to accomplish
+
+896
+00:38:31,170 --> 00:38:33,420
+that and so with ml engine you have this
+
+897
+00:38:33,420 --> 00:38:36,900
+job based view and you can launch 20
+
+898
+00:38:36,900 --> 00:38:38,790
+jobs with different parameters like this
+
+899
+00:38:38,790 --> 00:38:41,910
+and just let them run and it's just
+
+900
+00:38:41,910 --> 00:38:44,790
+practicality right it will tear down the
+
+901
+00:38:44,790 --> 00:38:46,680
+whole cluster when there when when every
+
+902
+00:38:46,680 --> 00:38:49,740
+job is done and so on that's right
+
+903
+00:38:49,740 --> 00:38:51,780
+yeah I used a managing a lot of as well
+
+904
+00:38:51,780 --> 00:38:54,720
+for that there are many other tools in
+
+905
+00:38:54,720 --> 00:38:57,240
+cloud for doing machine learning but one
+
+906
+00:38:57,240 --> 00:38:59,040
+we just launched is Auto ml vision
+
+907
+00:38:59,040 --> 00:39:01,170
+that's one when you do not program
+
+908
+00:39:01,170 --> 00:39:03,000
+you're just put in your labeled data and
+
+909
+00:39:03,000 --> 00:39:06,360
+it figures out the model for you and now
+
+910
+00:39:06,360 --> 00:39:11,370
+you know how it works and also this uses
+
+911
+00:39:11,370 --> 00:39:15,450
+lots of CPU GPU cycles so cloud GPUs are
+
+912
+00:39:15,450 --> 00:39:16,740
+useful when you're doing neural
+
+913
+00:39:16,740 --> 00:39:19,050
+architecture search and they are
+
+914
+00:39:19,050 --> 00:39:22,890
+available to you as well them so thank
+
+915
+00:39:22,890 --> 00:39:24,600
+you that's all we wanted to show you
+
+916
+00:39:24,600 --> 00:39:28,290
+today please give us feedback we just
+
+917
+00:39:28,290 --> 00:39:30,930
+released this code to github so you have
+
+918
+00:39:30,930 --> 00:39:32,820
+the github URL if you want to train a
+
+919
+00:39:32,820 --> 00:39:36,810
+punk agent yourself go into it you can
+
+920
+00:39:36,810 --> 00:39:40,680
+take a picture there and if you want you
+
+921
+00:39:40,680 --> 00:39:43,620
+the URL is still on the screen if you
+
+922
+00:39:43,620 --> 00:39:47,460
+want to learn machine learning I'm not
+
+923
+00:39:47,460 --> 00:39:49,650
+going to say it's easy but I'm not going
+
+924
+00:39:49,650 --> 00:39:52,290
+to say it's impossible either we have
+
+925
+00:39:52,290 --> 00:39:56,160
+this series a relatively short series of
+
+926
+00:39:56,160 --> 00:39:58,350
+videos and code samples and code labs
+
+927
+00:39:58,350 --> 00:40:01,350
+called tensorflow without a PhD that is
+
+928
+00:40:01,350 --> 00:40:05,400
+designed to give you the keys to the
+
+929
+00:40:05,400 --> 00:40:07,380
+machine learning kingdom so you go
+
+930
+00:40:07,380 --> 00:40:10,860
+through those videos this talk is one of
+
+931
+00:40:10,860 --> 00:40:11,310
+them
+
+932
+00:40:11,310 --> 00:40:13,470
+and it gives you all the vocabulary and
+
+933
+00:40:13,470 --> 00:40:16,590
+all the concepts and we are trying to
+
+934
+00:40:16,590 --> 00:40:19,230
+explain the concepts in a language that
+
+935
+00:40:19,230 --> 00:40:22,140
+developers understand because we are
+
+936
+00:40:22,140 --> 00:40:25,460
+developers thank you very much
+
+937
+00:40:25,460 --> 00:40:46,760
+[Music]
+

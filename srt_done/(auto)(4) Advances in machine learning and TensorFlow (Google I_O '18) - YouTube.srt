@@ -1,0 +1,231 @@
+﻿1
+00:00:05,850 --> 00:00:08,589
+hi everybody and welcome to this session
+大家好，欢迎参加本次会议
+2
+00:00:08,589 --> 00:00:09,519
+where we're going to talk about
+我们要谈的地方
+3
+00:00:09,519 --> 00:00:11,259
+breakthroughs and machine learning I'm
+突破和机器学习我是
+4
+00:00:11,259 --> 00:00:12,849
+Laurence Moroney I'm a developer
+Laurence Moroney我是开发人员
+5
+00:00:12,849 --> 00:00:15,129
+advocate at Google are working on
+谷歌的倡导者正在努力
+6
+00:00:15,129 --> 00:00:16,710
+tensorflow with the Google brain team
+与Google大脑团队的tensorflow
+7
+00:00:16,710 --> 00:00:19,000
+we're here today to talk about the
+我们今天在这里谈谈
+8
+00:00:19,000 --> 00:00:20,800
+revolution that's going on in machine
+在机器中发生的革命
+9
+00:00:20,800 --> 00:00:22,510
+learning and how that revolution is
+学习和革命是怎样的
+10
+00:00:22,510 --> 00:00:24,099
+transformative now
+现在变革了
+11
+00:00:24,099 --> 00:00:25,359
+I come from a software development
+我来自软件开发
+12
+00:00:25,359 --> 00:00:27,480
+background any software developers here
+在这里任何软件开发人员
+13
+00:00:27,480 --> 00:00:30,759
+given that at i/o sure and this is this
+鉴于在i / o肯定，这就是这个
+14
+00:00:30,759 --> 00:00:32,710
+transformation this revolution is
+改革这场革命是
+15
+00:00:32,710 --> 00:00:34,540
+particularly from a developer's
+特别是来自开发者的
+16
+00:00:34,540 --> 00:00:36,520
+perspective is really really cool
+透视真的很酷
+17
+00:00:36,520 --> 00:00:38,559
+because it's giving us a whole new set
+因为它给了我们一整套新的东西
+18
+00:00:38,559 --> 00:00:40,690
+of tools that we can use to build
+我们可以用来构建的工具
+19
+00:00:40,690 --> 00:00:42,910
+scenarios and to build solutions for
+场景并为其构建解决方案
+20
+00:00:42,910 --> 00:00:44,350
+problems that may have been too complex
+可能过于复杂的问题
+21
+00:00:44,350 --> 00:00:47,020
+to even consider prior to this it's also
+甚至在此之前考虑它也是
+22
+00:00:47,020 --> 00:00:49,480
+leading to massive advances in our
+导致我们的大量进步
+23
+00:00:49,480 --> 00:00:50,829
+understanding of things like the
+理解像这样的事情
+24
+00:00:50,829 --> 00:00:53,170
+universe around us it's opening up new
+我们身边的宇宙正在开辟新的世界
+25
+00:00:53,170 --> 00:00:55,629
+fields in arts and it's impacting and
+艺术领域，它的影响和影响
+26
+00:00:55,629 --> 00:00:56,920
+revolutionising things such as
+彻底改变诸如此类的事物
+27
+00:00:56,920 --> 00:00:59,019
+healthcare and so many more things so
+医疗保健等等
+28
+00:00:59,019 --> 00:01:00,329
+should we take a look at some of these
+我们应该看看其中的一些
+29
+00:01:00,329 --> 00:01:03,969
+so first of all astronomy at school I
+首先是学校的天文学I
+30
+00:01:03,969 --> 00:01:05,710
+studied physics I wasn't the comm site
+学习物理我不是通讯网站
+31
+00:01:05,710 --> 00:01:07,180
+person so I'm a physics and astronomy
+所以我是物理学和天文学
+32
+00:01:07,180 --> 00:01:09,790
+geek and it wasn't that long ago when we
+极客和我们不久前不久
+33
+00:01:09,790 --> 00:01:11,800
+learned how to discover what new how new
+学会了如何发现新的新东西
+34
+00:01:11,800 --> 00:01:13,620
+planets around other stars in our galaxy
+我们银河系中其他恒星周围的行星
+35
+00:01:13,620 --> 00:01:16,090
+and what the way that we discovered it
+以及我们发现它的方式
+36
+00:01:16,090 --> 00:01:17,740
+was that sometimes would observe like a
+是有时会像一个人一样观察
+37
+00:01:17,740 --> 00:01:19,960
+little wobble in the star and that meant
+这个明星里有点摇晃，这意味着什么
+38
+00:01:19,960 --> 00:01:21,490
+that there was a very large planet like
+有一个非常大的行星像
+39
+00:01:21,490 --> 00:01:23,020
+Jupiter size or even bigger
+木星大小甚至更大
+40
+00:01:23,020 --> 00:01:24,880
+orbiting that star very closely and
+绕着那颗恒星非常接近地运转
+41
+00:01:24,880 --> 00:01:26,200
+causing a wobble because of the
+因为这个引起了一阵晃动
+42
+00:01:26,200 --> 00:01:28,450
+gravitational attraction but of course
+引力吸引力但当然
+43
+00:01:28,450 --> 00:01:30,040
+the kind of planets we want to find out
+我们想要找出的那种行星
+44
+00:01:30,040 --> 00:01:31,600
+the small rocky ones like our earth on
+像我们的地球一样的小岩石
+45
+00:01:31,600 --> 00:01:33,490
+Mars where you know there's a chance of
+火星，你知道有机会
+46
+00:01:33,490 --> 00:01:36,000
+finding life on these planets and
+在这些星球上寻找生命
+47
+00:01:36,000 --> 00:01:38,530
+finding those and discovering those was
+找到那些并发现那些是
+48
+00:01:38,530 --> 00:01:41,050
+very very difficult to do because small
+很难做到因为小
+49
+00:01:41,050 --> 00:01:42,610
+ones close to the star you just wouldn't
+那些靠近星星的你不会
+50
+00:01:42,610 --> 00:01:46,750
+see but there's with research that's
+看，但有研究的是
+51
+00:01:46,750 --> 00:01:48,100
+been going on in the Kepler mission
+在开普勒任务中继续进行
+52
+00:01:48,100 --> 00:01:50,020
+they've actually recently discovered
+他们最近发现了
+53
+00:01:50,020 --> 00:01:51,880
+this planet called Kepler 90i
+这个星球叫做开普勒90i
+54
+00:01:51,880 --> 00:01:54,130
+by sifting through data and building
+通过筛选数据和建立
+55
+00:01:54,130 --> 00:01:55,900
+models for using machine learning and
+使用机器学习和模型的模型
+56
+00:01:55,900 --> 00:01:58,210
+using tensorflow and Kepler 90i is
+使用tensorflow和开普勒90i是
+57
+00:01:58,210 --> 00:02:00,670
+actually much closer to its host star
+实际上更接近它的主星
+58
+00:02:00,670 --> 00:02:02,380
+than Earth is so that its orbit is only

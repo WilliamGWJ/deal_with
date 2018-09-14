@@ -1,0 +1,224 @@
+﻿1
+00:00:00,000 --> 00:00:05,000
+[Music]
+
+2
+00:00:05,000 --> 00:00:07,830
+in this episode we're going to create a
+
+3
+00:00:07,830 --> 00:00:09,870
+very simple machine learned model and
+
+4
+00:00:09,870 --> 00:00:12,120
+converted to tensorflow light for use on
+
+5
+00:00:12,120 --> 00:00:15,570
+mobile or IOT devices to start we'll
+
+6
+00:00:15,570 --> 00:00:18,420
+create a simple model using Chara's the
+
+7
+00:00:18,420 --> 00:00:20,490
+simplest possible neural network has one
+
+8
+00:00:20,490 --> 00:00:22,680
+layer with one unit and that takes a
+
+9
+00:00:22,680 --> 00:00:26,730
+single input in care us you'll then
+
+10
+00:00:26,730 --> 00:00:28,710
+compile the model specifying two
+
+11
+00:00:28,710 --> 00:00:30,810
+functions the loss function and the
+
+12
+00:00:30,810 --> 00:00:33,420
+optimizer on every iteration the
+
+13
+00:00:33,420 --> 00:00:35,370
+framework calculates the loss using the
+
+14
+00:00:35,370 --> 00:00:37,440
+method specified and then tries to
+
+15
+00:00:37,440 --> 00:00:39,750
+optimize the neural network using the
+
+16
+00:00:39,750 --> 00:00:43,410
+optimizer that specified now we'll
+
+17
+00:00:43,410 --> 00:00:45,719
+create a set of X values from negative 1
+
+18
+00:00:45,719 --> 00:00:49,379
+to 4 and now I'll create a set of
+
+19
+00:00:49,379 --> 00:00:51,780
+corresponding Y values for these X
+
+20
+00:00:51,780 --> 00:00:54,629
+values the goal will be to infer the
+
+21
+00:00:54,629 --> 00:00:57,210
+relationship between the two can you see
+
+22
+00:00:57,210 --> 00:01:01,289
+what it is every Y value is 2x minus 1
+
+23
+00:01:01,289 --> 00:01:05,100
+so where X is minus 1 Y is minus 3 where
+
+24
+00:01:05,100 --> 00:01:10,320
+X is zero Y is minus 1 etc etc to train
+
+25
+00:01:10,320 --> 00:01:12,720
+the neural network we use model dot fit
+
+26
+00:01:12,720 --> 00:01:15,570
+passing it the X's the Y's and a number
+
+27
+00:01:15,570 --> 00:01:17,159
+of iterations that we want to train for
+
+28
+00:01:17,159 --> 00:01:20,909
+in this case we'll save 500 so how do we
+
+29
+00:01:20,909 --> 00:01:23,310
+test the model to see if I can infer y
+
+30
+00:01:23,310 --> 00:01:27,030
+equals 2x minus 1 for a new value that's
+
+31
+00:01:27,030 --> 00:01:29,340
+achieved using the predict method we
+
+32
+00:01:29,340 --> 00:01:31,710
+simply pass 10 into it in an input shape
+
+33
+00:01:31,710 --> 00:01:34,979
+which is an array of 1 we then run the
+
+34
+00:01:34,979 --> 00:01:37,049
+code and the network will be trained and
+
+35
+00:01:37,049 --> 00:01:38,970
+we'll see that the output is 19 point
+
+36
+00:01:38,970 --> 00:01:41,159
+zero five which is very close to our
+
+37
+00:01:41,159 --> 00:01:43,740
+desired value given that we train the
+
+38
+00:01:43,740 --> 00:01:45,990
+network with a very small data set it's
+
+39
+00:01:45,990 --> 00:01:48,750
+still quite impressive now that we have
+
+40
+00:01:48,750 --> 00:01:50,820
+a model we can save it out as a file
+
+41
+00:01:50,820 --> 00:01:53,520
+this is achieved using the save model
+
+42
+00:01:53,520 --> 00:01:56,250
+method in care us we'll run it and we'll
+
+43
+00:01:56,250 --> 00:01:59,030
+then see that linear dot H 5 is created
+
+44
+00:01:59,030 --> 00:02:01,619
+finally we'll convert to TF light using
+
+45
+00:02:01,619 --> 00:02:04,229
+the toko converter this is achieved with
+
+46
+00:02:04,229 --> 00:02:07,469
+the from Charis model file method will
+
+47
+00:02:07,469 --> 00:02:10,050
+pass the Charis file into it we then
+
+48
+00:02:10,050 --> 00:02:12,360
+call the converter to convert and save
+
+49
+00:02:12,360 --> 00:02:13,650
+its results as linear
+
+50
+00:02:13,650 --> 00:02:17,340
+çf light we can run it and then we'll
+
+51
+00:02:17,340 --> 00:02:19,590
+see that linear TF light is created for
+
+52
+00:02:19,590 --> 00:02:23,790
+us to learn more about tensor flow visit
+
+53
+00:02:23,790 --> 00:02:25,620
+tensorflow org and while you're at it
+
+54
+00:02:25,620 --> 00:02:27,000
+don't forget to subscribe to this
+
+55
+00:02:27,000 --> 00:02:29,810
+channel thank you
+
+56
+00:02:29,810 --> 00:02:36,969
+[Music]
+

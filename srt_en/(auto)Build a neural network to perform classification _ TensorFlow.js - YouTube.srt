@@ -1,0 +1,776 @@
+﻿1
+00:00:01,070 --> 00:00:01,640
+[Music]
+
+2
+00:00:01,640 --> 00:00:03,350
+[Applause]
+
+3
+00:00:03,350 --> 00:00:06,029
+hi and welcome to coding tensorflow
+
+4
+00:00:06,029 --> 00:00:08,099
+a show where we focus on coding machine
+
+5
+00:00:08,099 --> 00:00:10,830
+learning and AI applications I'm
+
+6
+00:00:10,830 --> 00:00:12,509
+Laurence Moroney a developer advocate
+
+7
+00:00:12,509 --> 00:00:13,530
+for tensorflow
+
+8
+00:00:13,530 --> 00:00:15,179
+and in this episode we're going to
+
+9
+00:00:15,179 --> 00:00:17,279
+continue our series about using
+
+10
+00:00:17,279 --> 00:00:19,109
+JavaScript for machine learning in the
+
+11
+00:00:19,109 --> 00:00:21,420
+browser this is achieved using
+
+12
+00:00:21,420 --> 00:00:24,900
+tensorflow das a javascript library for
+
+13
+00:00:24,900 --> 00:00:27,029
+training and deploying ml models in the
+
+14
+00:00:27,029 --> 00:00:30,599
+browser and on no js' there's lots of
+
+15
+00:00:30,599 --> 00:00:32,430
+great information about it on the Jas
+
+16
+00:00:32,430 --> 00:00:34,829
+star tensorflow dot org site including
+
+17
+00:00:34,829 --> 00:00:37,170
+samples API Docs and frequently asked
+
+18
+00:00:37,170 --> 00:00:40,379
+questions in the first episode we took a
+
+19
+00:00:40,379 --> 00:00:42,809
+very basic look at what you need to get
+
+20
+00:00:42,809 --> 00:00:44,579
+up and running with tensorflow in the
+
+21
+00:00:44,579 --> 00:00:47,100
+browser by building a simple model that
+
+22
+00:00:47,100 --> 00:00:49,770
+fits its values to a line by learning
+
+23
+00:00:49,770 --> 00:00:51,870
+that it is actually a line off of a very
+
+24
+00:00:51,870 --> 00:00:55,500
+small training set in episode 2 we then
+
+25
+00:00:55,500 --> 00:00:57,840
+wanted to focus on data and how you
+
+26
+00:00:57,840 --> 00:01:00,660
+prepare data for training we did this by
+
+27
+00:01:00,660 --> 00:01:03,000
+taking a popular data set that for
+
+28
+00:01:03,000 --> 00:01:04,920
+classification of the iris flower and
+
+29
+00:01:04,920 --> 00:01:08,189
+turned it from raw CSV into a number of
+
+30
+00:01:08,189 --> 00:01:10,590
+tensors those would feature data and
+
+31
+00:01:10,590 --> 00:01:12,810
+those would label data for both training
+
+32
+00:01:12,810 --> 00:01:16,020
+and test sets now that the data is ready
+
+33
+00:01:16,020 --> 00:01:18,810
+in this episode we'll take a look at how
+
+34
+00:01:18,810 --> 00:01:21,509
+you can create a neural network to build
+
+35
+00:01:21,509 --> 00:01:23,400
+a model that can be used to classify
+
+36
+00:01:23,400 --> 00:01:26,880
+future data so when it sees unknown
+
+37
+00:01:26,880 --> 00:01:29,280
+measurements it will in fare from that
+
+38
+00:01:29,280 --> 00:01:32,310
+data which iris flower the data likely
+
+39
+00:01:32,310 --> 00:01:35,549
+represents it's a simple scenario but it
+
+40
+00:01:35,549 --> 00:01:37,890
+is the cornerstone building block of all
+
+41
+00:01:37,890 --> 00:01:40,380
+machine learning from an existing data
+
+42
+00:01:40,380 --> 00:01:42,869
+set learn how to infer the desired
+
+43
+00:01:42,869 --> 00:01:45,720
+results without explicit programming of
+
+44
+00:01:45,720 --> 00:01:49,079
+rules about those results so let's get
+
+45
+00:01:49,079 --> 00:01:51,090
+coding I'm going to start with an
+
+46
+00:01:51,090 --> 00:01:52,979
+asynchronous function called do iris
+
+47
+00:01:52,979 --> 00:01:55,259
+which I will call at the end of my
+
+48
+00:01:55,259 --> 00:01:58,290
+JavaScript block in the previous episode
+
+49
+00:01:58,290 --> 00:02:01,140
+we created the iris JS file that
+
+50
+00:02:01,140 --> 00:02:03,180
+contained the data and all the code we
+
+51
+00:02:03,180 --> 00:02:05,579
+wrote to pre-process it this was
+
+52
+00:02:05,579 --> 00:02:07,170
+orchestrated through a function called
+
+53
+00:02:07,170 --> 00:02:09,810
+get iris data which took a parameter
+
+54
+00:02:09,810 --> 00:02:11,940
+that dictated the split between training
+
+55
+00:02:11,940 --> 00:02:13,280
+and test data
+
+56
+00:02:13,280 --> 00:02:15,380
+by setting it to point to we're saying
+
+57
+00:02:15,380 --> 00:02:17,209
+that 80% of the data will be for
+
+58
+00:02:17,209 --> 00:02:20,480
+training and 20% for test so let's call
+
+59
+00:02:20,480 --> 00:02:22,880
+that and we'll get back our X train why
+
+60
+00:02:22,880 --> 00:02:27,380
+train X test and Y test values now we'll
+
+61
+00:02:27,380 --> 00:02:30,590
+create a model by calling a train model
+
+62
+00:02:30,590 --> 00:02:33,470
+function and passing them as parameters
+
+63
+00:02:33,470 --> 00:02:36,770
+to it we haven't yet created that so
+
+64
+00:02:36,770 --> 00:02:40,010
+let's do it now we'll start by making
+
+65
+00:02:40,010 --> 00:02:42,500
+this function asynchronous were awaiting
+
+66
+00:02:42,500 --> 00:02:45,410
+its return after all then we'll create
+
+67
+00:02:45,410 --> 00:02:47,959
+our model in the same way as before
+
+68
+00:02:47,959 --> 00:02:51,470
+it's a sequential network next we'll set
+
+69
+00:02:51,470 --> 00:02:53,450
+up a couple of values for our learning
+
+70
+00:02:53,450 --> 00:02:55,760
+rate and the number of epochs or
+
+71
+00:02:55,760 --> 00:02:58,069
+iterations that we want to run the
+
+72
+00:02:58,069 --> 00:03:00,530
+machine learning for it's nice to have
+
+73
+00:03:00,530 --> 00:03:02,360
+these as constants so we can tweak them
+
+74
+00:03:02,360 --> 00:03:06,050
+later the learning rate is used to
+
+75
+00:03:06,050 --> 00:03:08,510
+define the optimizer and if you remember
+
+76
+00:03:08,510 --> 00:03:10,760
+in episode 1 we use stochastic gradient
+
+77
+00:03:10,760 --> 00:03:13,220
+descent this time we'll use a different
+
+78
+00:03:13,220 --> 00:03:16,780
+one and it's called an Adam optimizer
+
+79
+00:03:16,780 --> 00:03:18,680
+there's lots of ways of optimizing
+
+80
+00:03:18,680 --> 00:03:21,200
+machine learning and Adam was introduced
+
+81
+00:03:21,200 --> 00:03:23,959
+as a methodology in 2015 as an
+
+82
+00:03:23,959 --> 00:03:25,550
+improvement over stochastic gradient
+
+83
+00:03:25,550 --> 00:03:28,100
+descent it's actually built into tensor
+
+84
+00:03:28,100 --> 00:03:30,290
+flow so you just have to turn it on but
+
+85
+00:03:30,290 --> 00:03:32,030
+if you want the details about it you can
+
+86
+00:03:32,030 --> 00:03:35,150
+find them on the archive.org site now
+
+87
+00:03:35,150 --> 00:03:37,760
+let's create our model there's an art in
+
+88
+00:03:37,760 --> 00:03:40,010
+how you define your neural network and
+
+89
+00:03:40,010 --> 00:03:41,120
+you can experiment with different
+
+90
+00:03:41,120 --> 00:03:43,310
+combinations for better or faster
+
+91
+00:03:43,310 --> 00:03:45,590
+results but in this case I'm going to
+
+92
+00:03:45,590 --> 00:03:48,080
+use two layers the first has ten neurons
+
+93
+00:03:48,080 --> 00:03:51,230
+and the second has three the first layer
+
+94
+00:03:51,230 --> 00:03:53,030
+is activated by something called a
+
+95
+00:03:53,030 --> 00:03:55,489
+sigmoid function I won't go into all the
+
+96
+00:03:55,489 --> 00:03:57,650
+math of that now but the important thing
+
+97
+00:03:57,650 --> 00:04:00,080
+to note is that a sigmoid function for
+
+98
+00:04:00,080 --> 00:04:02,450
+all inputs will provide an output
+
+99
+00:04:02,450 --> 00:04:05,150
+between 0 and 1 which is perfect for
+
+100
+00:04:05,150 --> 00:04:06,739
+classification ie
+
+101
+00:04:06,739 --> 00:04:08,900
+0 means it doesn't match and 1 means it
+
+102
+00:04:08,900 --> 00:04:12,769
+matches the second or output layer will
+
+103
+00:04:12,769 --> 00:04:15,050
+have three units and I do this because
+
+104
+00:04:15,050 --> 00:04:16,790
+we're classifying to three different
+
+105
+00:04:16,790 --> 00:04:17,840
+types of flour
+
+106
+00:04:17,840 --> 00:04:21,799
+its activation is softmax which is a
+
+107
+00:04:21,799 --> 00:04:23,870
+function that normalizes its input
+
+108
+00:04:23,870 --> 00:04:27,350
+values so that they all add up to 1 that
+
+109
+00:04:27,350 --> 00:04:30,050
+way when we get our classification it
+
+110
+00:04:30,050 --> 00:04:32,660
+will be a likelihood for each flower but
+
+111
+00:04:32,660 --> 00:04:34,660
+the three likelihoods will add up to 1
+
+112
+00:04:34,660 --> 00:04:37,550
+we can then compile our model with this
+
+113
+00:04:37,550 --> 00:04:39,770
+optimizer and the desired loss function
+
+114
+00:04:39,770 --> 00:04:41,810
+as well as the metric that we want to
+
+115
+00:04:41,810 --> 00:04:44,390
+read the last function this time is
+
+116
+00:04:44,390 --> 00:04:46,550
+called categorical cross entropy and
+
+117
+00:04:46,550 --> 00:04:48,919
+again without getting on mathy about it
+
+118
+00:04:48,919 --> 00:04:50,600
+I've found that when you want to
+
+119
+00:04:50,600 --> 00:04:52,520
+categorize something as we're doing in
+
+120
+00:04:52,520 --> 00:04:54,050
+this case picking between different
+
+121
+00:04:54,050 --> 00:04:56,240
+types of flour instead of predicting a
+
+122
+00:04:56,240 --> 00:04:58,729
+value like a house price then using this
+
+123
+00:04:58,729 --> 00:05:00,620
+loss function instead of something like
+
+124
+00:05:00,620 --> 00:05:03,950
+root-mean-square works much better ok
+
+125
+00:05:03,950 --> 00:05:06,800
+now we have our model it's time to Train
+
+126
+00:05:06,800 --> 00:05:09,050
+it will do this with the model dot fit
+
+127
+00:05:09,050 --> 00:05:11,270
+method passing it our training and our
+
+128
+00:05:11,270 --> 00:05:13,760
+validation data will also specify the
+
+129
+00:05:13,760 --> 00:05:15,770
+number of epochs that we want to run the
+
+130
+00:05:15,770 --> 00:05:18,380
+training for to keep track of its
+
+131
+00:05:18,380 --> 00:05:20,270
+progress we actually get a callback
+
+132
+00:05:20,270 --> 00:05:24,080
+called on epoch end in this we can print
+
+133
+00:05:24,080 --> 00:05:26,570
+our current loss value and when I run it
+
+134
+00:05:26,570 --> 00:05:28,820
+you'll see this value diminish epoch by
+
+135
+00:05:28,820 --> 00:05:29,630
+epoch
+
+136
+00:05:29,630 --> 00:05:31,460
+it's really as simple as that for
+
+137
+00:05:31,460 --> 00:05:33,740
+training and when we're done we'll have
+
+138
+00:05:33,740 --> 00:05:36,940
+a model that can classify the input data
+
+139
+00:05:36,940 --> 00:05:39,830
+so let's now take a look at using the
+
+140
+00:05:39,830 --> 00:05:41,540
+model to do a prediction
+
+141
+00:05:41,540 --> 00:05:43,760
+we've only trained this model for a
+
+142
+00:05:43,760 --> 00:05:46,550
+little time only 40 epochs so we may
+
+143
+00:05:46,550 --> 00:05:47,930
+have some errors and we'll see how to
+
+144
+00:05:47,930 --> 00:05:48,910
+fix that later
+
+145
+00:05:48,910 --> 00:05:51,860
+so here I've created a tensor with a
+
+146
+00:05:51,860 --> 00:05:54,410
+bunch of input values that match those
+
+147
+00:05:54,410 --> 00:05:56,210
+of one of the items in the real data
+
+148
+00:05:56,210 --> 00:05:58,550
+will pass this model to get a prediction
+
+149
+00:05:58,550 --> 00:06:00,320
+back and hopefully we get the same
+
+150
+00:06:00,320 --> 00:06:03,650
+result so let's run it you'll see that
+
+151
+00:06:03,650 --> 00:06:05,900
+we get three values determining the
+
+152
+00:06:05,900 --> 00:06:08,060
+likelihood of which flower matches the
+
+153
+00:06:08,060 --> 00:06:10,610
+tensor and it looks like number two is
+
+154
+00:06:10,610 --> 00:06:12,980
+closest to being the winner but let's
+
+155
+00:06:12,980 --> 00:06:14,240
+see how we can make that even clearer
+
+156
+00:06:14,240 --> 00:06:17,090
+now here's the same prediction but using
+
+157
+00:06:17,090 --> 00:06:19,430
+the Arg max function to polarize the
+
+158
+00:06:19,430 --> 00:06:21,650
+values effectively setting the
+
+159
+00:06:21,650 --> 00:06:23,750
+likelihood for flower zero and one to
+
+160
+00:06:23,750 --> 00:06:26,810
+nothing and flower two to one think of
+
+161
+00:06:26,810 --> 00:06:29,000
+that as similar to writing a few if-then
+
+162
+00:06:29,000 --> 00:06:30,980
+statements to compare the values to find
+
+163
+00:06:30,980 --> 00:06:32,930
+the biggest and think about how much
+
+164
+00:06:32,930 --> 00:06:35,180
+easier it is then if you were doing this
+
+165
+00:06:35,180 --> 00:06:37,280
+with a thousand different values and the
+
+166
+00:06:37,280 --> 00:06:38,270
+number of code that you would have to
+
+167
+00:06:38,270 --> 00:06:41,030
+write so if you want to test your model
+
+168
+00:06:41,030 --> 00:06:43,490
+against the test set to see how many it
+
+169
+00:06:43,490 --> 00:06:45,800
+gets right versus how many it gets wrong
+
+170
+00:06:45,800 --> 00:06:49,010
+you can then do so with this code for
+
+171
+00:06:49,010 --> 00:06:51,080
+each X in the test set get the
+
+172
+00:06:51,080 --> 00:06:53,120
+prediction and then compare it against
+
+173
+00:06:53,120 --> 00:06:55,520
+the real Y if it's the same you're right
+
+174
+00:06:55,520 --> 00:06:59,120
+if it's different you're wrong if you
+
+175
+00:06:59,120 --> 00:07:01,700
+get a very high error rate then you can
+
+176
+00:07:01,700 --> 00:07:03,710
+tweak the epochs and the learning rate
+
+177
+00:07:03,710 --> 00:07:05,420
+from earlier and try again
+
+178
+00:07:05,420 --> 00:07:07,910
+so that's it for this episode of coding
+
+179
+00:07:07,910 --> 00:07:08,450
+tensorflow
+
+180
+00:07:08,450 --> 00:07:10,550
+if you've watched these three episodes
+
+181
+00:07:10,550 --> 00:07:12,620
+and followed along you'll have taken
+
+182
+00:07:12,620 --> 00:07:14,360
+your first steps into machine learning
+
+183
+00:07:14,360 --> 00:07:17,480
+in the browser with javascript if you
+
+184
+00:07:17,480 --> 00:07:19,490
+prefer to go beyond the browser and use
+
+185
+00:07:19,490 --> 00:07:21,140
+your JavaScript skills with something
+
+186
+00:07:21,140 --> 00:07:23,560
+like nodejs instead you can still do so
+
+187
+00:07:23,560 --> 00:07:25,850
+learn more about that and everything
+
+188
+00:07:25,850 --> 00:07:28,850
+javascript related on jsr tensorflow dot
+
+189
+00:07:28,850 --> 00:07:30,860
+org if you have any questions please
+
+190
+00:07:30,860 --> 00:07:32,810
+leave them in the comments below don't
+
+191
+00:07:32,810 --> 00:07:34,400
+forget to hit that subscribe button for
+
+192
+00:07:34,400 --> 00:07:38,030
+more great tensorflow content
+
+193
+00:07:38,030 --> 00:07:38,820
+you
+
+194
+00:07:38,820 --> 00:07:43,550
+[Music]
+

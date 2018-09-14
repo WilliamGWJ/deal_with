@@ -1,0 +1,4516 @@
+﻿1
+00:00:05,700 --> 00:00:08,440
+hey everyone good morning thanks for
+
+2
+00:00:08,440 --> 00:00:09,910
+coming so early so my name is Josh
+
+3
+00:00:09,910 --> 00:00:12,009
+Gordon and I'm Laurence Moroney and we
+
+4
+00:00:12,009 --> 00:00:13,480
+are here today to speak with you about
+
+5
+00:00:13,480 --> 00:00:16,510
+tensor close high-level api's and I have
+
+6
+00:00:16,510 --> 00:00:18,220
+a lot of good news for you and I hope
+
+7
+00:00:18,220 --> 00:00:21,250
+this talk will be concrete and useful so
+
+8
+00:00:21,250 --> 00:00:23,019
+one area I'm particularly passionate
+
+9
+00:00:23,019 --> 00:00:24,670
+about is making machine learning as
+
+10
+00:00:24,670 --> 00:00:26,920
+accessible as possible to as many people
+
+11
+00:00:26,920 --> 00:00:29,830
+as possible and the tensorflow team has
+
+12
+00:00:29,830 --> 00:00:31,509
+been investing very heavily in the same
+
+13
+00:00:31,509 --> 00:00:34,300
+thing so we spent a lot of energy making
+
+14
+00:00:34,300 --> 00:00:37,450
+tensorflow easier to use and I'd like to
+
+15
+00:00:37,450 --> 00:00:40,000
+show you basically a demo of what is in
+
+16
+00:00:40,000 --> 00:00:41,860
+my opinion the very easiest way to get
+
+17
+00:00:41,860 --> 00:00:43,390
+started with tensorflow today
+
+18
+00:00:43,390 --> 00:00:45,760
+so there's three things that are
+
+19
+00:00:45,760 --> 00:00:47,890
+concrete that I'd like to walk you
+
+20
+00:00:47,890 --> 00:00:53,170
+through and the very first is even if
+
+21
+00:00:53,170 --> 00:00:55,090
+you're brand new to tensorflow you're
+
+22
+00:00:55,090 --> 00:00:56,320
+brand new to machine learning even if
+
+23
+00:00:56,320 --> 00:00:59,199
+you're new to Python one area that seems
+
+24
+00:00:59,199 --> 00:01:00,879
+silly but is non-trivial for a lot of
+
+25
+00:01:00,879 --> 00:01:02,320
+people is actually just installing
+
+26
+00:01:02,320 --> 00:01:04,030
+tensorflow in different dependencies and
+
+27
+00:01:04,030 --> 00:01:05,710
+I know for Python developers is just pip
+
+28
+00:01:05,710 --> 00:01:07,630
+install tensorflow but that can be hard
+
+29
+00:01:07,630 --> 00:01:09,640
+for people that are brand new so I'm
+
+30
+00:01:09,640 --> 00:01:11,080
+gonna show you something called collab
+
+31
+00:01:11,080 --> 00:01:13,240
+and I'll walk you through collab
+
+32
+00:01:13,240 --> 00:01:15,220
+it's basically a jupiter notebook server
+
+33
+00:01:15,220 --> 00:01:16,750
+running in the cloud it's free of charge
+
+34
+00:01:16,750 --> 00:01:18,640
+it has tensorflow pre-installed comes
+
+35
+00:01:18,640 --> 00:01:20,650
+with a free GPU it's awesome I'll walk
+
+36
+00:01:20,650 --> 00:01:22,150
+you through how to use that how'd it get
+
+37
+00:01:22,150 --> 00:01:24,370
+started with tensorflow the next thing
+
+38
+00:01:24,370 --> 00:01:27,250
+tensorflow has many different api's but
+
+39
+00:01:27,250 --> 00:01:28,960
+my personal favorite what I'd strongly
+
+40
+00:01:28,960 --> 00:01:30,610
+strongly recommend to you is something
+
+41
+00:01:30,610 --> 00:01:34,450
+called chaos and chaos the chaos API is
+
+42
+00:01:34,450 --> 00:01:35,830
+completely implemented inside of
+
+43
+00:01:35,830 --> 00:01:38,440
+tensorflow it's great I can't tell you
+
+44
+00:01:38,440 --> 00:01:40,630
+how much fun I've had using it so I'll
+
+45
+00:01:40,630 --> 00:01:42,010
+walk you through writing hello world and
+
+46
+00:01:42,010 --> 00:01:44,620
+care us the same API is also useful for
+
+47
+00:01:44,620 --> 00:01:46,810
+tensorflow Jas and then I'm gonna point
+
+48
+00:01:46,810 --> 00:01:49,030
+you to some educational resources to
+
+49
+00:01:49,030 --> 00:01:54,250
+learn more cool so these are the api's
+
+50
+00:01:54,250 --> 00:01:56,380
+that I want to briefly introduce so
+
+51
+00:01:56,380 --> 00:01:58,180
+chaos it's basically Lego like building
+
+52
+00:01:58,180 --> 00:02:00,030
+blocks for building and defining models
+
+53
+00:02:00,030 --> 00:02:02,770
+TF data so when a lot of people start
+
+54
+00:02:02,770 --> 00:02:04,660
+learning ml they get really hung up on
+
+55
+00:02:04,660 --> 00:02:06,130
+okay they learned that a neural network
+
+56
+00:02:06,130 --> 00:02:08,920
+is composed of layers and they find out
+
+57
+00:02:08,920 --> 00:02:10,310
+that they can adjust the number of
+
+58
+00:02:10,310 --> 00:02:12,440
+neurons per layer and there's different
+
+59
+00:02:12,440 --> 00:02:14,150
+hyper parameters like the optimizer and
+
+60
+00:02:14,150 --> 00:02:15,530
+stuff like that they spend a lot of time
+
+61
+00:02:15,530 --> 00:02:17,810
+on what I call modeling but something
+
+62
+00:02:17,810 --> 00:02:19,280
+that's really really important but
+
+63
+00:02:19,280 --> 00:02:20,690
+doesn't get enough attention is actually
+
+64
+00:02:20,690 --> 00:02:21,920
+how do you get your data into the
+
+65
+00:02:21,920 --> 00:02:24,380
+network and writing input pipelines is
+
+66
+00:02:24,380 --> 00:02:26,450
+non-trivial so I'm also going to show
+
+67
+00:02:26,450 --> 00:02:28,700
+you an API called TF data which is a
+
+68
+00:02:28,700 --> 00:02:30,500
+relatively easy to use but also a very
+
+69
+00:02:30,500 --> 00:02:31,760
+high-performance way of writing your
+
+70
+00:02:31,760 --> 00:02:33,380
+input pipelines and then I'm gonna show
+
+71
+00:02:33,380 --> 00:02:35,300
+you eager execution if you're new to
+
+72
+00:02:35,300 --> 00:02:36,800
+tips and Lawrence is gonna give you a
+
+73
+00:02:36,800 --> 00:02:39,140
+lot more depth on eager yep by the way
+
+74
+00:02:39,140 --> 00:02:40,550
+when you hear the word eager execution
+
+75
+00:02:40,550 --> 00:02:42,830
+if you're new to tensor flow just ignore
+
+76
+00:02:42,830 --> 00:02:44,959
+that and just think of this as this is
+
+77
+00:02:44,959 --> 00:02:47,090
+the thing you always do so you should
+
+78
+00:02:47,090 --> 00:02:49,519
+always write and run so develop and
+
+79
+00:02:49,519 --> 00:02:51,290
+debug your tensor flow programs eagerly
+
+80
+00:02:51,290 --> 00:02:53,360
+and it makes tensorflow feel just like
+
+81
+00:02:53,360 --> 00:02:56,360
+regular Python this is a short talk so
+
+82
+00:02:56,360 --> 00:02:57,709
+I'm not going to go into all the details
+
+83
+00:02:57,709 --> 00:02:59,150
+of how tensorflow works under the hood
+
+84
+00:02:59,150 --> 00:03:00,950
+but this is the right way to do it if
+
+85
+00:03:00,950 --> 00:03:04,250
+you're learning tensor flow today so
+
+86
+00:03:04,250 --> 00:03:07,069
+briefly this is what I would do if you
+
+87
+00:03:07,069 --> 00:03:09,470
+want to try tensor flow and chaos and TF
+
+88
+00:03:09,470 --> 00:03:12,349
+data and eager execution in the fastest
+
+89
+00:03:12,349 --> 00:03:14,840
+possible way and I should tell you off
+
+90
+00:03:14,840 --> 00:03:17,209
+the bat so all these API is there fully
+
+91
+00:03:17,209 --> 00:03:20,000
+implemented and they're working well we
+
+92
+00:03:20,000 --> 00:03:23,420
+are just now starting to write all the
+
+93
+00:03:23,420 --> 00:03:26,060
+samples and Doc's around them so I have
+
+94
+00:03:26,060 --> 00:03:27,590
+a feeling the samples I was able to cook
+
+95
+00:03:27,590 --> 00:03:29,650
+up for this talk are they're quite rough
+
+96
+00:03:29,650 --> 00:03:32,930
+but stay tuned and check back in the
+
+97
+00:03:32,930 --> 00:03:34,579
+next few months as we flesh this out but
+
+98
+00:03:34,579 --> 00:03:36,049
+let me just show you how to dive right
+
+99
+00:03:36,049 --> 00:03:39,590
+in so if you go to this website it will
+
+100
+00:03:39,590 --> 00:03:41,329
+bring you oh can we switch to the laptop
+
+101
+00:03:41,329 --> 00:03:43,810
+for a minute please
+
+102
+00:03:43,810 --> 00:03:45,769
+thank you it will bring you to this
+
+103
+00:03:45,769 --> 00:03:51,380
+github site and if you scroll down to
+
+104
+00:03:51,380 --> 00:03:53,510
+the readme you'll see a sequence of a
+
+105
+00:03:53,510 --> 00:03:55,519
+few notebooks and I just want to show
+
+106
+00:03:55,519 --> 00:03:57,620
+you how easy it is to get started if you
+
+107
+00:03:57,620 --> 00:03:59,989
+just click on one what happens is they
+
+108
+00:03:59,989 --> 00:04:03,079
+open up immediately in collab and so now
+
+109
+00:04:03,079 --> 00:04:04,790
+you have a jupiter notebook it's running
+
+110
+00:04:04,790 --> 00:04:07,850
+entirely in the cloud you can hit
+
+111
+00:04:07,850 --> 00:04:14,569
+connect to connect to a kernel and now I
+
+112
+00:04:14,569 --> 00:04:16,160
+can start running these cells and I'll
+
+113
+00:04:16,160 --> 00:04:17,359
+walk you through this in more detail in
+
+114
+00:04:17,359 --> 00:04:17,959
+a few minutes
+
+115
+00:04:17,959 --> 00:04:19,760
+but if you go through the first notebook
+
+116
+00:04:19,760 --> 00:04:21,470
+this is going to show you how to write
+
+117
+00:04:21,470 --> 00:04:24,380
+your first neural network using Karos
+
+118
+00:04:24,380 --> 00:04:25,639
+there's a little bit of pre-processing
+
+119
+00:04:25,639 --> 00:04:27,320
+code but the notebook is very short
+
+120
+00:04:27,320 --> 00:04:29,750
+the next notebook will show you how to
+
+121
+00:04:29,750 --> 00:04:31,970
+do the same thing using Karos in
+
+122
+00:04:31,970 --> 00:04:33,979
+combination with TF data and eager
+
+123
+00:04:33,979 --> 00:04:35,660
+execution and then we go into a little
+
+124
+00:04:35,660 --> 00:04:37,880
+bit more depth so it's literally that
+
+125
+00:04:37,880 --> 00:04:39,889
+easy to get started it will take you
+
+126
+00:04:39,889 --> 00:04:41,720
+about five minutes end-to-end to try
+
+127
+00:04:41,720 --> 00:04:44,990
+this out all right so let's let's switch
+
+128
+00:04:44,990 --> 00:04:46,010
+back to the slides please
+
+129
+00:04:46,010 --> 00:04:48,380
+and let me give you a little bit more
+
+130
+00:04:48,380 --> 00:04:49,880
+depth of what's happening in these
+
+131
+00:04:49,880 --> 00:04:53,780
+notebooks so of using the Charis api
+
+132
+00:04:53,780 --> 00:04:56,990
+this is the complete code - a few lines
+
+133
+00:04:56,990 --> 00:04:58,550
+of pre-processing just formatting the
+
+134
+00:04:58,550 --> 00:05:02,810
+data to write train evaluate and make
+
+135
+00:05:02,810 --> 00:05:04,550
+predictions with your first neural
+
+136
+00:05:04,550 --> 00:05:06,650
+network in tensorflow so if you were
+
+137
+00:05:06,650 --> 00:05:08,870
+using tensorflow about a year ago it
+
+138
+00:05:08,870 --> 00:05:10,460
+would have been substantially more code
+
+139
+00:05:10,460 --> 00:05:12,590
+and there's other great high-level API
+
+140
+00:05:12,590 --> 00:05:14,120
+is including estimators which are really
+
+141
+00:05:14,120 --> 00:05:15,560
+really wonderful for doing machine
+
+142
+00:05:15,560 --> 00:05:17,240
+learning at production but at least for
+
+143
+00:05:17,240 --> 00:05:19,430
+learning ml I'd strongly recommend this
+
+144
+00:05:19,430 --> 00:05:20,930
+so I will walk you through exactly what
+
+145
+00:05:20,930 --> 00:05:22,729
+all of these lines are doing and one
+
+146
+00:05:22,729 --> 00:05:24,080
+point I want to make is that the code is
+
+147
+00:05:24,080 --> 00:05:27,880
+it's concept heavy but code light so
+
+148
+00:05:27,880 --> 00:05:30,289
+writing the code itself should no longer
+
+149
+00:05:30,289 --> 00:05:32,720
+be a barrier to getting started with ml
+
+150
+00:05:32,720 --> 00:05:34,910
+I hope that far fewer people are gonna
+
+151
+00:05:34,910 --> 00:05:37,700
+spend energy and time on the syntax and
+
+152
+00:05:37,700 --> 00:05:40,190
+debugging and now you can spend more of
+
+153
+00:05:40,190 --> 00:05:41,960
+your time and energy thinking about what
+
+154
+00:05:41,960 --> 00:05:45,110
+you're trying to do and why oh yeah and
+
+155
+00:05:45,110 --> 00:05:46,340
+before I dive into code I want to make a
+
+156
+00:05:46,340 --> 00:05:48,620
+really really important point so machine
+
+157
+00:05:48,620 --> 00:05:52,160
+learning is a broad field by far another
+
+158
+00:05:52,160 --> 00:05:53,539
+mistake that a lot of students make when
+
+159
+00:05:53,539 --> 00:05:55,340
+they're learning is they learn how to
+
+160
+00:05:55,340 --> 00:05:57,560
+train an image classifier like we're
+
+161
+00:05:57,560 --> 00:05:59,479
+gonna do in a moment and they find out
+
+162
+00:05:59,479 --> 00:06:00,800
+when they write the classifier they
+
+163
+00:06:00,800 --> 00:06:03,020
+start evaluating it and they see these
+
+164
+00:06:03,020 --> 00:06:06,380
+numbers like 99% accuracy and then they
+
+165
+00:06:06,380 --> 00:06:08,000
+find out that by tweaking the network
+
+166
+00:06:08,000 --> 00:06:09,229
+you can get to like ninety nine point
+
+167
+00:06:09,229 --> 00:06:12,229
+six or whatever and in reality it almost
+
+168
+00:06:12,229 --> 00:06:14,870
+never matters the most important thing
+
+169
+00:06:14,870 --> 00:06:16,340
+you can spend your time on is designing
+
+170
+00:06:16,340 --> 00:06:18,620
+the experiment and what I mean by that
+
+171
+00:06:18,620 --> 00:06:21,229
+is concretely thinking about what are
+
+172
+00:06:21,229 --> 00:06:23,479
+you trying to predict and why how will
+
+173
+00:06:23,479 --> 00:06:25,190
+it be used in practice what could go
+
+174
+00:06:25,190 --> 00:06:27,190
+wrong where does the data come from
+
+175
+00:06:27,190 --> 00:06:29,180
+thinking through the design of your
+
+176
+00:06:29,180 --> 00:06:30,710
+system as you would in any type of
+
+177
+00:06:30,710 --> 00:06:32,900
+software is much much more important
+
+178
+00:06:32,900 --> 00:06:34,550
+than messing around trying to get higher
+
+179
+00:06:34,550 --> 00:06:35,990
+accuracy
+
+180
+00:06:35,990 --> 00:06:37,850
+I'm not gonna cover this today there's a
+
+181
+00:06:37,850 --> 00:06:39,530
+whole talk on that but today I just
+
+182
+00:06:39,530 --> 00:06:41,090
+wanna show you the code but always think
+
+183
+00:06:41,090 --> 00:06:44,110
+about what and why in addition to how
+
+184
+00:06:44,110 --> 00:06:46,100
+all right so before I dive into this a
+
+185
+00:06:46,100 --> 00:06:48,320
+couple cool things not enough time to
+
+186
+00:06:48,320 --> 00:06:49,550
+introduce tensorflow I just wanted to
+
+187
+00:06:49,550 --> 00:06:51,110
+call out the community is the most
+
+188
+00:06:51,110 --> 00:06:53,090
+important thing about tensorflow in
+
+189
+00:06:53,090 --> 00:06:55,040
+addition to the thousand plus folks who
+
+190
+00:06:55,040 --> 00:06:56,960
+have contributed code there are many
+
+191
+00:06:56,960 --> 00:06:58,460
+many more who are doing things like
+
+192
+00:06:58,460 --> 00:07:01,430
+teaching organizing events writing
+
+193
+00:07:01,430 --> 00:07:02,870
+articles these things are incredibly
+
+194
+00:07:02,870 --> 00:07:05,930
+valuable too and there's a few new
+
+195
+00:07:05,930 --> 00:07:06,950
+things that I just wanted to call out
+
+196
+00:07:06,950 --> 00:07:10,370
+this came out two days ago so there's
+
+197
+00:07:10,370 --> 00:07:12,050
+another library called tensorflow J s
+
+198
+00:07:12,050 --> 00:07:13,040
+part of tensorflow
+
+199
+00:07:13,040 --> 00:07:15,200
+in JavaScript uses the same API is the
+
+200
+00:07:15,200 --> 00:07:16,820
+Charis API that i'ma show you today
+
+201
+00:07:16,820 --> 00:07:18,800
+weren't you gonna act out this slide I
+
+202
+00:07:18,800 --> 00:07:20,840
+was gonna act this out great sandbox
+
+203
+00:07:20,840 --> 00:07:23,090
+where you can try it I could dance it
+
+204
+00:07:23,090 --> 00:07:25,280
+out anyway it basically it's tensorflow
+
+205
+00:07:25,280 --> 00:07:27,230
+running in the browser and this runs in
+
+206
+00:07:27,230 --> 00:07:28,670
+real time there's two links on the
+
+207
+00:07:28,670 --> 00:07:29,570
+bottom if you check this out at home
+
+208
+00:07:29,570 --> 00:07:31,430
+there's a really great demo you can play
+
+209
+00:07:31,430 --> 00:07:33,110
+with on our blog and you can actually
+
+210
+00:07:33,110 --> 00:07:35,960
+find the code on the website another
+
+211
+00:07:35,960 --> 00:07:38,540
+thing there's a pair of links here which
+
+212
+00:07:38,540 --> 00:07:40,490
+I'd really encourage you to try so this
+
+213
+00:07:40,490 --> 00:07:42,530
+is magenta and magenta is a project that
+
+214
+00:07:42,530 --> 00:07:44,930
+uses tensorflow for experiments in art
+
+215
+00:07:44,930 --> 00:07:47,120
+and music and here this is computer
+
+216
+00:07:47,120 --> 00:07:49,970
+assisted drawing so magenta is helping
+
+217
+00:07:49,970 --> 00:07:52,040
+me draw duck so I'm drawing the duck
+
+218
+00:07:52,040 --> 00:07:53,600
+with the mouse in magenta it's sort of
+
+219
+00:07:53,600 --> 00:07:56,180
+like autocomplete for drawing there's a
+
+220
+00:07:56,180 --> 00:07:58,250
+great game called quick draw which I'd
+
+221
+00:07:58,250 --> 00:07:59,600
+encourage you to try it's great for kids
+
+222
+00:07:59,600 --> 00:08:02,960
+it's yeah quick draw and the magenta
+
+223
+00:08:02,960 --> 00:08:05,090
+demo is great to try just some fun stuff
+
+224
+00:08:05,090 --> 00:08:06,740
+before we get in the code and also
+
+225
+00:08:06,740 --> 00:08:08,150
+before I get the code in a personal note
+
+226
+00:08:08,150 --> 00:08:10,700
+one of the reasons I care about machine
+
+227
+00:08:10,700 --> 00:08:13,010
+learning so much is because of a project
+
+228
+00:08:13,010 --> 00:08:14,960
+called cell bot and cell bot is a
+
+229
+00:08:14,960 --> 00:08:17,810
+project from 2004 it was in a biology
+
+230
+00:08:17,810 --> 00:08:20,840
+lab and so bot uses a neural network to
+
+231
+00:08:20,840 --> 00:08:23,120
+identify specific types of cells in
+
+232
+00:08:23,120 --> 00:08:26,210
+solution and then sort them and what was
+
+233
+00:08:26,210 --> 00:08:28,340
+so cool to me as a student working on
+
+234
+00:08:28,340 --> 00:08:30,260
+this is that machine learning is not
+
+235
+00:08:30,260 --> 00:08:32,780
+just for computer scientists the fact
+
+236
+00:08:32,780 --> 00:08:34,310
+that biologists were trying to do
+
+237
+00:08:34,310 --> 00:08:36,650
+something useful using technology that
+
+238
+00:08:36,650 --> 00:08:38,290
+originated in our field was really
+
+239
+00:08:38,290 --> 00:08:40,610
+meaningful to me it's how can we use
+
+240
+00:08:40,610 --> 00:08:42,770
+machine learning for medicine for art
+
+241
+00:08:42,770 --> 00:08:44,930
+for healthcare just to do useful things
+
+242
+00:08:44,930 --> 00:08:47,480
+in the world so that's that's kind of
+
+243
+00:08:47,480 --> 00:08:48,830
+the thinking behind everything I do with
+
+244
+00:08:48,830 --> 00:08:50,180
+no it's what can we do to help people
+
+245
+00:08:50,180 --> 00:08:53,300
+basically all right so collab the URL
+
+246
+00:08:53,300 --> 00:08:55,640
+for collab is collab research Google com
+
+247
+00:08:55,640 --> 00:08:57,770
+collab is short for a collaboratory it's
+
+248
+00:08:57,770 --> 00:08:59,840
+inspired a lot by Google Docs it's a
+
+249
+00:08:59,840 --> 00:09:02,300
+Google Doc style of code editor and you
+
+250
+00:09:02,300 --> 00:09:05,720
+can download basically you can save
+
+251
+00:09:05,720 --> 00:09:07,820
+Jupiter notebooks in Google Drive you
+
+252
+00:09:07,820 --> 00:09:09,170
+can download them back as regular
+
+253
+00:09:09,170 --> 00:09:10,550
+Jupiter notebooks so there's no lock and
+
+254
+00:09:10,550 --> 00:09:12,680
+I know a lot of people by the way are
+
+255
+00:09:12,680 --> 00:09:15,560
+not from Python so I just want to spend
+
+256
+00:09:15,560 --> 00:09:17,780
+a minute and introduce Jupiter notebooks
+
+257
+00:09:17,780 --> 00:09:20,960
+so broadly here's collab and there's two
+
+258
+00:09:20,960 --> 00:09:21,950
+types of cells
+
+259
+00:09:21,950 --> 00:09:24,020
+there's markdown cells which contain
+
+260
+00:09:24,020 --> 00:09:26,840
+markdown and if you edit a markdown cell
+
+261
+00:09:26,840 --> 00:09:28,640
+like I'm doing with HelloWorld and you
+
+262
+00:09:28,640 --> 00:09:30,290
+execute it it just renders the markdown
+
+263
+00:09:30,290 --> 00:09:32,690
+the other type of cell is a code cell
+
+264
+00:09:32,690 --> 00:09:35,000
+and if you edit the code and execute the
+
+265
+00:09:35,000 --> 00:09:37,340
+cell it executes the code that's all it
+
+266
+00:09:37,340 --> 00:09:39,140
+is and there's one really cool thing as
+
+267
+00:09:39,140 --> 00:09:40,280
+well as that they give you access to
+
+268
+00:09:40,280 --> 00:09:42,650
+GPUs yes I've spoken with a lot of
+
+269
+00:09:42,650 --> 00:09:44,330
+people who either find it very difficult
+
+270
+00:09:44,330 --> 00:09:46,760
+to set up their GPUs or you know maybe
+
+271
+00:09:46,760 --> 00:09:48,200
+they're in a university environment and
+
+272
+00:09:48,200 --> 00:09:49,880
+they don't have access to expensive GPUs
+
+273
+00:09:49,880 --> 00:09:51,740
+and if you're using a colab you can
+
+274
+00:09:51,740 --> 00:09:54,290
+actually connect it to a GPU in our data
+
+275
+00:09:54,290 --> 00:09:55,550
+centers so that you can test out your
+
+276
+00:09:55,550 --> 00:09:57,440
+code running on GPUs exactly with no
+
+277
+00:09:57,440 --> 00:09:59,300
+coal at all yep it's a really good point
+
+278
+00:09:59,300 --> 00:10:00,830
+the other thing you can do if you're new
+
+279
+00:10:00,830 --> 00:10:02,780
+to Jupiter notebooks is you can create
+
+280
+00:10:02,780 --> 00:10:04,490
+visualizations in line so here I'm using
+
+281
+00:10:04,490 --> 00:10:06,860
+matplotlib to plot some data and the
+
+282
+00:10:06,860 --> 00:10:08,000
+graph goes right in line with your
+
+283
+00:10:08,000 --> 00:10:09,350
+notebook and this is really important
+
+284
+00:10:09,350 --> 00:10:10,310
+because it's a great way to share
+
+285
+00:10:10,310 --> 00:10:12,260
+results another thing that I wanted to
+
+286
+00:10:12,260 --> 00:10:13,580
+mention quickly is you can pip install
+
+287
+00:10:13,580 --> 00:10:15,530
+libraries so you're basically you're
+
+288
+00:10:15,530 --> 00:10:17,090
+running in some containers sitting
+
+289
+00:10:17,090 --> 00:10:19,310
+somewhere on GCP but you can install
+
+290
+00:10:19,310 --> 00:10:20,780
+whatever libraries you need so here on
+
+291
+00:10:20,780 --> 00:10:22,880
+pip installing matplotlib so you have
+
+292
+00:10:22,880 --> 00:10:24,740
+root access to it and then the last
+
+293
+00:10:24,740 --> 00:10:25,880
+thing a lot of people missed this
+
+294
+00:10:25,880 --> 00:10:27,200
+feature but it's super useful it's
+
+295
+00:10:27,200 --> 00:10:28,820
+called snippets and it's it's
+
+296
+00:10:28,820 --> 00:10:30,230
+conveniently hidden in the table of
+
+297
+00:10:30,230 --> 00:10:32,660
+contents but what I'm doing in this
+
+298
+00:10:32,660 --> 00:10:34,130
+notebook is I'm going to create some
+
+299
+00:10:34,130 --> 00:10:35,660
+data and then I'm going to download the
+
+300
+00:10:35,660 --> 00:10:38,540
+data off of colab back to my laptop and
+
+301
+00:10:38,540 --> 00:10:40,820
+to find out how to do that I click on
+
+302
+00:10:40,820 --> 00:10:42,470
+the snippets thing and I start searching
+
+303
+00:10:42,470 --> 00:10:45,170
+for downloading data and colab can't
+
+304
+00:10:45,170 --> 00:10:46,250
+totally see it on the screen has a
+
+305
+00:10:46,250 --> 00:10:47,870
+snippet of code that I could just copy
+
+306
+00:10:47,870 --> 00:10:49,430
+and paste directly into notebook and run
+
+307
+00:10:49,430 --> 00:10:52,580
+so it has examples how to install
+
+308
+00:10:52,580 --> 00:10:53,810
+libraries and everything like that it's
+
+309
+00:10:53,810 --> 00:10:55,070
+super useful don't have time to talk
+
+310
+00:10:55,070 --> 00:10:56,600
+about this collab is great for
+
+311
+00:10:56,600 --> 00:10:58,850
+reproducible examples alright so let me
+
+312
+00:10:58,850 --> 00:11:01,010
+jump right into what it looks like to
+
+313
+00:11:01,010 --> 00:11:02,000
+use chaos
+
+314
+00:11:02,000 --> 00:11:04,760
+to write your first nil Network and I
+
+315
+00:11:04,760 --> 00:11:07,340
+talked about this earlier but no one has
+
+316
+00:11:07,340 --> 00:11:09,260
+ever looked at the code to write your
+
+317
+00:11:09,260 --> 00:11:11,510
+first mil network regardless of how
+
+318
+00:11:11,510 --> 00:11:13,010
+smart you are it doesn't matter if you
+
+319
+00:11:13,010 --> 00:11:14,630
+have like a PhD in physics or whatever
+
+320
+00:11:14,630 --> 00:11:16,820
+and it's just gone oh I get it it's
+
+321
+00:11:16,820 --> 00:11:18,980
+impossible it takes months to learn this
+
+322
+00:11:18,980 --> 00:11:22,280
+stuff so it's completely normal to see
+
+323
+00:11:22,280 --> 00:11:23,990
+lots of concepts and have no idea what
+
+324
+00:11:23,990 --> 00:11:25,790
+they mean but let me just at least
+
+325
+00:11:25,790 --> 00:11:27,710
+introduce you and then I'll point you to
+
+326
+00:11:27,710 --> 00:11:29,480
+a course you can use to get more depth
+
+327
+00:11:29,480 --> 00:11:31,820
+oh the other thing I should probably
+
+328
+00:11:31,820 --> 00:11:33,830
+look at my slides right so you'll see
+
+329
+00:11:33,830 --> 00:11:35,780
+lots of parameters when you define these
+
+330
+00:11:35,780 --> 00:11:37,910
+networks and really only one or two are
+
+331
+00:11:37,910 --> 00:11:39,680
+important to spend your time on and I'll
+
+332
+00:11:39,680 --> 00:11:41,750
+point you what those are as we go so
+
+333
+00:11:41,750 --> 00:11:44,450
+there's broadly five steps to write
+
+334
+00:11:44,450 --> 00:11:47,410
+hello world and tensorflow using chaos
+
+335
+00:11:47,410 --> 00:11:49,820
+the good news is steps three four and
+
+336
+00:11:49,820 --> 00:11:53,000
+five are literally one line of code so
+
+337
+00:11:53,000 --> 00:11:54,260
+that's that's all the work of training
+
+338
+00:11:54,260 --> 00:11:55,790
+the network evaluating your accuracy and
+
+339
+00:11:55,790 --> 00:11:57,680
+making predictions collecting the data
+
+340
+00:11:57,680 --> 00:11:59,090
+set in reality takes a long time
+
+341
+00:11:59,090 --> 00:12:00,920
+pre-processing the data takes a long
+
+342
+00:12:00,920 --> 00:12:01,970
+time that's just getting it to the right
+
+343
+00:12:01,970 --> 00:12:04,490
+shape and building your model is where a
+
+344
+00:12:04,490 --> 00:12:05,780
+lot of the concepts are so let's see
+
+345
+00:12:05,780 --> 00:12:07,640
+what this looks like so we're gonna use
+
+346
+00:12:07,640 --> 00:12:09,350
+em mist I know for people that are
+
+347
+00:12:09,350 --> 00:12:10,790
+machine learning experts you know em
+
+348
+00:12:10,790 --> 00:12:13,490
+this cold and the reason I picked it is
+
+349
+00:12:13,490 --> 00:12:14,480
+just so we don't have to worry too much
+
+350
+00:12:14,480 --> 00:12:16,040
+about the data if you're new to M this
+
+351
+00:12:16,040 --> 00:12:18,200
+it's it's sort of the hello world of
+
+352
+00:12:18,200 --> 00:12:20,800
+computer vision it's a data set of about
+
+353
+00:12:20,800 --> 00:12:23,089
+60,000 plus very low resolution
+
+354
+00:12:23,089 --> 00:12:25,370
+handwritten digits and our goal is to
+
+355
+00:12:25,370 --> 00:12:27,980
+train an image classifier to classify or
+
+356
+00:12:27,980 --> 00:12:29,540
+recognize digits that it hasn't seen
+
+357
+00:12:29,540 --> 00:12:33,140
+before so here's what we'll do we'll
+
+358
+00:12:33,140 --> 00:12:35,480
+import tensorflow and you can see that
+
+359
+00:12:35,480 --> 00:12:38,060
+on the second line we're importing emne
+
+360
+00:12:38,060 --> 00:12:40,100
+stand this is easy because the data set
+
+361
+00:12:40,100 --> 00:12:41,570
+is already we have a loader for it
+
+362
+00:12:41,570 --> 00:12:43,880
+that's baked into tensorflow and if
+
+363
+00:12:43,880 --> 00:12:45,020
+you're new to using kiosk mode
+
+364
+00:12:45,020 --> 00:12:46,160
+tensorflow you can see that it's just
+
+365
+00:12:46,160 --> 00:12:48,500
+included you can do TF care us and now
+
+366
+00:12:48,500 --> 00:12:49,670
+you have access to the complete chaos
+
+367
+00:12:49,670 --> 00:12:52,339
+API so there's nothing else to do it's
+
+368
+00:12:52,339 --> 00:12:54,380
+just it's just there and this is awesome
+
+369
+00:12:54,380 --> 00:12:56,720
+by the way there are many many awesome
+
+370
+00:12:56,720 --> 00:12:58,280
+advanced things you can do using chaos
+
+371
+00:12:58,280 --> 00:13:00,470
+and tensorflow like it's great here I'm
+
+372
+00:13:00,470 --> 00:13:01,520
+just trying to show you the straight
+
+373
+00:13:01,520 --> 00:13:04,670
+easiest possible way here's the format
+
+374
+00:13:04,670 --> 00:13:06,380
+of the data set so as imported it's
+
+375
+00:13:06,380 --> 00:13:08,089
+divided already for us since a train and
+
+376
+00:13:08,089 --> 00:13:10,730
+test train is about 60,000 tests is
+
+377
+00:13:10,730 --> 00:13:13,250
+10,000 the top right I have a diagram of
+
+378
+00:13:13,250 --> 00:13:15,740
+the format of the images if you look at
+
+379
+00:13:15,740 --> 00:13:15,930
+them
+
+380
+00:13:15,930 --> 00:13:18,270
+books on that workshop directory the
+
+381
+00:13:18,270 --> 00:13:20,130
+best thing you can do when you import a
+
+382
+00:13:20,130 --> 00:13:21,750
+data set is to spend a lot of time
+
+383
+00:13:21,750 --> 00:13:23,850
+asking really basic questions so
+
+384
+00:13:23,850 --> 00:13:25,980
+literally when you import the data print
+
+385
+00:13:25,980 --> 00:13:28,529
+it out for an out the shape print out a
+
+386
+00:13:28,529 --> 00:13:30,839
+single image look at the format what's
+
+387
+00:13:30,839 --> 00:13:32,610
+the data type is a floating-point is it
+
+388
+00:13:32,610 --> 00:13:34,529
+an integer what are the dimensions how
+
+389
+00:13:34,529 --> 00:13:36,690
+many do I have spending a lot of time
+
+390
+00:13:36,690 --> 00:13:38,040
+just understanding the format the
+
+391
+00:13:38,040 --> 00:13:39,750
+plumbing will save you a lot of headache
+
+392
+00:13:39,750 --> 00:13:42,180
+later on so it's always okay to ask
+
+393
+00:13:42,180 --> 00:13:44,279
+really basic questions in the bottom
+
+394
+00:13:44,279 --> 00:13:46,290
+right there's many neural networks that
+
+395
+00:13:46,290 --> 00:13:48,089
+work with 2d images here we're gonna
+
+396
+00:13:48,089 --> 00:13:49,350
+make a simplification and we're just
+
+397
+00:13:49,350 --> 00:13:51,510
+gonna unroll the thing so instead of a
+
+398
+00:13:51,510 --> 00:13:53,310
+2d image we're literally gonna unstack
+
+399
+00:13:53,310 --> 00:13:55,860
+the rows these images happen to be 28 by
+
+400
+00:13:55,860 --> 00:13:58,170
+28 pixels when we unstack them we get a
+
+401
+00:13:58,170 --> 00:14:01,140
+vector that's 28 times 28 equals 780
+
+402
+00:14:01,140 --> 00:14:02,130
+something
+
+403
+00:14:02,130 --> 00:14:04,050
+pixels in a line so it's a
+
+404
+00:14:04,050 --> 00:14:06,060
+simplification that's all it is to
+
+405
+00:14:06,060 --> 00:14:07,440
+import the data set I didn't show the
+
+406
+00:14:07,440 --> 00:14:09,330
+code which is just numpy to reshape it
+
+407
+00:14:09,330 --> 00:14:11,040
+but it's in the notebook so now we're
+
+408
+00:14:11,040 --> 00:14:12,600
+gonna build our model and here's
+
+409
+00:14:12,600 --> 00:14:14,310
+concepts that will be probably entirely
+
+410
+00:14:14,310 --> 00:14:16,050
+meaningless to you if you're brand new
+
+411
+00:14:16,050 --> 00:14:18,810
+to ml one funny thing about neural
+
+412
+00:14:18,810 --> 00:14:21,480
+networks so there's many different types
+
+413
+00:14:21,480 --> 00:14:24,120
+of classifiers and most of my background
+
+414
+00:14:24,120 --> 00:14:27,240
+I was really invested in tree based
+
+415
+00:14:27,240 --> 00:14:29,550
+models before deep learning was a thing
+
+416
+00:14:29,550 --> 00:14:32,160
+and the reason I like tree based models
+
+417
+00:14:32,160 --> 00:14:34,170
+like random forests is that I can look
+
+418
+00:14:34,170 --> 00:14:35,850
+at a tree and intuitively my brain
+
+419
+00:14:35,850 --> 00:14:37,410
+understands exactly what the tree is
+
+420
+00:14:37,410 --> 00:14:39,839
+doing to classify the data like I get it
+
+421
+00:14:39,839 --> 00:14:42,029
+it clicks the neural networks can be a
+
+422
+00:14:42,029 --> 00:14:45,990
+little bit counterintuitive it's hard to
+
+423
+00:14:45,990 --> 00:14:48,029
+describe in 30 seconds but let me just
+
+424
+00:14:48,029 --> 00:14:49,830
+tell you what we're doing and you can
+
+425
+00:14:49,830 --> 00:14:52,080
+take the course to learn more so here
+
+426
+00:14:52,080 --> 00:14:53,760
+we're defining a fully connected deep
+
+427
+00:14:53,760 --> 00:14:55,830
+neural network there's gonna be two
+
+428
+00:14:55,830 --> 00:14:58,020
+layers that you can see so first we're
+
+429
+00:14:58,020 --> 00:14:59,790
+saying we're defining our model we're
+
+430
+00:14:59,790 --> 00:15:01,170
+saying we're gonna use the sequential
+
+431
+00:15:01,170 --> 00:15:03,270
+API which is the simplest API to define
+
+432
+00:15:03,270 --> 00:15:05,279
+your model it literally means our model
+
+433
+00:15:05,279 --> 00:15:07,350
+is going to be a stack of layers the
+
+434
+00:15:07,350 --> 00:15:09,150
+first layer that we're stacking on is
+
+435
+00:15:09,150 --> 00:15:11,339
+gonna be a dense layer dense means it's
+
+436
+00:15:11,339 --> 00:15:13,410
+fully connected and I'll show you
+
+437
+00:15:13,410 --> 00:15:16,680
+diagram of this I'm sorry there's just
+
+438
+00:15:16,680 --> 00:15:18,630
+this is a one layer network but the
+
+439
+00:15:18,630 --> 00:15:19,920
+notebooks have an exercise where you can
+
+440
+00:15:19,920 --> 00:15:22,709
+add a second layer and then we're adding
+
+441
+00:15:22,709 --> 00:15:24,450
+an output layer with ten outputs and
+
+442
+00:15:24,450 --> 00:15:26,100
+each of those outputs is basically going
+
+443
+00:15:26,100 --> 00:15:27,570
+to gather evidence that the image that
+
+444
+00:15:27,570 --> 00:15:29,730
+we feed through this network corresponds
+
+445
+00:15:29,730 --> 00:15:33,120
+to each of the digits and this slide I
+
+446
+00:15:33,120 --> 00:15:34,470
+was editing these slides last night so
+
+447
+00:15:34,470 --> 00:15:35,459
+this slide is actually a little bit
+
+448
+00:15:35,459 --> 00:15:38,070
+different but here we actually do have
+
+449
+00:15:38,070 --> 00:15:40,620
+two dense layers the point that I want
+
+450
+00:15:40,620 --> 00:15:42,360
+to mention there's a couple points that
+
+451
+00:15:42,360 --> 00:15:46,620
+I want to make one this is the complete
+
+452
+00:15:46,620 --> 00:15:49,199
+code to define the network so it's code
+
+453
+00:15:49,199 --> 00:15:51,720
+concise too broadly
+
+454
+00:15:51,720 --> 00:15:54,000
+the more layers you add to your network
+
+455
+00:15:54,000 --> 00:15:56,910
+and the more neurons or units per layer
+
+456
+00:15:56,910 --> 00:15:59,220
+the more capacity your network has
+
+457
+00:15:59,220 --> 00:16:01,350
+meaning the more types of patterns that
+
+458
+00:16:01,350 --> 00:16:05,430
+can recognize the problem is the more
+
+459
+00:16:05,430 --> 00:16:07,529
+things your network can recognize the
+
+460
+00:16:07,529 --> 00:16:09,180
+more likely it is to memorize the
+
+461
+00:16:09,180 --> 00:16:10,589
+training data so in machine learning
+
+462
+00:16:10,589 --> 00:16:11,690
+there's always this tension between
+
+463
+00:16:11,690 --> 00:16:14,040
+memorization and generalization you
+
+464
+00:16:14,040 --> 00:16:15,750
+don't want to just memorize the training
+
+465
+00:16:15,750 --> 00:16:17,160
+data what you want to do is learn
+
+466
+00:16:17,160 --> 00:16:18,990
+patterns that are useful to classify
+
+467
+00:16:18,990 --> 00:16:21,329
+digits that you haven't seen before so
+
+468
+00:16:21,329 --> 00:16:23,459
+it's very easy to get very high accuracy
+
+469
+00:16:23,459 --> 00:16:25,500
+on the training set by building a deep
+
+470
+00:16:25,500 --> 00:16:26,880
+neural network with many neurons and
+
+471
+00:16:26,880 --> 00:16:28,079
+training it for a long time it's not
+
+472
+00:16:28,079 --> 00:16:29,519
+necessarily the right thing to do though
+
+473
+00:16:29,519 --> 00:16:31,529
+so when you're messing around with these
+
+474
+00:16:31,529 --> 00:16:33,360
+architectures start as simply as
+
+475
+00:16:33,360 --> 00:16:35,040
+possible and then slowly expand from
+
+476
+00:16:35,040 --> 00:16:37,230
+there the next thing you have to do is
+
+477
+00:16:37,230 --> 00:16:39,510
+compile your network this is the last
+
+478
+00:16:39,510 --> 00:16:41,660
+step of building it it's just one line
+
+479
+00:16:41,660 --> 00:16:45,300
+there's two concepts I'll get is the
+
+480
+00:16:45,300 --> 00:16:48,029
+optimizer in a sec the loss function is
+
+481
+00:16:48,029 --> 00:16:49,440
+basically the objective that your
+
+482
+00:16:49,440 --> 00:16:51,870
+network is trying to optimize the good
+
+483
+00:16:51,870 --> 00:16:53,670
+news here is this is a fancy word
+
+484
+00:16:53,670 --> 00:16:56,370
+categorical cross entropy but what it
+
+485
+00:16:56,370 --> 00:16:58,110
+literally means is your network is going
+
+486
+00:16:58,110 --> 00:16:59,880
+to make a prediction so you feed an
+
+487
+00:16:59,880 --> 00:17:01,800
+image of a two through your network and
+
+488
+00:17:01,800 --> 00:17:04,020
+it gives you a probability distribution
+
+489
+00:17:04,020 --> 00:17:06,120
+over all the digits that it could be so
+
+490
+00:17:06,120 --> 00:17:08,429
+maybe with 10% probability it's a 0 with
+
+491
+00:17:08,429 --> 00:17:10,919
+5% probability to 1 hopefully with like
+
+492
+00:17:10,919 --> 00:17:14,010
+90% probability it's a 2 anyway this is
+
+493
+00:17:14,010 --> 00:17:15,689
+a fancy word that compares the thing the
+
+494
+00:17:15,689 --> 00:17:17,429
+network predicted to the thing you
+
+495
+00:17:17,429 --> 00:17:19,980
+wanted it to predict and what you want
+
+496
+00:17:19,980 --> 00:17:21,510
+it to predict is all the evidence is on
+
+497
+00:17:21,510 --> 00:17:23,730
+it - the other thing is the optimizer
+
+498
+00:17:23,730 --> 00:17:25,829
+and this is the method with which you're
+
+499
+00:17:25,829 --> 00:17:28,350
+going to train the network the truth is
+
+500
+00:17:28,350 --> 00:17:29,730
+there's a whole bag of different
+
+501
+00:17:29,730 --> 00:17:31,440
+optimizers you can use you don't have to
+
+502
+00:17:31,440 --> 00:17:33,750
+worry about what rmsprop means too much
+
+503
+00:17:33,750 --> 00:17:36,660
+because there are good defaults so for
+
+504
+00:17:36,660 --> 00:17:38,280
+this type of classification problem
+
+505
+00:17:38,280 --> 00:17:39,929
+basically you're always using
+
+506
+00:17:39,929 --> 00:17:42,480
+categorical cross entropy and rmsprop is
+
+507
+00:17:42,480 --> 00:17:43,500
+a perfectly good
+
+508
+00:17:43,500 --> 00:17:45,090
+vizor to start with using all the
+
+509
+00:17:45,090 --> 00:17:46,980
+default parameters so there's there's
+
+510
+00:17:46,980 --> 00:17:50,220
+good defaults broadly the way the
+
+511
+00:17:50,220 --> 00:17:51,600
+network is trained is using gradient
+
+512
+00:17:51,600 --> 00:17:55,740
+descent so here's here's how I would
+
+513
+00:17:55,740 --> 00:17:59,700
+think about this what a neural network
+
+514
+00:17:59,700 --> 00:18:02,370
+is when we add those dense layers there
+
+515
+00:18:02,370 --> 00:18:04,020
+are many different weights connecting
+
+516
+00:18:04,020 --> 00:18:06,930
+the pixels to the neurons and you can
+
+517
+00:18:06,930 --> 00:18:07,950
+think of all those weights as a
+
+518
+00:18:07,950 --> 00:18:10,770
+parameter so here's the simplest example
+
+519
+00:18:10,770 --> 00:18:12,000
+that I had in my head if you think of
+
+520
+00:18:12,000 --> 00:18:13,890
+linear regression so let's start with
+
+521
+00:18:13,890 --> 00:18:15,960
+linear regression you have some points
+
+522
+00:18:15,960 --> 00:18:18,270
+on some plot and you're trying to find
+
+523
+00:18:18,270 --> 00:18:20,640
+the best fit line and if you think about
+
+524
+00:18:20,640 --> 00:18:22,200
+from high school the equation for the
+
+525
+00:18:22,200 --> 00:18:23,820
+best fit line you've got like y equals
+
+526
+00:18:23,820 --> 00:18:26,730
+MX plus B and you've got two parameters
+
+527
+00:18:26,730 --> 00:18:29,490
+that you're trying to learn M is the
+
+528
+00:18:29,490 --> 00:18:32,640
+slope and you have B it's the intercept
+
+529
+00:18:32,640 --> 00:18:35,190
+and for different values of M and B you
+
+530
+00:18:35,190 --> 00:18:36,900
+can calculate how well your line fits
+
+531
+00:18:36,900 --> 00:18:38,340
+the data and you can look at your error
+
+532
+00:18:38,340 --> 00:18:39,900
+and there's different ways to get your
+
+533
+00:18:39,900 --> 00:18:41,640
+error but maybe it's the sum of the
+
+534
+00:18:41,640 --> 00:18:43,920
+distances from your line to the pixels
+
+535
+00:18:43,920 --> 00:18:45,960
+so by adjusting m and B you can find the
+
+536
+00:18:45,960 --> 00:18:48,210
+best fit line neural networks are
+
+537
+00:18:48,210 --> 00:18:49,740
+trained in a very same in a similar way
+
+538
+00:18:49,740 --> 00:18:52,100
+except instead of M and B you've got
+
+539
+00:18:52,100 --> 00:18:54,780
+hundreds of thousands of parameters that
+
+540
+00:18:54,780 --> 00:18:56,250
+you're trying to learn and these
+
+541
+00:18:56,250 --> 00:18:57,810
+parameters connect the pixels to the
+
+542
+00:18:57,810 --> 00:19:00,030
+neurons and so on and so forth and the
+
+543
+00:19:00,030 --> 00:19:01,530
+way they're trained is using something
+
+544
+00:19:01,530 --> 00:19:03,210
+called gradient descent and there's a
+
+545
+00:19:03,210 --> 00:19:05,100
+fancy diagram on the right that's
+
+546
+00:19:05,100 --> 00:19:07,760
+showing something that's not relevant
+
+547
+00:19:07,760 --> 00:19:11,910
+but they all start at random values and
+
+548
+00:19:11,910 --> 00:19:13,260
+you slowly adjust them over time until
+
+549
+00:19:13,260 --> 00:19:14,910
+the network becomes better at
+
+550
+00:19:14,910 --> 00:19:15,840
+recognizing digits
+
+551
+00:19:15,840 --> 00:19:17,790
+anyway I'll point you more educational
+
+552
+00:19:17,790 --> 00:19:23,010
+resources in a second so here's the cool
+
+553
+00:19:23,010 --> 00:19:25,740
+part building your model is where there
+
+554
+00:19:25,740 --> 00:19:27,300
+are many many machine learning concepts
+
+555
+00:19:27,300 --> 00:19:28,920
+that you have to spend a lot of time
+
+556
+00:19:28,920 --> 00:19:31,380
+learning the next three steps they're
+
+557
+00:19:31,380 --> 00:19:33,300
+literally concepts that are basically
+
+558
+00:19:33,300 --> 00:19:34,860
+involved with running an experiment
+
+559
+00:19:34,860 --> 00:19:38,280
+so there's here's the only parameter so
+
+560
+00:19:38,280 --> 00:19:40,680
+here's how you train the model so it's
+
+561
+00:19:40,680 --> 00:19:43,440
+one line fit is synonymous with train
+
+562
+00:19:43,440 --> 00:19:45,360
+and we're training it using the training
+
+563
+00:19:45,360 --> 00:19:46,950
+images and the training labels here's
+
+564
+00:19:46,950 --> 00:19:48,450
+the only parameter that really matters
+
+565
+00:19:48,450 --> 00:19:50,550
+and the good news is this concept is a
+
+566
+00:19:50,550 --> 00:19:53,880
+little bit simpler so Epic's basically
+
+567
+00:19:53,880 --> 00:19:56,640
+means an epoch means one sweep over all
+
+568
+00:19:56,640 --> 00:19:57,330
+the training day
+
+569
+00:19:57,330 --> 00:20:00,299
+so we have 60,000 images one epic
+
+570
+00:20:00,299 --> 00:20:01,590
+basically means that we're training the
+
+571
+00:20:01,590 --> 00:20:05,369
+network on all those wants training a
+
+572
+00:20:05,369 --> 00:20:07,470
+network is a little bit like tuning a
+
+573
+00:20:07,470 --> 00:20:09,629
+guitar so think if you have a guitar and
+
+574
+00:20:09,629 --> 00:20:12,119
+you want to it starts untuned and you
+
+575
+00:20:12,119 --> 00:20:13,409
+want to tune the strings to hit a
+
+576
+00:20:13,409 --> 00:20:15,869
+particular note so you start tuning it
+
+577
+00:20:15,869 --> 00:20:17,759
+and like every time you twist the wheel
+
+578
+00:20:17,759 --> 00:20:19,649
+in the guitar you can think about as an
+
+579
+00:20:19,649 --> 00:20:21,600
+epic and you tune for a certain number
+
+580
+00:20:21,600 --> 00:20:23,190
+of epochs until the guitar plays the
+
+581
+00:20:23,190 --> 00:20:25,830
+right note if you keep tuning past that
+
+582
+00:20:25,830 --> 00:20:27,600
+point it's no longer gonna play the
+
+583
+00:20:27,600 --> 00:20:28,950
+right note and eventually the string is
+
+584
+00:20:28,950 --> 00:20:31,409
+gonna snap so you have to stop tuning it
+
+585
+00:20:31,409 --> 00:20:33,690
+at a certain point and you stop tuning
+
+586
+00:20:33,690 --> 00:20:35,669
+it based on the sound you neural
+
+587
+00:20:35,669 --> 00:20:37,889
+networks are exactly the same way so
+
+588
+00:20:37,889 --> 00:20:40,139
+there's basically one very simple plot
+
+589
+00:20:40,139 --> 00:20:42,480
+and it's this which I'd recommend you
+
+590
+00:20:42,480 --> 00:20:44,070
+look at while you're training your
+
+591
+00:20:44,070 --> 00:20:48,059
+networks on the y-axis we're seeing this
+
+592
+00:20:48,059 --> 00:20:50,549
+fancy thing called loss that basically
+
+593
+00:20:50,549 --> 00:20:53,369
+means air loss is the same thing as air
+
+594
+00:20:53,369 --> 00:20:55,710
+it's just a fancy word for it what we're
+
+595
+00:20:55,710 --> 00:20:58,649
+trying to do is minimize our air on the
+
+596
+00:20:58,649 --> 00:21:00,929
+x-axis is how long we're tuning the
+
+597
+00:21:00,929 --> 00:21:03,389
+network in terms of number of epics the
+
+598
+00:21:03,389 --> 00:21:05,700
+longer if you notice after a few epics
+
+599
+00:21:05,700 --> 00:21:07,799
+the loss reaches a low that's kind of
+
+600
+00:21:07,799 --> 00:21:09,239
+when the guitar hits the right note if
+
+601
+00:21:09,239 --> 00:21:10,799
+you keep training the loss will start
+
+602
+00:21:10,799 --> 00:21:13,470
+increasing again so to find the right
+
+603
+00:21:13,470 --> 00:21:14,909
+number of epochs you literally make a
+
+604
+00:21:14,909 --> 00:21:16,619
+plot like this you just plot your air
+
+605
+00:21:16,619 --> 00:21:18,869
+and then you take a look at you look for
+
+606
+00:21:18,869 --> 00:21:21,450
+the point of lowest loss usually under
+
+607
+00:21:21,450 --> 00:21:24,600
+validation data after that you can
+
+608
+00:21:24,600 --> 00:21:26,519
+evaluate it and evaluate just means
+
+609
+00:21:26,519 --> 00:21:29,369
+giving some new data classify it with my
+
+610
+00:21:29,369 --> 00:21:31,679
+network and take a look at the accuracy
+
+611
+00:21:31,679 --> 00:21:33,269
+in other metrics that's also just one
+
+612
+00:21:33,269 --> 00:21:39,690
+line of code and as called this will
+
+613
+00:21:39,690 --> 00:21:41,399
+give you your loss or your air and your
+
+614
+00:21:41,399 --> 00:21:43,080
+accuracy when you train the model you
+
+615
+00:21:43,080 --> 00:21:44,580
+can specify other metrics that you like
+
+616
+00:21:44,580 --> 00:21:47,129
+returned and then to make predictions on
+
+617
+00:21:47,129 --> 00:21:48,840
+new data it's also just one line of code
+
+618
+00:21:48,840 --> 00:21:51,570
+so there's some syntax here so you can
+
+619
+00:21:51,570 --> 00:21:53,039
+say model dot predict and you give it an
+
+620
+00:21:53,039 --> 00:21:55,200
+image the syntax here is a little funny
+
+621
+00:21:55,200 --> 00:21:57,389
+as it happened the model expects what's
+
+622
+00:21:57,389 --> 00:21:59,369
+called a batch of data and a batch just
+
+623
+00:21:59,369 --> 00:22:00,989
+means it's it's meant to predict on
+
+624
+00:22:00,989 --> 00:22:03,389
+multiple images at once so you give it
+
+625
+00:22:03,389 --> 00:22:04,919
+an image and you just wrap it in a list
+
+626
+00:22:04,919 --> 00:22:07,139
+and this is just syntax to make it happy
+
+627
+00:22:07,139 --> 00:22:09,059
+but we're making predictions on the on
+
+628
+00:22:09,059 --> 00:22:10,650
+on the very first image from this
+
+629
+00:22:10,650 --> 00:22:12,210
+test data and what the model gives you
+
+630
+00:22:12,210 --> 00:22:13,920
+back is probabilities that that image
+
+631
+00:22:13,920 --> 00:22:15,390
+corresponds to all the different digits
+
+632
+00:22:15,390 --> 00:22:18,240
+and basically at the very lowest layer
+
+633
+00:22:18,240 --> 00:22:19,410
+of the network you'll have evidence
+
+634
+00:22:19,410 --> 00:22:21,930
+sitting in on the output nodes and if
+
+635
+00:22:21,930 --> 00:22:23,910
+you do a numpy dot Arg max so you just
+
+636
+00:22:23,910 --> 00:22:25,230
+find the largest element that will be
+
+637
+00:22:25,230 --> 00:22:26,010
+the prediction
+
+638
+00:22:26,010 --> 00:22:27,570
+so here it's predicting that it's a
+
+639
+00:22:27,570 --> 00:22:31,020
+seven I'm gonna give you a really quick
+
+640
+00:22:31,020 --> 00:22:32,850
+overview of TF data and then I'm gonna
+
+641
+00:22:32,850 --> 00:22:34,980
+hand it over to Laurence to show us a
+
+642
+00:22:34,980 --> 00:22:43,980
+little bit more about eager so when I
+
+643
+00:22:43,980 --> 00:22:46,320
+would here's something to be aware of in
+
+644
+00:22:46,320 --> 00:22:47,490
+tensorflow there's many different ways
+
+645
+00:22:47,490 --> 00:22:50,040
+of doing things you should always do the
+
+646
+00:22:50,040 --> 00:22:52,110
+simplest possible thing that's adequate
+
+647
+00:22:52,110 --> 00:22:53,280
+for your problems
+
+648
+00:22:53,280 --> 00:22:55,110
+so never basically when you're starting
+
+649
+00:22:55,110 --> 00:22:57,570
+with ml and in probably 90% of settings
+
+650
+00:22:57,570 --> 00:22:59,850
+don't worry about performance just try
+
+651
+00:22:59,850 --> 00:23:02,820
+and minimize complexity so before we
+
+652
+00:23:02,820 --> 00:23:05,550
+wrote our hello world just using the
+
+653
+00:23:05,550 --> 00:23:08,550
+emne Stata in numpy format that's fine
+
+654
+00:23:08,550 --> 00:23:10,770
+if we were working with a much larger
+
+655
+00:23:10,770 --> 00:23:12,780
+data set or if we were reading images
+
+656
+00:23:12,780 --> 00:23:14,550
+off disk or if we were pulling them from
+
+657
+00:23:14,550 --> 00:23:16,590
+the cloud there's a lot of complexity
+
+658
+00:23:16,590 --> 00:23:18,000
+there and performance starts to matter
+
+659
+00:23:18,000 --> 00:23:20,220
+for example there's latency when you
+
+660
+00:23:20,220 --> 00:23:22,110
+pull images over network so maybe you'd
+
+661
+00:23:22,110 --> 00:23:23,220
+want to hit a bunch of different servers
+
+662
+00:23:23,220 --> 00:23:24,540
+at once or maybe you'd want a bunch of
+
+663
+00:23:24,540 --> 00:23:26,700
+different threads so TF data has all
+
+664
+00:23:26,700 --> 00:23:28,080
+sorts of functionality to help you with
+
+665
+00:23:28,080 --> 00:23:31,050
+things like this also one funny thing
+
+666
+00:23:31,050 --> 00:23:33,840
+that's happened so GPUs and TP use have
+
+667
+00:23:33,840 --> 00:23:37,140
+become surprisingly fast and the latency
+
+668
+00:23:37,140 --> 00:23:38,970
+in training a lot of models is actually
+
+669
+00:23:38,970 --> 00:23:41,460
+can you keep the GPU fed there's
+
+670
+00:23:41,460 --> 00:23:43,110
+something called GPU starvation where
+
+671
+00:23:43,110 --> 00:23:45,720
+the matrix multiply there is so fast
+
+672
+00:23:45,720 --> 00:23:47,040
+that it's just sitting around waiting
+
+673
+00:23:47,040 --> 00:23:49,110
+for data and so TF data has lots of
+
+674
+00:23:49,110 --> 00:23:50,490
+utilities to get your stuff like
+
+675
+00:23:50,490 --> 00:23:52,350
+prefetching it to the GPU if you need to
+
+676
+00:23:52,350 --> 00:23:53,910
+anyway what we're gonna do here is hello
+
+677
+00:23:53,910 --> 00:23:56,400
+world so we imported em missed just one
+
+678
+00:23:56,400 --> 00:23:57,990
+care us and just for demonstration
+
+679
+00:23:57,990 --> 00:23:59,670
+purposes I'm gonna wrap it in a TF data
+
+680
+00:23:59,670 --> 00:24:02,370
+data set so I'm creating a data set from
+
+681
+00:24:02,370 --> 00:24:04,770
+tensor slices which is a fancy word
+
+682
+00:24:04,770 --> 00:24:06,870
+which basically tells it that hey this
+
+683
+00:24:06,870 --> 00:24:08,940
+is a list of things and I want every
+
+684
+00:24:08,940 --> 00:24:10,980
+element in the list to be an item of my
+
+685
+00:24:10,980 --> 00:24:13,770
+data set the next thing to do it has
+
+686
+00:24:13,770 --> 00:24:16,170
+this very nice clean API I can say I
+
+687
+00:24:16,170 --> 00:24:19,430
+also want you to shuffle the data here
+
+688
+00:24:19,430 --> 00:24:21,360
+TF data is designed to work with
+
+689
+00:24:21,360 --> 00:24:23,160
+potentially very long lists
+
+690
+00:24:23,160 --> 00:24:25,260
+things and it could be an infinite
+
+691
+00:24:25,260 --> 00:24:26,610
+stream of data you don't want to shuffle
+
+692
+00:24:26,610 --> 00:24:28,740
+the whole stream so shuffle has a size
+
+693
+00:24:28,740 --> 00:24:30,120
+for the buffer so I'm here I have a
+
+694
+00:24:30,120 --> 00:24:31,470
+buffer of a thousand elements in I'm
+
+695
+00:24:31,470 --> 00:24:33,200
+going to shuffle them as they stream in
+
+696
+00:24:33,200 --> 00:24:36,210
+and then I can batch it up that means
+
+697
+00:24:36,210 --> 00:24:37,560
+when I call this data set I'm gonna get
+
+698
+00:24:37,560 --> 00:24:40,320
+back a batch of 32 things and so now I
+
+699
+00:24:40,320 --> 00:24:42,570
+want to show you very briefly how do you
+
+700
+00:24:42,570 --> 00:24:45,120
+use it so to use it what you can do and
+
+701
+00:24:45,120 --> 00:24:46,800
+this is the complete code by the way you
+
+702
+00:24:46,800 --> 00:24:48,180
+can just say like for images and labels
+
+703
+00:24:48,180 --> 00:24:51,690
+print them out so this looks obvious to
+
+704
+00:24:51,690 --> 00:24:53,400
+me and it's the way things should work
+
+705
+00:24:53,400 --> 00:24:55,440
+but if you're new to tensorflow it
+
+706
+00:24:55,440 --> 00:24:58,020
+didn't used to always work this way so
+
+707
+00:24:58,020 --> 00:25:00,210
+if you have previous experience in
+
+708
+00:25:00,210 --> 00:25:01,830
+tensorflow you can take a look and you
+
+709
+00:25:01,830 --> 00:25:03,660
+notice nowhere in this code is there a
+
+710
+00:25:03,660 --> 00:25:06,000
+session there's no placeholders I'm not
+
+711
+00:25:06,000 --> 00:25:07,800
+mentioning the word graph I'm just
+
+712
+00:25:07,800 --> 00:25:09,900
+writing regular Python code and the
+
+713
+00:25:09,900 --> 00:25:12,210
+thing just works so this is eager
+
+714
+00:25:12,210 --> 00:25:14,970
+execution in tensorflow 1/8 plus the
+
+715
+00:25:14,970 --> 00:25:16,680
+only thing I have to do is the second
+
+716
+00:25:16,680 --> 00:25:18,000
+line of code there it's just I enable
+
+717
+00:25:18,000 --> 00:25:19,710
+the thing you need to do this at the
+
+718
+00:25:19,710 --> 00:25:21,930
+start of the Python file or notebook and
+
+719
+00:25:21,930 --> 00:25:24,300
+now you're basically running tensorflow
+
+720
+00:25:24,300 --> 00:25:27,030
+eagerly which if you're starting out
+
+721
+00:25:27,030 --> 00:25:29,640
+it's just regular Python and this is the
+
+722
+00:25:29,640 --> 00:25:31,260
+right way to use tensorflow it makes
+
+723
+00:25:31,260 --> 00:25:35,280
+debugging much easier there's lots of
+
+724
+00:25:35,280 --> 00:25:36,960
+reasons why you would use graphs and we
+
+725
+00:25:36,960 --> 00:25:38,640
+still love grass there's great talks
+
+726
+00:25:38,640 --> 00:25:39,900
+from the tensorflow developer summit
+
+727
+00:25:39,900 --> 00:25:42,060
+that will go into them in lots of detail
+
+728
+00:25:42,060 --> 00:25:43,230
+but at least when you're hacking
+
+729
+00:25:43,230 --> 00:25:47,970
+definitely definitely do this okay so
+
+730
+00:25:47,970 --> 00:25:49,440
+for more context and all that I've been
+
+731
+00:25:49,440 --> 00:25:51,450
+talking for a while you search element
+
+732
+00:25:51,450 --> 00:25:52,980
+been handed over to points thanks
+
+733
+00:25:52,980 --> 00:25:55,230
+everybody just quick survey the crowd
+
+734
+00:25:55,230 --> 00:25:58,740
+how many software developers here I were
+
+735
+00:25:58,740 --> 00:26:00,390
+at i/o so we figured it would have a few
+
+736
+00:26:00,390 --> 00:26:02,370
+so that's good so I've just been working
+
+737
+00:26:02,370 --> 00:26:04,140
+on tensorflow for a few months and I
+
+738
+00:26:04,140 --> 00:26:06,000
+think for a getting started intensive
+
+739
+00:26:06,000 --> 00:26:07,770
+well can be a little bit difficult if
+
+740
+00:26:07,770 --> 00:26:09,270
+you're coming from a software dev
+
+741
+00:26:09,270 --> 00:26:10,770
+background and getting started in any
+
+742
+00:26:10,770 --> 00:26:12,780
+kind of ml can be a little bit tricky
+
+743
+00:26:12,780 --> 00:26:14,100
+because there's so many new and
+
+744
+00:26:14,100 --> 00:26:15,930
+different concepts first of all there's
+
+745
+00:26:15,930 --> 00:26:17,880
+all the math right I mean I didn't even
+
+746
+00:26:17,880 --> 00:26:19,260
+understand this math when I was in high
+
+747
+00:26:19,260 --> 00:26:20,730
+school and now I have to understand it
+
+748
+00:26:20,730 --> 00:26:22,320
+again you know people tell me about
+
+749
+00:26:22,320 --> 00:26:23,940
+linear regressions and my head explodes
+
+750
+00:26:23,940 --> 00:26:26,640
+but then you know it's learn herbal it's
+
+751
+00:26:26,640 --> 00:26:28,020
+something that you can pick up but then
+
+752
+00:26:28,020 --> 00:26:30,210
+secondly is really the programming model
+
+753
+00:26:30,210 --> 00:26:32,670
+and what what is the programming model
+
+754
+00:26:32,670 --> 00:26:35,250
+all about and I come from a background
+
+755
+00:26:35,250 --> 00:26:37,020
+of traditional program
+
+756
+00:26:37,020 --> 00:26:39,660
+and in traditional programming you
+
+757
+00:26:39,660 --> 00:26:42,150
+basically you feed in the rules you feed
+
+758
+00:26:42,150 --> 00:26:44,790
+in the data and you get answers out so
+
+759
+00:26:44,790 --> 00:26:46,260
+for example if you're writing something
+
+760
+00:26:46,260 --> 00:26:48,240
+like an activity detector am i walking
+
+761
+00:26:48,240 --> 00:26:50,760
+am i running a my biking am i driving
+
+762
+00:26:50,760 --> 00:26:52,500
+you know you'd feed in rules about that
+
+763
+00:26:52,500 --> 00:26:54,059
+probably something based around the
+
+764
+00:26:54,059 --> 00:26:56,490
+speed or I'm a very slow runner so it's
+
+765
+00:26:56,490 --> 00:26:57,570
+detecting something going at
+
+766
+00:26:57,570 --> 00:26:58,710
+one-and-a-half miles an hour
+
+767
+00:26:58,710 --> 00:27:00,360
+you know it's detecting me is running
+
+768
+00:27:00,360 --> 00:27:02,010
+but I know josh is a really fast runner
+
+769
+00:27:02,010 --> 00:27:04,860
+and you know so would uh it would it
+
+770
+00:27:04,860 --> 00:27:06,179
+would probably think he's on a bicycle
+
+771
+00:27:06,179 --> 00:27:08,400
+if you're using my rules those kind of
+
+772
+00:27:08,400 --> 00:27:09,900
+things you're feeding those data are
+
+773
+00:27:09,900 --> 00:27:11,610
+feeding those rules in and this is what
+
+774
+00:27:11,610 --> 00:27:13,080
+we've been doing for years as
+
+775
+00:27:13,080 --> 00:27:15,120
+programmers but when it comes to machine
+
+776
+00:27:15,120 --> 00:27:16,440
+learning you got to kind of flip the
+
+777
+00:27:16,440 --> 00:27:18,660
+axis on this a little bit and change it
+
+778
+00:27:18,660 --> 00:27:20,640
+to this so when it comes to machine
+
+779
+00:27:20,640 --> 00:27:22,440
+learning this is all machine learning is
+
+780
+00:27:22,440 --> 00:27:24,990
+you feed in the answers and your feed in
+
+781
+00:27:24,990 --> 00:27:26,600
+the data and you get back to the rules
+
+782
+00:27:26,600 --> 00:27:29,010
+so when you when we talk about training
+
+783
+00:27:29,010 --> 00:27:31,110
+a model when we talk about like building
+
+784
+00:27:31,110 --> 00:27:32,370
+these models what we're ending up
+
+785
+00:27:32,370 --> 00:27:34,740
+getting is this binary blob that you can
+
+786
+00:27:34,740 --> 00:27:36,600
+run inference on and this binary blob
+
+787
+00:27:36,600 --> 00:27:37,679
+that your own inference on is
+
+788
+00:27:37,679 --> 00:27:39,480
+effectively got those rules that will
+
+789
+00:27:39,480 --> 00:27:41,100
+give them you know that will give what
+
+790
+00:27:41,100 --> 00:27:43,170
+you need back out to you so for example
+
+791
+00:27:43,170 --> 00:27:45,929
+in my example of activity detection you
+
+792
+00:27:45,929 --> 00:27:47,730
+know if I walk a lot and tell it that
+
+793
+00:27:47,730 --> 00:27:49,620
+I'm walking and it's measuring my sensor
+
+794
+00:27:49,620 --> 00:27:51,660
+data when I'm walking and if I run a lot
+
+795
+00:27:51,660 --> 00:27:53,340
+which would be really nice right and if
+
+796
+00:27:53,340 --> 00:27:54,960
+I run a lot and like feed in the data
+
+797
+00:27:54,960 --> 00:27:56,940
+and if I bike a lot and drive a lot and
+
+798
+00:27:56,940 --> 00:27:58,980
+go on trains and go on airplanes you
+
+799
+00:27:58,980 --> 00:28:00,030
+know these kind of things I'm feeding
+
+800
+00:28:00,030 --> 00:28:01,980
+all this data and feeding the answers
+
+801
+00:28:01,980 --> 00:28:03,690
+telling it okay right now I'm walking
+
+802
+00:28:03,690 --> 00:28:05,370
+right now I'm biking right now I'm on an
+
+803
+00:28:05,370 --> 00:28:07,410
+airplane then the idea behind machine
+
+804
+00:28:07,410 --> 00:28:08,670
+learning is it will build that binary
+
+805
+00:28:08,670 --> 00:28:10,679
+blob for me which I can then run
+
+806
+00:28:10,679 --> 00:28:12,870
+inference on and by running inference on
+
+807
+00:28:12,870 --> 00:28:14,970
+that then it's like okay what am i doing
+
+808
+00:28:14,970 --> 00:28:17,040
+right now and it will deduce what I'm
+
+809
+00:28:17,040 --> 00:28:18,660
+doing right now from all of these rules
+
+810
+00:28:18,660 --> 00:28:21,720
+and so instead of me trying to write all
+
+811
+00:28:21,720 --> 00:28:24,600
+this if then if then if then if then you
+
+812
+00:28:24,600 --> 00:28:26,940
+know I train a system with data and with
+
+813
+00:28:26,940 --> 00:28:28,980
+answers and it gives me back rules so
+
+814
+00:28:28,980 --> 00:28:31,920
+let me give an example of this so what
+
+815
+00:28:31,920 --> 00:28:33,300
+if we wanted to build something that
+
+816
+00:28:33,300 --> 00:28:35,490
+would determine from a picture what's a
+
+817
+00:28:35,490 --> 00:28:38,340
+cat and what's a dog okay now if I was
+
+818
+00:28:38,340 --> 00:28:40,170
+doing this with if-then rules I could
+
+819
+00:28:40,170 --> 00:28:42,210
+probably do something like you know if
+
+820
+00:28:42,210 --> 00:28:44,429
+it loves you unconditionally no matter
+
+821
+00:28:44,429 --> 00:28:46,880
+what you do it's probably a dog right
+
+822
+00:28:46,880 --> 00:28:49,440
+and if it's right now plotting your
+
+823
+00:28:49,440 --> 00:28:51,660
+murder it's probably a
+
+824
+00:28:51,660 --> 00:28:53,550
+but right now it's really hard to infer
+
+825
+00:28:53,550 --> 00:28:56,400
+that from images so III couldn't think
+
+826
+00:28:56,400 --> 00:28:57,870
+of what the if-then rules would be he
+
+827
+00:28:57,870 --> 00:28:59,040
+like sometimes like you might have an
+
+828
+00:28:59,040 --> 00:29:00,300
+image say well if it's got pointy ears
+
+829
+00:29:00,300 --> 00:29:02,370
+it's a cat but guess what this dog has
+
+830
+00:29:02,370 --> 00:29:04,470
+pointy ears so you know this this is
+
+831
+00:29:04,470 --> 00:29:06,180
+where we start thinking about this is
+
+832
+00:29:06,180 --> 00:29:07,590
+where machine learning starts opening up
+
+833
+00:29:07,590 --> 00:29:09,330
+these new scenarios and these new ways
+
+834
+00:29:09,330 --> 00:29:11,970
+that you as a programmer can bring value
+
+835
+00:29:11,970 --> 00:29:14,310
+to your employers and to your business
+
+836
+00:29:14,310 --> 00:29:16,560
+so let's talk about the answers in this
+
+837
+00:29:16,560 --> 00:29:18,660
+case okay so the answers here is like
+
+838
+00:29:18,660 --> 00:29:21,390
+you know this is this is a cat right you
+
+839
+00:29:21,390 --> 00:29:26,220
+know and this is a I think it's a dog
+
+840
+00:29:26,220 --> 00:29:28,890
+right okay and this has got really
+
+841
+00:29:28,890 --> 00:29:30,660
+pointy ears this little guy but this is
+
+842
+00:29:30,660 --> 00:29:34,200
+clearly a cat this is a walking tongue
+
+843
+00:29:34,200 --> 00:29:37,980
+but it's also a dog and this one is what
+
+844
+00:29:37,980 --> 00:29:39,780
+happens if you feed a Mogwai after
+
+845
+00:29:39,780 --> 00:29:43,200
+midnight I think but this is actually
+
+846
+00:29:43,200 --> 00:29:45,150
+one of the dogs in this set of cats and
+
+847
+00:29:45,150 --> 00:29:46,950
+dogs so like you know here you know I've
+
+848
+00:29:46,950 --> 00:29:48,840
+got the data and here I'm giving the
+
+849
+00:29:48,840 --> 00:29:50,610
+answers I'm telling the Machine what all
+
+850
+00:29:50,610 --> 00:29:54,360
+of these things are so now if I want to
+
+851
+00:29:54,360 --> 00:29:55,890
+do as a programmer all I have to do is
+
+852
+00:29:55,890 --> 00:29:58,230
+train a neural network by giving it the
+
+853
+00:29:58,230 --> 00:30:00,420
+answers we call them labels and giving
+
+854
+00:30:00,420 --> 00:30:02,850
+it the data but as a programmer here's
+
+855
+00:30:02,850 --> 00:30:04,980
+where it was tough for me and I've only
+
+856
+00:30:04,980 --> 00:30:07,680
+very recently been on tensorflow because
+
+857
+00:30:07,680 --> 00:30:09,270
+what is it you know first of all I have
+
+858
+00:30:09,270 --> 00:30:10,830
+start working in Python any Python
+
+859
+00:30:10,830 --> 00:30:12,930
+developers here a few of you it's a
+
+860
+00:30:12,930 --> 00:30:15,090
+lovely language but you tend to work in
+
+861
+00:30:15,090 --> 00:30:17,160
+a text editor instead of an IDE and
+
+862
+00:30:17,160 --> 00:30:19,050
+things like step through debugging
+
+863
+00:30:19,050 --> 00:30:20,850
+because I came from a background of like
+
+864
+00:30:20,850 --> 00:30:22,950
+Visual Studio and Xcode and
+
+865
+00:30:22,950 --> 00:30:25,290
+Android studio so it was a big learning
+
+866
+00:30:25,290 --> 00:30:27,210
+curve for me to get into that and then
+
+867
+00:30:27,210 --> 00:30:29,040
+with if you started tend to flow with
+
+868
+00:30:29,040 --> 00:30:30,630
+graph based execution it was very
+
+869
+00:30:30,630 --> 00:30:32,520
+strange because you'd have all your code
+
+870
+00:30:32,520 --> 00:30:33,870
+would like load up a graph and then you
+
+871
+00:30:33,870 --> 00:30:35,220
+would execute that graph and it's like
+
+872
+00:30:35,220 --> 00:30:36,990
+but what if I've got bugs in like
+
+873
+00:30:36,990 --> 00:30:38,970
+reading my data or if I'm not reading it
+
+874
+00:30:38,970 --> 00:30:40,500
+properly or if I haven't shuffled the
+
+875
+00:30:40,500 --> 00:30:42,330
+data properly and it's really important
+
+876
+00:30:42,330 --> 00:30:43,680
+as Joshua's mentioning already want to
+
+877
+00:30:43,680 --> 00:30:45,510
+shuffle your data properly or you can
+
+878
+00:30:45,510 --> 00:30:47,310
+insert a bias into your actual training
+
+879
+00:30:47,310 --> 00:30:49,770
+and I'm not a very good programmer so I
+
+880
+00:30:49,770 --> 00:30:51,210
+generally like to write two or three
+
+881
+00:30:51,210 --> 00:30:52,800
+lines of code at a time step through
+
+882
+00:30:52,800 --> 00:30:54,420
+them make sure they work then write
+
+883
+00:30:54,420 --> 00:30:55,890
+another two or three step through them
+
+884
+00:30:55,890 --> 00:30:57,090
+make sure they work in that kind of
+
+885
+00:30:57,090 --> 00:30:58,800
+thing and that was really difficult for
+
+886
+00:30:58,800 --> 00:31:01,110
+me to do as a tensorflow developer so if
+
+887
+00:31:01,110 --> 00:31:04,350
+we can switch the laptop I want to show
+
+888
+00:31:04,350 --> 00:31:07,309
+why I'm really excited about eager mode
+
+889
+00:31:07,309 --> 00:31:10,320
+and the screen saver kicked in sorry I'm
+
+890
+00:31:10,320 --> 00:31:11,850
+just signing in so why I'm really
+
+891
+00:31:11,850 --> 00:31:13,740
+excited about eager mode intensive flow
+
+892
+00:31:13,740 --> 00:31:16,019
+is I've taken and Josh's written a
+
+893
+00:31:16,019 --> 00:31:18,299
+notebook with this cats vs. dogs so you
+
+894
+00:31:18,299 --> 00:31:20,009
+can go and get this code online and run
+
+895
+00:31:20,009 --> 00:31:21,539
+it in the notebook but right now I'm
+
+896
+00:31:21,539 --> 00:31:23,340
+running it in PyCharm because like I
+
+897
+00:31:23,340 --> 00:31:25,139
+said I'm not a very good developer so I
+
+898
+00:31:25,139 --> 00:31:26,130
+want to write a few lines of code
+
+899
+00:31:26,130 --> 00:31:27,750
+execute them write another few lines of
+
+900
+00:31:27,750 --> 00:31:29,370
+code and PyCharm if you're not familiar
+
+901
+00:31:29,370 --> 00:31:31,049
+with there's a free community edition
+
+902
+00:31:31,049 --> 00:31:32,580
+which is what I'm running here if you've
+
+903
+00:31:32,580 --> 00:31:34,200
+used Android studio it probably looks
+
+904
+00:31:34,200 --> 00:31:36,000
+very very familiar and what I can
+
+905
+00:31:36,000 --> 00:31:37,679
+actually do is I can go in and I can say
+
+906
+00:31:37,679 --> 00:31:39,809
+run debug all right and then I'm gonna
+
+907
+00:31:39,809 --> 00:31:41,370
+go and I'm gonna debug and I'm gonna
+
+908
+00:31:41,370 --> 00:31:44,309
+debug cats vs. dogs and it's gonna start
+
+909
+00:31:44,309 --> 00:31:46,080
+executing and look I hit a breakpoint
+
+910
+00:31:46,080 --> 00:31:48,179
+you know it's like this this to me is
+
+911
+00:31:48,179 --> 00:31:49,799
+magical as a developer so now when I'm
+
+912
+00:31:49,799 --> 00:31:51,059
+when I've hit my breakpoint
+
+913
+00:31:51,059 --> 00:31:53,159
+I can start stepping through my code and
+
+914
+00:31:53,159 --> 00:31:55,740
+see what's going on in my code so you
+
+915
+00:31:55,740 --> 00:31:57,120
+know I'm gonna I've hit another
+
+916
+00:31:57,120 --> 00:31:58,379
+breakpoint I've set another breakpoint
+
+917
+00:31:58,379 --> 00:32:00,269
+down here so I'm gonna execute my code
+
+918
+00:32:00,269 --> 00:32:02,370
+down to that breakpoints and now when I
+
+919
+00:32:02,370 --> 00:32:04,019
+start stepping through this I can start
+
+920
+00:32:04,019 --> 00:32:05,610
+seeing that I'm doing things correctly
+
+921
+00:32:05,610 --> 00:32:07,980
+you know like okay my data directory is
+
+922
+00:32:07,980 --> 00:32:10,289
+set up properly and I've defined my
+
+923
+00:32:10,289 --> 00:32:12,000
+labels and you know I'm gonna put
+
+924
+00:32:12,000 --> 00:32:13,919
+another break I'll leave that breakpoint
+
+925
+00:32:13,919 --> 00:32:15,809
+there and I'll run down to this
+
+926
+00:32:15,809 --> 00:32:18,389
+breakpoint and I can start looking at
+
+927
+00:32:18,389 --> 00:32:20,909
+what's going on in here so I have my
+
+928
+00:32:20,909 --> 00:32:22,860
+training images and if I hover over that
+
+929
+00:32:22,860 --> 00:32:24,990
+you see it's like it's a little too big
+
+930
+00:32:24,990 --> 00:32:26,549
+to print but when I look at this in the
+
+931
+00:32:26,549 --> 00:32:28,679
+debugger I can now start seeing that
+
+932
+00:32:28,679 --> 00:32:30,029
+look I've started loading up these
+
+933
+00:32:30,029 --> 00:32:32,279
+arrays of images and I can see the image
+
+934
+00:32:32,279 --> 00:32:34,860
+0 here sorry if it's a little small but
+
+935
+00:32:34,860 --> 00:32:39,360
+image 0 here was cat number 921 and so
+
+936
+00:32:39,360 --> 00:32:41,460
+if I then keep stepping through and this
+
+937
+00:32:41,460 --> 00:32:43,230
+is what eager execution is giving me
+
+938
+00:32:43,230 --> 00:32:45,600
+whoops sorry I had a break I hit a
+
+939
+00:32:45,600 --> 00:32:47,279
+breakpoint I didn't want ahead so I'm
+
+940
+00:32:47,279 --> 00:32:51,210
+just gonna go down to here and continue
+
+941
+00:32:51,210 --> 00:32:54,299
+running alright so and if I then step
+
+942
+00:32:54,299 --> 00:32:56,700
+over this it should show me a cat okay
+
+943
+00:32:56,700 --> 00:32:58,860
+so like okay I've gotten this cat I'm
+
+944
+00:32:58,860 --> 00:33:00,720
+loading it in but is this the right cat
+
+945
+00:33:00,720 --> 00:33:02,789
+you know have I written my code badly I
+
+946
+00:33:02,789 --> 00:33:04,769
+have I got the wrong cat so I can go hey
+
+947
+00:33:04,769 --> 00:33:06,480
+look you know here's my training data I
+
+948
+00:33:06,480 --> 00:33:08,789
+can go look at my cats I can find cat
+
+949
+00:33:08,789 --> 00:33:11,610
+number 921 and hopefully it's the same
+
+950
+00:33:11,610 --> 00:33:13,289
+cat so I know my code is working right
+
+951
+00:33:13,289 --> 00:33:16,350
+you know anybody else develop like this
+
+952
+00:33:16,350 --> 00:33:18,330
+you like to do it in little steps
+
+953
+00:33:18,330 --> 00:33:21,570
+oh good it's not just me cuz I find it
+
+954
+00:33:21,570 --> 00:33:23,010
+really really difficult to write a lot
+
+955
+00:33:23,010 --> 00:33:24,809
+of code in one sitting so I just got to
+
+956
+00:33:24,809 --> 00:33:27,029
+do a baby step by baby step and cat
+
+957
+00:33:27,029 --> 00:33:29,460
+number 921 is here and there it is it's
+
+958
+00:33:29,460 --> 00:33:31,620
+the same cat so I'm like excellent I
+
+959
+00:33:31,620 --> 00:33:33,750
+know my code is working I know them I
+
+960
+00:33:33,750 --> 00:33:36,390
+know I'm loading properly from my data
+
+961
+00:33:36,390 --> 00:33:38,610
+and I'll go through here and I can see
+
+962
+00:33:38,610 --> 00:33:40,980
+you know my load image code what it's
+
+963
+00:33:40,980 --> 00:33:42,480
+doing is it's reading the image it's
+
+964
+00:33:42,480 --> 00:33:44,820
+creating a tensor out of that image it's
+
+965
+00:33:44,820 --> 00:33:47,190
+resizing it to like a smaller image that
+
+966
+00:33:47,190 --> 00:33:49,260
+we're gonna use in training and when you
+
+967
+00:33:49,260 --> 00:33:50,730
+come from a world where like the hello
+
+968
+00:33:50,730 --> 00:33:52,169
+world and machine learning is
+
+969
+00:33:52,169 --> 00:33:54,149
+handwriting recognition you know for me
+
+970
+00:33:54,149 --> 00:33:57,120
+hello world was s printf hello world you
+
+971
+00:33:57,120 --> 00:33:58,409
+know that there's there's some very
+
+972
+00:33:58,409 --> 00:34:00,240
+complicated scenarios it's very complex
+
+973
+00:34:00,240 --> 00:34:02,190
+scenarios but this breaks it down as a
+
+974
+00:34:02,190 --> 00:34:03,840
+developer and I can start poking through
+
+975
+00:34:03,840 --> 00:34:06,029
+I can start looking at data in the IDE
+
+976
+00:34:06,029 --> 00:34:07,500
+and I can understand really what's going
+
+977
+00:34:07,500 --> 00:34:09,720
+on so what I'm gonna do is I'm just
+
+978
+00:34:09,720 --> 00:34:11,310
+gonna exit code and execute my code a
+
+979
+00:34:11,310 --> 00:34:12,929
+little more and it really have a really
+
+980
+00:34:12,929 --> 00:34:14,940
+cool point about this too so this load
+
+981
+00:34:14,940 --> 00:34:16,500
+image function if you look at it it's
+
+982
+00:34:16,500 --> 00:34:18,960
+using TF operations so we're saying like
+
+983
+00:34:18,960 --> 00:34:21,119
+tensorflow dot read image and these are
+
+984
+00:34:21,119 --> 00:34:22,589
+working exactly like they would work if
+
+985
+00:34:22,589 --> 00:34:24,119
+you were using numpy because we're
+
+986
+00:34:24,119 --> 00:34:26,460
+running eagerly this code is imperative
+
+987
+00:34:26,460 --> 00:34:28,169
+and it executes right after you hit the
+
+988
+00:34:28,169 --> 00:34:29,820
+line also you'll notice when Laurence
+
+989
+00:34:29,820 --> 00:34:31,260
+which is really cool hovered over it you
+
+990
+00:34:31,260 --> 00:34:33,030
+can see the data you can see the data
+
+991
+00:34:33,030 --> 00:34:35,550
+and not it's it's concrete not symbolic
+
+992
+00:34:35,550 --> 00:34:38,099
+because we're running eagerly so and of
+
+993
+00:34:38,099 --> 00:34:40,679
+course if you're you know in in Python
+
+994
+00:34:40,679 --> 00:34:42,330
+you like to use the console as well one
+
+995
+00:34:42,330 --> 00:34:44,010
+of the nice things in pycharm is that
+
+996
+00:34:44,010 --> 00:34:45,480
+I've got a console window so if my
+
+997
+00:34:45,480 --> 00:34:47,339
+existing code is printing out to the
+
+998
+00:34:47,339 --> 00:34:48,869
+console I can do that I'm just gonna
+
+999
+00:34:48,869 --> 00:34:50,609
+step a little bit further down and I
+
+1000
+00:34:50,609 --> 00:34:52,830
+want to go just to the training and one
+
+1001
+00:34:52,830 --> 00:34:54,270
+of the nice things that Josh was talking
+
+1002
+00:34:54,270 --> 00:34:56,159
+about is that this is just an iterator
+
+1003
+00:34:56,159 --> 00:34:59,130
+in Python and you know I can now step
+
+1004
+00:34:59,130 --> 00:35:00,660
+through and I can take a look at what's
+
+1005
+00:35:00,660 --> 00:35:02,520
+going on in my training I can look at
+
+1006
+00:35:02,520 --> 00:35:04,680
+this batch by batch so if I've got six
+
+1007
+00:35:04,680 --> 00:35:06,510
+thousands images that I'm loading in
+
+1008
+00:35:06,510 --> 00:35:08,609
+I've split that into smaller batches and
+
+1009
+00:35:08,609 --> 00:35:10,589
+then once I've done all of those batches
+
+1010
+00:35:10,589 --> 00:35:12,690
+that's an epoch so now I can just go
+
+1011
+00:35:12,690 --> 00:35:14,010
+through and I can look at my actual
+
+1012
+00:35:14,010 --> 00:35:15,780
+epochs and I can look at my training and
+
+1013
+00:35:15,780 --> 00:35:18,270
+I can step into it and I can see what's
+
+1014
+00:35:18,270 --> 00:35:19,920
+going on as I said great another quick
+
+1015
+00:35:19,920 --> 00:35:21,510
+point to to show you how fast these
+
+1016
+00:35:21,510 --> 00:35:23,400
+api's are evolving you'll notice that
+
+1017
+00:35:23,400 --> 00:35:24,780
+we're actually getting the numpy value
+
+1018
+00:35:24,780 --> 00:35:26,760
+of the images and the labels yeah as of
+
+1019
+00:35:26,760 --> 00:35:28,020
+I think a few days ago that's no longer
+
+1020
+00:35:28,020 --> 00:35:30,300
+necessary so you can fit Karos models
+
+1021
+00:35:30,300 --> 00:35:31,590
+using TF data
+
+1022
+00:35:31,590 --> 00:35:33,240
+data sets so you no longer need that
+
+1023
+00:35:33,240 --> 00:35:34,500
+intermediate staff which is great but
+
+1024
+00:35:34,500 --> 00:35:36,660
+thank goodness it still works yeah yeah
+
+1025
+00:35:36,660 --> 00:35:38,520
+and one of the really neat things about
+
+1026
+00:35:38,520 --> 00:35:40,860
+it of course is because tensorflow is
+
+1027
+00:35:40,860 --> 00:35:43,500
+open source if you want to know what's
+
+1028
+00:35:43,500 --> 00:35:45,870
+going on with your training maybe
+
+1029
+00:35:45,870 --> 00:35:47,430
+something is going maybe you've loaded
+
+1030
+00:35:47,430 --> 00:35:49,050
+data that's causing it to crash or
+
+1031
+00:35:49,050 --> 00:35:50,730
+something along those lines as you're
+
+1032
+00:35:50,730 --> 00:35:52,290
+doing this and as you're executing these
+
+1033
+00:35:52,290 --> 00:35:55,110
+things let's see if I can do it you know
+
+1034
+00:35:55,110 --> 00:35:56,910
+and I'm gonna hit pause at some points
+
+1035
+00:35:56,910 --> 00:35:59,490
+and I've now jumped into the tensorflow
+
+1036
+00:35:59,490 --> 00:36:01,980
+source code so not only can I step
+
+1037
+00:36:01,980 --> 00:36:03,900
+through my source to see what's going on
+
+1038
+00:36:03,900 --> 00:36:05,610
+I can actually jump into the tensorflow
+
+1039
+00:36:05,610 --> 00:36:07,830
+source so maybe I've done something to
+
+1040
+00:36:07,830 --> 00:36:09,990
+trigger a bug in tensorflow or maybe I'm
+
+1041
+00:36:09,990 --> 00:36:11,610
+doing something wrong and tensorflow
+
+1042
+00:36:11,610 --> 00:36:13,230
+isn't handling it properly and I can fix
+
+1043
+00:36:13,230 --> 00:36:14,760
+it and then contribute back to
+
+1044
+00:36:14,760 --> 00:36:15,450
+tensorflow
+
+1045
+00:36:15,450 --> 00:36:17,520
+so all of this has been made possible by
+
+1046
+00:36:17,520 --> 00:36:20,370
+eager execution in an intensive low at
+
+1047
+00:36:20,370 --> 00:36:22,380
+Python and as Josh mentioned all you got
+
+1048
+00:36:22,380 --> 00:36:24,780
+to do is use sense flow version 1.7 or
+
+1049
+00:36:24,780 --> 00:36:26,670
+later and set up that executing eagerly
+
+1050
+00:36:26,670 --> 00:36:28,410
+can we switch back to the slides now
+
+1051
+00:36:28,410 --> 00:36:30,450
+please yeah so cryptic error messages
+
+1052
+00:36:30,450 --> 00:36:32,580
+are mostly a thing of the past
+
+1053
+00:36:32,580 --> 00:36:35,490
+so your third promise Josh yes thank you
+
+1054
+00:36:35,490 --> 00:36:37,380
+very much thank you I liked PyCharm a
+
+1055
+00:36:37,380 --> 00:36:38,750
+lot I spent a long time in eclipse
+
+1056
+00:36:38,750 --> 00:36:42,750
+before yeah anyway so to learn more
+
+1057
+00:36:42,750 --> 00:36:44,130
+about these concepts so I'm gonna
+
+1058
+00:36:44,130 --> 00:36:46,200
+recommend two educational resources so
+
+1059
+00:36:46,200 --> 00:36:47,850
+first is we have a machine learning
+
+1060
+00:36:47,850 --> 00:36:50,010
+crash course it's pretty good it's short
+
+1061
+00:36:50,010 --> 00:36:53,700
+so this is probably maybe a day or two
+
+1062
+00:36:53,700 --> 00:36:55,890
+days of your time full-time this won't
+
+1063
+00:36:55,890 --> 00:36:57,990
+teach you all there is about ml but it's
+
+1064
+00:36:57,990 --> 00:37:00,270
+a very solid thoughtful introduction to
+
+1065
+00:37:00,270 --> 00:37:01,920
+what is lost what is gradient descent
+
+1066
+00:37:01,920 --> 00:37:04,500
+next I'd like to recommend a book which
+
+1067
+00:37:04,500 --> 00:37:06,030
+is by Googler and I'm gonna badly
+
+1068
+00:37:06,030 --> 00:37:07,650
+mispronounce his name but the author of
+
+1069
+00:37:07,650 --> 00:37:10,440
+chaos Francois Sholay it's a wonderful
+
+1070
+00:37:10,440 --> 00:37:12,150
+wonderful book it's called deep learning
+
+1071
+00:37:12,150 --> 00:37:14,730
+with Python there are many many books
+
+1072
+00:37:14,730 --> 00:37:16,620
+with very similar titles to deep
+
+1073
+00:37:16,620 --> 00:37:18,390
+learning with Python but the one you
+
+1074
+00:37:18,390 --> 00:37:20,220
+want is written by Francois it's
+
+1075
+00:37:20,220 --> 00:37:22,590
+published by Manning and it comes with a
+
+1076
+00:37:22,590 --> 00:37:24,780
+collection of Jupiter notebooks which
+
+1077
+00:37:24,780 --> 00:37:26,130
+are all freely available in github by
+
+1078
+00:37:26,130 --> 00:37:27,660
+the way that will basically teach you
+
+1079
+00:37:27,660 --> 00:37:30,540
+how to use chaos because chaos is part
+
+1080
+00:37:30,540 --> 00:37:33,560
+of tensorflow all of that code will work
+
+1081
+00:37:33,560 --> 00:37:36,480
+with no changes other than the imports
+
+1082
+00:37:36,480 --> 00:37:37,740
+directly in tensorflow
+
+1083
+00:37:37,740 --> 00:37:39,570
+and that will give you a really solid
+
+1084
+00:37:39,570 --> 00:37:41,550
+foundation in chaos and then later if
+
+1085
+00:37:41,550 --> 00:37:42,870
+you're interested you can learn how to
+
+1086
+00:37:42,870 --> 00:37:44,710
+use things like TF data and other
+
+1087
+00:37:44,710 --> 00:37:46,359
+features of tensorflow to do even more
+
+1088
+00:37:46,359 --> 00:37:50,050
+but it's a wonderful starting point so
+
+1089
+00:37:50,050 --> 00:37:52,750
+take away Oh another thing - so I wanted
+
+1090
+00:37:52,750 --> 00:37:54,910
+to also show tensorflow just in this but
+
+1091
+00:37:54,910 --> 00:37:56,890
+we only have 40 minutes with the chaos
+
+1092
+00:37:56,890 --> 00:37:58,839
+model you can literally do model dots
+
+1093
+00:37:58,839 --> 00:38:01,359
+save it's one line of code you'll save
+
+1094
+00:38:01,359 --> 00:38:03,849
+model dot save and like foo dot some
+
+1095
+00:38:03,849 --> 00:38:06,250
+path or whatever food at hd5 now you've
+
+1096
+00:38:06,250 --> 00:38:07,810
+saved your model to disk using
+
+1097
+00:38:07,810 --> 00:38:09,730
+tensorflow j s if you go to j s
+
+1098
+00:38:09,730 --> 00:38:11,650
+tensorflow dat org they have tutorials
+
+1099
+00:38:11,650 --> 00:38:14,080
+that show you how to import relatively
+
+1100
+00:38:14,080 --> 00:38:15,790
+easily that saved chaos model into the
+
+1101
+00:38:15,790 --> 00:38:17,560
+browser and so the same api is
+
+1102
+00:38:17,560 --> 00:38:19,570
+compatible across these platforms so
+
+1103
+00:38:19,570 --> 00:38:21,960
+basically links check out collab
+
+1104
+00:38:21,960 --> 00:38:23,859
+regardless of your using tensorflow or
+
+1105
+00:38:23,859 --> 00:38:25,359
+not collab is a really really valuable
+
+1106
+00:38:25,359 --> 00:38:26,950
+resource it's also wonderful in
+
+1107
+00:38:26,950 --> 00:38:28,390
+educational contexts you know if you're
+
+1108
+00:38:28,390 --> 00:38:30,550
+teaching after work or anything like
+
+1109
+00:38:30,550 --> 00:38:32,130
+that students can just jump right in
+
+1110
+00:38:32,130 --> 00:38:34,990
+check out the workshops in the next
+
+1111
+00:38:34,990 --> 00:38:36,700
+three months or so we're gonna be
+
+1112
+00:38:36,700 --> 00:38:38,080
+updating a lot of our tutorials
+
+1113
+00:38:38,080 --> 00:38:40,060
+intensive loaded org to use chaos but in
+
+1114
+00:38:40,060 --> 00:38:41,260
+the meantime I'm just hacking some
+
+1115
+00:38:41,260 --> 00:38:42,369
+samples together so you can see what
+
+1116
+00:38:42,369 --> 00:38:44,560
+this looks like ten so J s and we have
+
+1117
+00:38:44,560 --> 00:38:46,900
+an education some really fun demos on J
+
+1118
+00:38:46,900 --> 00:38:49,150
+a sense of like there's one where you
+
+1119
+00:38:49,150 --> 00:38:51,580
+can actually train it to recognize your
+
+1120
+00:38:51,580 --> 00:38:53,230
+face going left right up and down and
+
+1121
+00:38:53,230 --> 00:38:54,820
+then you play pac-man by going like this
+
+1122
+00:38:54,820 --> 00:38:57,400
+it's it's really good super cool yep so
+
+1123
+00:38:57,400 --> 00:38:59,589
+take a look and it's open source yeah so
+
+1124
+00:38:59,589 --> 00:39:01,210
+thank you very much everyone I know it's
+
+1125
+00:39:01,210 --> 00:39:02,560
+early we'll be around afterwards for as
+
+1126
+00:39:02,560 --> 00:39:03,520
+long as you want to take questions
+
+1127
+00:39:03,520 --> 00:39:05,080
+really appreciate your time and hope
+
+1128
+00:39:05,080 --> 00:39:08,150
+this stuff is useful to you thank you
+
+1129
+00:39:08,150 --> 00:39:29,449
+[Music]
+

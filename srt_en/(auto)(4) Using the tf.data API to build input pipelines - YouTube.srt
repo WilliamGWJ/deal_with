@@ -1,0 +1,744 @@
+﻿1
+00:00:00,030 --> 00:00:01,560
+hi everybody and welcome to the
+
+2
+00:00:01,560 --> 00:00:03,240
+tensorflow developer summit I'm Laurence
+
+3
+00:00:03,240 --> 00:00:04,680
+Moroney and I'm here at the tensorflow
+
+4
+00:00:04,680 --> 00:00:06,540
+cafe and it's my honor to chat with
+
+5
+00:00:06,540 --> 00:00:09,179
+derek murray and derek just did a talk
+
+6
+00:00:09,179 --> 00:00:11,219
+on TF data and lots of great stuff and
+
+7
+00:00:11,219 --> 00:00:12,870
+TF data and lots of great new stuff into
+
+8
+00:00:12,870 --> 00:00:14,639
+yeah could you could you tell us about
+
+9
+00:00:14,639 --> 00:00:16,770
+it a lot of works gone into performance
+
+10
+00:00:16,770 --> 00:00:18,590
+and we made some announcements about the
+
+11
+00:00:18,590 --> 00:00:20,640
+new performance numbers we're achieving
+
+12
+00:00:20,640 --> 00:00:23,820
+with TF data so of this 13,000 images
+
+13
+00:00:23,820 --> 00:00:25,199
+per second number that were really proud
+
+14
+00:00:25,199 --> 00:00:26,939
+of but we also know that we can totally
+
+15
+00:00:26,939 --> 00:00:28,349
+beat and we're still working to like
+
+16
+00:00:28,349 --> 00:00:31,170
+make a making further advances I'm gonna
+
+17
+00:00:31,170 --> 00:00:32,550
+be chatting with you in this seat next
+
+18
+00:00:32,550 --> 00:00:33,899
+year and you're gonna be saying it's 130
+
+19
+00:00:33,899 --> 00:00:36,210
+oh my goodness it will need uh we'll
+
+20
+00:00:36,210 --> 00:00:37,829
+need that bigger clear a part of our
+
+21
+00:00:37,829 --> 00:00:42,390
+next keep up with that and a lot of
+
+22
+00:00:42,390 --> 00:00:44,610
+advances on ease of use as well so we're
+
+23
+00:00:44,610 --> 00:00:46,739
+adding sort of convenience functions to
+
+24
+00:00:46,739 --> 00:00:47,850
+make it easier for people to get started
+
+25
+00:00:47,850 --> 00:00:50,579
+with the library and to deal with
+
+26
+00:00:50,579 --> 00:00:52,410
+different kinds of data formats that are
+
+27
+00:00:52,410 --> 00:00:54,300
+maybe not what we're as used to using
+
+28
+00:00:54,300 --> 00:00:56,789
+internally at Google but are more sort
+
+29
+00:00:56,789 --> 00:00:57,989
+of inspired by what the community wants
+
+30
+00:00:57,989 --> 00:01:00,570
+okay okay sounds good so and one of the
+
+31
+00:01:00,570 --> 00:01:01,980
+things that you spoke about a lot and I
+
+32
+00:01:01,980 --> 00:01:03,329
+really like that catcher was like fast
+
+33
+00:01:03,329 --> 00:01:05,850
+flexible and easy to use you know is
+
+34
+00:01:05,850 --> 00:01:07,380
+that your catchphrase oh that's a yeah
+
+35
+00:01:07,380 --> 00:01:10,560
+you need three things rhetorical that's
+
+36
+00:01:10,560 --> 00:01:12,299
+how I do them so what impact do you
+
+37
+00:01:12,299 --> 00:01:13,799
+think that's gonna have come people
+
+38
+00:01:13,799 --> 00:01:16,170
+building models well I think I think
+
+39
+00:01:16,170 --> 00:01:19,020
+before we had a library with these
+
+40
+00:01:19,020 --> 00:01:21,470
+characteristics we kind of had to made a
+
+41
+00:01:21,470 --> 00:01:23,400
+dichotomy between two different options
+
+42
+00:01:23,400 --> 00:01:25,049
+you could either go this feeding route
+
+43
+00:01:25,049 --> 00:01:27,000
+which was very flexible you could write
+
+44
+00:01:27,000 --> 00:01:28,409
+any code you liked in Python and it
+
+45
+00:01:28,409 --> 00:01:29,790
+would work gonna get into tensor books
+
+46
+00:01:29,790 --> 00:01:31,979
+right super slow I mean it was kind of
+
+47
+00:01:31,979 --> 00:01:34,409
+held up by the global interpreter lock
+
+48
+00:01:34,409 --> 00:01:36,150
+in your Python program you just couldn't
+
+49
+00:01:36,150 --> 00:01:40,110
+keep up with a modern accelerator maybe
+
+50
+00:01:40,110 --> 00:01:41,549
+like three years ago you could do that
+
+51
+00:01:41,549 --> 00:01:43,140
+but now there's so much faster than
+
+52
+00:01:43,140 --> 00:01:44,790
+writing and then on the other side we
+
+53
+00:01:44,790 --> 00:01:47,640
+had these very flexible queue based
+
+54
+00:01:47,640 --> 00:01:51,659
+input pipelines that were a lot faster a
+
+55
+00:01:51,659 --> 00:01:53,759
+lot more efficient plots not very easy
+
+56
+00:01:53,759 --> 00:01:55,229
+to use they had like very sharp edges
+
+57
+00:01:55,229 --> 00:01:58,079
+okay could forget to put a line of code
+
+58
+00:01:58,079 --> 00:01:59,490
+on your program and it would they would
+
+59
+00:01:59,490 --> 00:02:02,610
+hang there no so what we want to do is
+
+60
+00:02:02,610 --> 00:02:04,259
+take the good parts of both of those and
+
+61
+00:02:04,259 --> 00:02:05,729
+put them together so there's just more
+
+62
+00:02:05,729 --> 00:02:08,459
+there's really just one choice and it's
+
+63
+00:02:08,459 --> 00:02:09,720
+easy to use for people just getting
+
+64
+00:02:09,720 --> 00:02:12,390
+started but they can also very rapidly
+
+65
+00:02:12,390 --> 00:02:12,900
+get
+
+66
+00:02:12,900 --> 00:02:14,670
+performance that you would need to be
+
+67
+00:02:14,670 --> 00:02:17,489
+able to saturate a voltage GPU or a
+
+68
+00:02:17,489 --> 00:02:19,489
+quote GPU in my case like I'm a
+
+69
+00:02:19,489 --> 00:02:21,780
+relatively new developer with this kind
+
+70
+00:02:21,780 --> 00:02:23,640
+of stuff and a naive developer it to
+
+71
+00:02:23,640 --> 00:02:25,620
+some extent so it's like in my I was
+
+72
+00:02:25,620 --> 00:02:27,569
+thinking like how a lot of this works is
+
+73
+00:02:27,569 --> 00:02:29,459
+I get my data and I throw it out there
+
+74
+00:02:29,459 --> 00:02:31,470
+in training model and it rains and it
+
+75
+00:02:31,470 --> 00:02:32,909
+goes and I never really thought about
+
+76
+00:02:32,909 --> 00:02:36,120
+how I refine my data to be able to get
+
+77
+00:02:36,120 --> 00:02:38,010
+it in to make it more efficient so I'm
+
+78
+00:02:38,010 --> 00:02:39,569
+sure if I was doing it to be 100 images
+
+79
+00:02:39,569 --> 00:02:41,459
+a second another thousand how do I get
+
+80
+00:02:41,459 --> 00:02:44,220
+from that to the 13,000 well there are a
+
+81
+00:02:44,220 --> 00:02:45,870
+lot of sort of tips and tricks that
+
+82
+00:02:45,870 --> 00:02:47,280
+we've collected as we've done this they
+
+83
+00:02:47,280 --> 00:02:49,829
+did actually the original play with TF
+
+84
+00:02:49,829 --> 00:02:50,790
+data it was to make something that was
+
+85
+00:02:50,790 --> 00:02:52,650
+easy to use and performance was a
+
+86
+00:02:52,650 --> 00:02:56,159
+secondary consideration but as we
+
+87
+00:02:56,159 --> 00:02:57,239
+discovered the people were becoming more
+
+88
+00:02:57,239 --> 00:02:58,530
+and more demanding and as the cloud TPU
+
+89
+00:02:58,530 --> 00:02:59,819
+project was coming online really well
+
+90
+00:02:59,819 --> 00:03:02,430
+okay we caught it like trying hard to do
+
+91
+00:03:02,430 --> 00:03:04,049
+well here let's push it really adds
+
+92
+00:03:04,049 --> 00:03:06,359
+vision and we've vari these benchmarks
+
+93
+00:03:06,359 --> 00:03:07,950
+that we're following and that other
+
+94
+00:03:07,950 --> 00:03:09,689
+people are using in their frameworks to
+
+95
+00:03:09,689 --> 00:03:13,170
+compare so there's a lot of tips and
+
+96
+00:03:13,170 --> 00:03:15,629
+tricks and the best way to learn how to
+
+97
+00:03:15,629 --> 00:03:16,650
+do yourself is to look at the
+
+98
+00:03:16,650 --> 00:03:18,030
+performance guide that we've just put up
+
+99
+00:03:18,030 --> 00:03:20,190
+on tensorflow org if you have data
+
+100
+00:03:20,190 --> 00:03:21,919
+performance guide and it has a lot of
+
+101
+00:03:21,919 --> 00:03:24,569
+sort of both the theory of how you
+
+102
+00:03:24,569 --> 00:03:27,419
+optimize pipelines and its kind of
+
+103
+00:03:27,419 --> 00:03:28,859
+elementary queueing theory in some
+
+104
+00:03:28,859 --> 00:03:30,120
+senses don't worry there's not too much
+
+105
+00:03:30,120 --> 00:03:33,449
+math and and also like the literal
+
+106
+00:03:33,449 --> 00:03:35,159
+ingredients that you use in your program
+
+107
+00:03:35,159 --> 00:03:37,859
+to achieve these pipeline benefits right
+
+108
+00:03:37,859 --> 00:03:40,019
+so hopefully it's accessible what we're
+
+109
+00:03:40,019 --> 00:03:42,419
+also planning to do and Brandon's data
+
+110
+00:03:42,419 --> 00:03:43,319
+is going to be talking about this later
+
+111
+00:03:43,319 --> 00:03:45,299
+today is kind of auto-tuning your
+
+112
+00:03:45,299 --> 00:03:47,310
+pipeline a bit more so right now it's a
+
+113
+00:03:47,310 --> 00:03:49,229
+very manual process and we're just
+
+114
+00:03:49,229 --> 00:03:50,519
+trying to give you all the parts you
+
+115
+00:03:50,519 --> 00:03:52,169
+need so that someone skilled in the art
+
+116
+00:03:52,169 --> 00:03:53,879
+can put something together that's fast
+
+117
+00:03:53,879 --> 00:03:56,760
+but we want that speed to be accessible
+
+118
+00:03:56,760 --> 00:03:59,459
+to everyone as well because it's only by
+
+119
+00:03:59,459 --> 00:04:00,979
+making things fast enough that we can
+
+120
+00:04:00,979 --> 00:04:03,419
+sort of chief transformative new uses of
+
+121
+00:04:03,419 --> 00:04:05,220
+machine learning so we're going to work
+
+122
+00:04:05,220 --> 00:04:06,440
+on auto-tuning a sort of automatic
+
+123
+00:04:06,440 --> 00:04:10,190
+compilation to to to apply these changes
+
+124
+00:04:10,190 --> 00:04:13,079
+automatically for you nice-nice and all
+
+125
+00:04:13,079 --> 00:04:14,639
+this is going to be in the TF data in
+
+126
+00:04:14,639 --> 00:04:19,620
+the tf2 names yes probably like that
+
+127
+00:04:19,620 --> 00:04:22,560
+name it's good name and long then you'd
+
+128
+00:04:22,560 --> 00:04:24,690
+mention intense flow dog there is that
+
+129
+00:04:24,690 --> 00:04:27,900
+for optimizing and input and of course
+
+130
+00:04:27,900 --> 00:04:29,850
+people should watch your talk well they
+
+131
+00:04:29,850 --> 00:04:30,720
+should watch my type they should also
+
+132
+00:04:30,720 --> 00:04:32,340
+watch Brennan's talk later this
+
+133
+00:04:32,340 --> 00:04:34,050
+afternoon he is really going to go into
+
+134
+00:04:34,050 --> 00:04:35,640
+depth on sort of how you take a slow
+
+135
+00:04:35,640 --> 00:04:37,740
+program starting out it and go through
+
+136
+00:04:37,740 --> 00:04:39,810
+the steps of using our optimizations
+
+137
+00:04:39,810 --> 00:04:41,250
+that also our monitoring tools to like
+
+138
+00:04:41,250 --> 00:04:43,650
+work out from a sort of hypothesis
+
+139
+00:04:43,650 --> 00:04:45,660
+testing scientific point of view how to
+
+140
+00:04:45,660 --> 00:04:48,420
+make your pipeline more efficient sounds
+
+141
+00:04:48,420 --> 00:04:49,860
+good so if I want to get started with
+
+142
+00:04:49,860 --> 00:04:51,930
+this where should I go well I think the
+
+143
+00:04:51,930 --> 00:04:53,460
+best place to get started right now is
+
+144
+00:04:53,460 --> 00:04:55,290
+actually to head over to cackle because
+
+145
+00:04:55,290 --> 00:04:58,220
+just in the last couple months I think
+
+146
+00:04:58,220 --> 00:05:01,260
+cackles put out this API for downloading
+
+147
+00:05:01,260 --> 00:05:03,360
+data sets Oh what like a single command
+
+148
+00:05:03,360 --> 00:05:05,700
+you type tag all data sets download and
+
+149
+00:05:05,700 --> 00:05:07,620
+the name of the data set that you've
+
+150
+00:05:07,620 --> 00:05:09,180
+seen on their website and it's just one
+
+151
+00:05:09,180 --> 00:05:10,500
+command puts all the files in your local
+
+152
+00:05:10,500 --> 00:05:13,170
+directory and then in tensorflow you can
+
+153
+00:05:13,170 --> 00:05:17,010
+use this new make csv data set api the a
+
+154
+00:05:17,010 --> 00:05:18,840
+noogler rachel lynn who just joined the
+
+155
+00:05:18,840 --> 00:05:20,760
+team did in her first like first couple
+
+156
+00:05:20,760 --> 00:05:22,020
+of weeks it's awesome it really
+
+157
+00:05:22,020 --> 00:05:24,300
+simplifies the task of working with this
+
+158
+00:05:24,300 --> 00:05:25,950
+kind of data you just have to like write
+
+159
+00:05:25,950 --> 00:05:27,390
+one line of code in here off to the
+
+160
+00:05:27,390 --> 00:05:29,130
+races mode and it was done by in New
+
+161
+00:05:29,130 --> 00:05:30,510
+England yeah yeah she's just started
+
+162
+00:05:30,510 --> 00:05:31,890
+she's great did she think that was like
+
+163
+00:05:31,890 --> 00:05:34,910
+some kind of hazing or like I hope not
+
+164
+00:05:34,910 --> 00:05:38,190
+very project what you do it's amazing
+
+165
+00:05:38,190 --> 00:05:39,570
+though that's something that just
+
+166
+00:05:39,570 --> 00:05:40,980
+somebody newly joined Google could do
+
+167
+00:05:40,980 --> 00:05:42,210
+that but that's it's great
+
+168
+00:05:42,210 --> 00:05:43,650
+that's the tensorflow community is like
+
+169
+00:05:43,650 --> 00:05:45,419
+that there's so many people out there
+
+170
+00:05:45,419 --> 00:05:47,280
+doing amazing and we love the roof had a
+
+171
+00:05:47,280 --> 00:05:49,710
+lot of community contributions on this
+
+172
+00:05:49,710 --> 00:05:51,419
+part of the library for different
+
+173
+00:05:51,419 --> 00:05:53,820
+formats and sort of different dinner
+
+174
+00:05:53,820 --> 00:05:55,260
+analysis approaches that people want to
+
+175
+00:05:55,260 --> 00:05:56,640
+take and we really appreciate and you
+
+176
+00:05:56,640 --> 00:05:58,350
+know invite people to send as many as
+
+177
+00:05:58,350 --> 00:06:00,660
+possible okay so great big thanks to the
+
+178
+00:06:00,660 --> 00:06:02,340
+community yeah and a great big thanks to
+
+179
+00:06:02,340 --> 00:06:04,140
+you so thank you and thanks everybody
+
+180
+00:06:04,140 --> 00:06:05,730
+for watching if you've got any questions
+
+181
+00:06:05,730 --> 00:06:07,410
+for me if you've got any questions for
+
+182
+00:06:07,410 --> 00:06:08,520
+Derrick please leave them in the
+
+183
+00:06:08,520 --> 00:06:10,590
+comments below and don't forget to hit
+
+184
+00:06:10,590 --> 00:06:16,880
+that subscribe button thanks
+
+185
+00:06:16,880 --> 00:06:29,840
+[Music]
+
+186
+00:06:29,840 --> 00:06:31,900
+you
+

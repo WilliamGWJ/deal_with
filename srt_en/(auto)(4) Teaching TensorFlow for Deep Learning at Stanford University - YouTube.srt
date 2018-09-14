@@ -1,0 +1,868 @@
+﻿1
+00:00:03,230 --> 00:00:05,520
+welcome everybody to tensorflow meets
+
+2
+00:00:05,520 --> 00:00:07,080
+and this is our very first episode of
+
+3
+00:00:07,080 --> 00:00:08,880
+this show tensorflow meets is a show
+
+4
+00:00:08,880 --> 00:00:10,230
+where we meet with people in the
+
+5
+00:00:10,230 --> 00:00:11,400
+community who are working with
+
+6
+00:00:11,400 --> 00:00:11,940
+tensorflow
+
+7
+00:00:11,940 --> 00:00:14,099
+today it's my honor to meet finally with
+
+8
+00:00:14,099 --> 00:00:15,929
+chip she's teaching the famous cs20
+
+9
+00:00:15,929 --> 00:00:17,699
+course at Stanford I have to tell a
+
+10
+00:00:17,699 --> 00:00:19,500
+story before we begin about how I met
+
+11
+00:00:19,500 --> 00:00:22,529
+chip so I was studying and studying some
+
+12
+00:00:22,529 --> 00:00:24,269
+AI in Stanford and there was a robotics
+
+13
+00:00:24,269 --> 00:00:27,420
+course what was the instructor great
+
+14
+00:00:27,420 --> 00:00:29,429
+instruction he's amazing super cool guy
+
+15
+00:00:29,429 --> 00:00:31,260
+and the first homework assignment came
+
+16
+00:00:31,260 --> 00:00:38,070
+in and I did not have a clue years ago
+
+17
+00:00:38,070 --> 00:00:40,680
+was it that long okay and I just
+
+18
+00:00:40,680 --> 00:00:42,390
+remember and it was like you had offered
+
+19
+00:00:42,390 --> 00:00:44,610
+fit to help and like I was totally stuck
+
+20
+00:00:44,610 --> 00:00:45,600
+with this thing I chipped kind of
+
+21
+00:00:45,600 --> 00:00:47,219
+scribbled this thing on a napkin and
+
+22
+00:00:47,219 --> 00:00:48,899
+scanned it and emailed it to me and I
+
+23
+00:00:48,899 --> 00:00:51,210
+was like then suddenly I knew what was
+
+24
+00:00:51,210 --> 00:00:52,680
+going on and a second I knew this girl
+
+25
+00:00:52,680 --> 00:00:54,180
+was going to go places after that and
+
+26
+00:00:54,180 --> 00:00:56,670
+now look at you you're teaching you just
+
+27
+00:00:56,670 --> 00:00:57,989
+say that so as a tower
+
+28
+00:00:57,989 --> 00:00:59,550
+actually still considering doing an
+
+29
+00:00:59,550 --> 00:01:01,920
+English major because I came to Stanford
+
+30
+00:01:01,920 --> 00:01:04,559
+as a as a writer before Stanford I was
+
+31
+00:01:04,559 --> 00:01:06,330
+like trembling a little bit and then
+
+32
+00:01:06,330 --> 00:01:08,220
+wrote a couple of books and I really
+
+33
+00:01:08,220 --> 00:01:10,140
+liked writing but then I took this one
+
+34
+00:01:10,140 --> 00:01:12,540
+CS course I see us on 6 a.m. I everyone
+
+35
+00:01:12,540 --> 00:01:14,729
+s neighbor takes this 106a everybody yes
+
+36
+00:01:14,729 --> 00:01:18,750
+right yes and he said like okay like you
+
+37
+00:01:18,750 --> 00:01:20,549
+work here then you sort of like had to
+
+38
+00:01:20,549 --> 00:01:21,930
+take this course and take you to the
+
+39
+00:01:21,930 --> 00:01:23,670
+stand robotics right of the course
+
+40
+00:01:23,670 --> 00:01:25,590
+doctors I did like see us more and more
+
+41
+00:01:25,590 --> 00:01:29,040
+and yeah ya know you had written like
+
+42
+00:01:29,040 --> 00:01:30,810
+travel books in Vietnam right I'd like
+
+43
+00:01:30,810 --> 00:01:34,290
+to call them stories it was traveling
+
+44
+00:01:34,290 --> 00:01:36,930
+for almost three years like in Asia
+
+45
+00:01:36,930 --> 00:01:38,340
+Africa and South America
+
+46
+00:01:38,340 --> 00:01:40,829
+and it'll books about people I met and
+
+47
+00:01:40,829 --> 00:01:43,110
+what I saw and what I thought of their
+
+48
+00:01:43,110 --> 00:01:45,869
+life it was a whole new world to me like
+
+49
+00:01:45,869 --> 00:01:47,520
+that in so it's a journey from like
+
+50
+00:01:47,520 --> 00:01:49,530
+travel and meeting people about life and
+
+51
+00:01:49,530 --> 00:01:51,210
+then coming to study like an English
+
+52
+00:01:51,210 --> 00:01:53,939
+major and then in CS and now teaching AI
+
+53
+00:01:53,939 --> 00:01:56,219
+so tell us about the course I has an
+
+54
+00:01:56,219 --> 00:01:57,990
+idea when I was a sophomore and it was
+
+55
+00:01:57,990 --> 00:02:00,479
+doing one class natural language
+
+56
+00:02:00,479 --> 00:02:02,759
+processing and the course used
+
+57
+00:02:02,759 --> 00:02:05,490
+tensorflow I started digging into the
+
+58
+00:02:05,490 --> 00:02:07,770
+library and they did it all during the
+
+59
+00:02:07,770 --> 00:02:11,220
+summer I use it for my job at a startup
+
+60
+00:02:11,220 --> 00:02:13,260
+it was pretty early
+
+61
+00:02:13,260 --> 00:02:16,290
+of the tensile flow progress so there
+
+62
+00:02:16,290 --> 00:02:18,420
+was not a lot of documentation okay I
+
+63
+00:02:18,420 --> 00:02:20,430
+had a lot of trouble trying to figure
+
+64
+00:02:20,430 --> 00:02:22,980
+out what you do and and then I look into
+
+65
+00:02:22,980 --> 00:02:25,200
+the source code and get up and I said
+
+66
+00:02:25,200 --> 00:02:26,970
+wow this is like such a huge library
+
+67
+00:02:26,970 --> 00:02:29,760
+with so many amazing talks and why does
+
+68
+00:02:29,760 --> 00:02:31,349
+like what did they know by it before
+
+69
+00:02:31,349 --> 00:02:33,330
+maybe there should be a group we were
+
+70
+00:02:33,330 --> 00:02:34,860
+can just meet and learn from each other
+
+71
+00:02:34,860 --> 00:02:37,290
+and so I told you some of my professors
+
+72
+00:02:37,290 --> 00:02:39,209
+Stanford and we have a course on this of
+
+73
+00:02:39,209 --> 00:02:40,799
+flow and they were like we are too busy
+
+74
+00:02:40,799 --> 00:02:45,060
+to teach it so you know this is your
+
+75
+00:02:45,060 --> 00:02:46,470
+secondary of teaching it right now yeah
+
+76
+00:02:46,470 --> 00:02:48,569
+how's it been like picked up by students
+
+77
+00:02:48,569 --> 00:02:51,480
+do they like it um for me as a student
+
+78
+00:02:51,480 --> 00:02:53,730
+I'm not I for me two pictures of course
+
+79
+00:02:53,730 --> 00:02:56,400
+I need a faculty sponsorship and Chris
+
+80
+00:02:56,400 --> 00:02:58,560
+Manning was a person who did it and he
+
+81
+00:02:58,560 --> 00:03:00,629
+advertised a course on a very popular
+
+82
+00:03:00,629 --> 00:03:02,579
+course that he was teaching so the first
+
+83
+00:03:02,579 --> 00:03:06,410
+year was pretty overwhelming we got like
+
+84
+00:03:06,410 --> 00:03:09,299
+350 applications Wow I was only allowed
+
+85
+00:03:09,299 --> 00:03:11,459
+to take 20 because I'm not allowed to
+
+86
+00:03:11,459 --> 00:03:13,709
+like take more students than that nicely
+
+87
+00:03:13,709 --> 00:03:15,989
+yeah things the feedback was a pretty
+
+88
+00:03:15,989 --> 00:03:18,209
+positive and then Stanford
+
+89
+00:03:18,209 --> 00:03:20,669
+let me do it again look at more students
+
+90
+00:03:20,669 --> 00:03:22,680
+but I because I'm still carrying of food
+
+91
+00:03:22,680 --> 00:03:24,389
+work roles as a student stand for so I
+
+92
+00:03:24,389 --> 00:03:26,280
+don't think I'm I'm ready for like a lot
+
+93
+00:03:26,280 --> 00:03:27,930
+of students so this year we have about a
+
+94
+00:03:27,930 --> 00:03:30,959
+40 okay yeah it takes me on average 20
+
+95
+00:03:30,959 --> 00:03:33,660
+hours a week one lecture there to
+
+96
+00:03:33,660 --> 00:03:35,430
+lecture so doesn't mean 40 hours it's a
+
+97
+00:03:35,430 --> 00:03:37,230
+full-time job that's just a lot of time
+
+98
+00:03:37,230 --> 00:03:38,639
+a lot of the information that you've put
+
+99
+00:03:38,639 --> 00:03:39,959
+together for the course is available to
+
+100
+00:03:39,959 --> 00:03:41,250
+the public right your code is on github
+
+101
+00:03:41,250 --> 00:03:42,540
+and stuff like that
+
+102
+00:03:42,540 --> 00:03:43,919
+have you seen like any uptake from
+
+103
+00:03:43,919 --> 00:03:46,079
+students or from people outside using
+
+104
+00:03:46,079 --> 00:03:47,910
+your code or learning from your code I
+
+105
+00:03:47,910 --> 00:03:51,239
+think it was surprised at how many uses
+
+106
+00:03:51,239 --> 00:03:53,340
+so I guess use a github repo just shake
+
+107
+00:03:53,340 --> 00:03:54,569
+it on and I was like wow do you know
+
+108
+00:03:54,569 --> 00:03:56,790
+that's like they're like an average like
+
+109
+00:03:56,790 --> 00:03:59,849
+2,000 visitors I've only recently joined
+
+110
+00:03:59,849 --> 00:04:01,980
+the tensorflow team and just in the last
+
+111
+00:04:01,980 --> 00:04:03,510
+couple of months so I've been scouring
+
+112
+00:04:03,510 --> 00:04:05,040
+the web for things to learn how am I
+
+113
+00:04:05,040 --> 00:04:06,090
+gonna learn this how am I gonna learn
+
+114
+00:04:06,090 --> 00:04:08,099
+that and almost every like site that I
+
+115
+00:04:08,099 --> 00:04:09,629
+fall on well people always end up
+
+116
+00:04:09,629 --> 00:04:11,790
+pointing back to your github repo so
+
+117
+00:04:11,790 --> 00:04:13,260
+it's okay if you want to learn how to do
+
+118
+00:04:13,260 --> 00:04:14,819
+like a linear regression look at chips
+
+119
+00:04:14,819 --> 00:04:16,410
+codon if you want to learn how to do
+
+120
+00:04:16,410 --> 00:04:18,299
+this look at chips code so it's just
+
+121
+00:04:18,299 --> 00:04:20,130
+saying some of it is a bit embarrassing
+
+122
+00:04:20,130 --> 00:04:23,130
+because now because this year when I'm
+
+123
+00:04:23,130 --> 00:04:24,460
+preparing
+
+124
+00:04:24,460 --> 00:04:26,919
+again I redirect them notes from last
+
+125
+00:04:26,919 --> 00:04:29,350
+night oh my god is this you know like
+
+126
+00:04:29,350 --> 00:04:31,300
+when it when you try to make a joke but
+
+127
+00:04:31,300 --> 00:04:33,039
+it wasn't funny it just showed on the
+
+128
+00:04:33,039 --> 00:04:34,780
+paper it was like oh my God why did I
+
+129
+00:04:34,780 --> 00:04:35,759
+even do that
+
+130
+00:04:35,759 --> 00:04:38,259
+it's it's a constant process of
+
+131
+00:04:38,259 --> 00:04:39,430
+improving it's the same when you're
+
+132
+00:04:39,430 --> 00:04:41,229
+doing developer advocacy work it's like
+
+133
+00:04:41,229 --> 00:04:42,910
+sometimes like I look back on talks that
+
+134
+00:04:42,910 --> 00:04:44,889
+I've done it like no those jokes didn't
+
+135
+00:04:44,889 --> 00:04:47,530
+work I'm glad I get a chance to do it
+
+136
+00:04:47,530 --> 00:04:49,720
+again so I can have a slightly more
+
+137
+00:04:49,720 --> 00:04:53,500
+polished so say I'm a developer and like
+
+138
+00:04:53,500 --> 00:04:56,050
+I'm a typical software developer right
+
+139
+00:04:56,050 --> 00:04:57,900
+now and I really want to get into the AI
+
+140
+00:04:57,900 --> 00:05:00,370
+machine learning and there's a there's a
+
+141
+00:05:00,370 --> 00:05:01,900
+whole universe of technologies out there
+
+142
+00:05:01,900 --> 00:05:04,509
+AI nml what advice would you give me I
+
+143
+00:05:04,509 --> 00:05:06,009
+think it's a bit hard way to get advice
+
+144
+00:05:06,009 --> 00:05:07,570
+okay I think of myself as somebody who's
+
+145
+00:05:07,570 --> 00:05:09,460
+a starting I have been doing it for like
+
+146
+00:05:09,460 --> 00:05:13,000
+a little bit two years now it's because
+
+147
+00:05:13,000 --> 00:05:14,590
+it's such a nascent technology two years
+
+148
+00:05:14,590 --> 00:05:16,720
+is a long time so your experience is
+
+149
+00:05:16,720 --> 00:05:18,849
+very valuable so I think is it really
+
+150
+00:05:18,849 --> 00:05:21,550
+depends on on what exactly you want to
+
+151
+00:05:21,550 --> 00:05:24,009
+get into because yeah like MLA is very
+
+152
+00:05:24,009 --> 00:05:25,360
+broad so you can either become a
+
+153
+00:05:25,360 --> 00:05:26,919
+software developer so you can develop
+
+154
+00:05:26,919 --> 00:05:29,259
+tools like as a flow or pie chart you
+
+155
+00:05:29,259 --> 00:05:31,150
+can also be like apply research finishes
+
+156
+00:05:31,150 --> 00:05:32,979
+when you apply this a new research into
+
+157
+00:05:32,979 --> 00:05:35,050
+into production or I can just become a
+
+158
+00:05:35,050 --> 00:05:37,419
+very pure researcher so I come up with
+
+159
+00:05:37,419 --> 00:05:39,340
+new algorithms you know your new
+
+160
+00:05:39,340 --> 00:05:42,250
+architectures so for me um are they make
+
+161
+00:05:42,250 --> 00:05:44,320
+as for me I have always wanted to become
+
+162
+00:05:44,320 --> 00:05:47,289
+a researcher so in fact that for that
+
+163
+00:05:47,289 --> 00:05:49,870
+massive math is very important to me and
+
+164
+00:05:49,870 --> 00:05:51,909
+Jay brow need to know a matrix-matrix
+
+165
+00:05:51,909 --> 00:05:54,009
+multiplication yeah yeah so I think it
+
+166
+00:05:54,009 --> 00:05:56,169
+would recommend that you nature gets up
+
+167
+00:05:56,169 --> 00:05:58,479
+leadership brought back growl like shut
+
+168
+00:05:58,479 --> 00:06:01,210
+up and dinner so me some probability
+
+169
+00:06:01,210 --> 00:06:03,340
+okay background because everything is
+
+170
+00:06:03,340 --> 00:06:06,669
+indeed you Bhushan in this and anything
+
+171
+00:06:06,669 --> 00:06:08,800
+read a lot of papers so some advice that
+
+172
+00:06:08,800 --> 00:06:11,020
+have got from people who are in the fail
+
+173
+00:06:11,020 --> 00:06:12,340
+for a long time this is tell me to read
+
+174
+00:06:12,340 --> 00:06:15,099
+a lot of papers like this tell me like
+
+175
+00:06:15,099 --> 00:06:17,229
+in every morning check okay like
+
+176
+00:06:17,229 --> 00:06:19,000
+whatever photo like most popular papers
+
+177
+00:06:19,000 --> 00:06:21,759
+oh wow and yes dedication yeah just like
+
+178
+00:06:21,759 --> 00:06:24,400
+review them I like scheme does the
+
+179
+00:06:24,400 --> 00:06:25,840
+abstract she doesn't so know that they
+
+180
+00:06:25,840 --> 00:06:27,909
+what I go up to in the field right and
+
+181
+00:06:27,909 --> 00:06:29,349
+then take a lot of online courses
+
+182
+00:06:29,349 --> 00:06:31,060
+there's so many online courses available
+
+183
+00:06:31,060 --> 00:06:34,120
+for free and I yeah and after needs a
+
+184
+00:06:34,120 --> 00:06:36,880
+paper you can add implement it yourself
+
+185
+00:06:36,880 --> 00:06:39,580
+like yes you try because you cannot
+
+186
+00:06:39,580 --> 00:06:41,020
+render standard paper until you actually
+
+187
+00:06:41,020 --> 00:06:43,620
+like a man was a paper something about
+
+188
+00:06:43,620 --> 00:06:46,060
+and also can look at how other people
+
+189
+00:06:46,060 --> 00:06:48,850
+implement that um online just to compare
+
+190
+00:06:48,850 --> 00:06:50,350
+like the way you approach a problem
+
+191
+00:06:50,350 --> 00:06:53,080
+that's the magic of open source yeah and
+
+192
+00:06:53,080 --> 00:06:54,430
+like as we're talking about early run
+
+193
+00:06:54,430 --> 00:06:55,750
+like the open source that you've written
+
+194
+00:06:55,750 --> 00:06:57,130
+for your course that's on github has
+
+195
+00:06:57,130 --> 00:06:59,050
+been very valuable for me learning it as
+
+196
+00:06:59,050 --> 00:07:00,730
+well as for lots of other people you
+
+197
+00:07:00,730 --> 00:07:02,620
+just say thank ya you're welcome you're
+
+198
+00:07:02,620 --> 00:07:04,450
+welcome so thank you so much for being
+
+199
+00:07:04,450 --> 00:07:05,860
+on the show chip thank you so much for
+
+200
+00:07:05,860 --> 00:07:07,660
+having me oh you're very welcome and
+
+201
+00:07:07,660 --> 00:07:09,580
+we've learned so much and thanks
+
+202
+00:07:09,580 --> 00:07:11,110
+everybody for watching this episode of
+
+203
+00:07:11,110 --> 00:07:13,120
+tensorflow meets remember this show is
+
+204
+00:07:13,120 --> 00:07:14,890
+about you it's a show for the community
+
+205
+00:07:14,890 --> 00:07:16,120
+where we would love to have you on the
+
+206
+00:07:16,120 --> 00:07:17,770
+show where tensorflow meets you and
+
+207
+00:07:17,770 --> 00:07:19,960
+talks with you about what you do if
+
+208
+00:07:19,960 --> 00:07:21,280
+you've got any questions for me if
+
+209
+00:07:21,280 --> 00:07:22,870
+you've got any questions for chip please
+
+210
+00:07:22,870 --> 00:07:24,730
+leave them in the comments below and if
+
+211
+00:07:24,730 --> 00:07:25,780
+you want to be on the show if you're
+
+212
+00:07:25,780 --> 00:07:27,130
+doing something interesting please get
+
+213
+00:07:27,130 --> 00:07:29,140
+in touch with us and remember don't
+
+214
+00:07:29,140 --> 00:07:30,550
+forget to hit that subscribe button for
+
+215
+00:07:30,550 --> 00:07:32,110
+more great tensorflow content
+
+216
+00:07:32,110 --> 00:07:36,460
+bye
+
+217
+00:07:36,460 --> 00:07:41,390
+[Music]
+

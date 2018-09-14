@@ -1,0 +1,796 @@
+﻿1
+00:00:00,470 --> 00:00:05,290
+[Music]
+
+2
+00:00:05,290 --> 00:00:07,580
+hi everybody and welcome to the
+
+3
+00:00:07,580 --> 00:00:09,080
+tensorflow cafe at the tensorflow
+
+4
+00:00:09,080 --> 00:00:10,580
+developer summit I'm Laurence Moroney
+
+5
+00:00:10,580 --> 00:00:12,320
+and I'm chatting with Patrick Brandt
+
+6
+00:00:12,320 --> 00:00:14,780
+from the coca-cola company and Patrick
+
+7
+00:00:14,780 --> 00:00:16,430
+you had a talk here at the summit it
+
+8
+00:00:16,430 --> 00:00:17,660
+seems to be a really interesting one
+
+9
+00:00:17,660 --> 00:00:19,189
+yeah yeah about it
+
+10
+00:00:19,189 --> 00:00:21,830
+sure so I shared how tensorflow is
+
+11
+00:00:21,830 --> 00:00:23,689
+supporting one of our largest most
+
+12
+00:00:23,689 --> 00:00:25,430
+popular digital marketing programs here
+
+13
+00:00:25,430 --> 00:00:27,500
+in the United States okay so it's like
+
+14
+00:00:27,500 --> 00:00:29,150
+it's scanning codes from bottle caps
+
+15
+00:00:29,150 --> 00:00:30,939
+that's right that's right so we've
+
+16
+00:00:30,939 --> 00:00:33,290
+underneath a lot of the bottle caps of
+
+17
+00:00:33,290 --> 00:00:34,760
+fridge packs and products we sell we've
+
+18
+00:00:34,760 --> 00:00:37,399
+got unique codes that our consumers can
+
+19
+00:00:37,399 --> 00:00:39,559
+then use to intern to promotions and
+
+20
+00:00:39,559 --> 00:00:42,530
+earn and win things okay yeah so why
+
+21
+00:00:42,530 --> 00:00:46,670
+tensorflow well the we started actually
+
+22
+00:00:46,670 --> 00:00:48,860
+early on and I could recognize about
+
+23
+00:00:48,860 --> 00:00:50,030
+last year actually and I could recognize
+
+24
+00:00:50,030 --> 00:00:52,340
+that tensorflow
+
+25
+00:00:52,340 --> 00:00:54,980
+had a very I call it approachable
+
+26
+00:00:54,980 --> 00:00:57,949
+interface right say oh thank you it you
+
+27
+00:00:57,949 --> 00:01:00,260
+know it presents what would be otherwise
+
+28
+00:01:00,260 --> 00:01:05,059
+very complex constructions in idioms
+
+29
+00:01:05,059 --> 00:01:06,890
+that I think I would say every day
+
+30
+00:01:06,890 --> 00:01:08,810
+programmers could understand so you've
+
+31
+00:01:08,810 --> 00:01:10,369
+got modules we've got objects you've got
+
+32
+00:01:10,369 --> 00:01:11,810
+classes you can compose these things to
+
+33
+00:01:11,810 --> 00:01:13,250
+create you know like a deep learning
+
+34
+00:01:13,250 --> 00:01:16,729
+graph so it was that it was the entire
+
+35
+00:01:16,729 --> 00:01:18,289
+you know platform really the
+
+36
+00:01:18,289 --> 00:01:20,509
+documentation everything it was it
+
+37
+00:01:20,509 --> 00:01:22,880
+seemed like something that was a you
+
+38
+00:01:22,880 --> 00:01:26,420
+know a good move for us so now you did
+
+39
+00:01:26,420 --> 00:01:28,959
+this so you you trained it to classify
+
+40
+00:01:28,959 --> 00:01:31,490
+basically the digits that are printed in
+
+41
+00:01:31,490 --> 00:01:33,679
+a bottle tops and now I've seen these
+
+42
+00:01:33,679 --> 00:01:35,090
+bottle tops and sometimes I'm sure the
+
+43
+00:01:35,090 --> 00:01:36,500
+dot matrix printer printing on these
+
+44
+00:01:36,500 --> 00:01:37,910
+things it's like sometimes they're
+
+45
+00:01:37,910 --> 00:01:40,700
+scared sometimes they're right how did
+
+46
+00:01:40,700 --> 00:01:44,690
+you do all this yeah so that was one
+
+47
+00:01:44,690 --> 00:01:47,899
+issue we had with our caps and other
+
+48
+00:01:47,899 --> 00:01:50,599
+codes is that normal will called like
+
+49
+00:01:50,599 --> 00:01:54,200
+OCR solutions right they they couldn't
+
+50
+00:01:54,200 --> 00:01:56,750
+handle the fidelity of the caps so what
+
+51
+00:01:56,750 --> 00:02:00,020
+we did is we created a training set both
+
+52
+00:02:00,020 --> 00:02:01,729
+synthetic and real-world because we can
+
+53
+00:02:01,729 --> 00:02:04,099
+generate these things these caps and
+
+54
+00:02:04,099 --> 00:02:06,979
+bridge packs ourselves and really just
+
+55
+00:02:06,979 --> 00:02:08,959
+you know through it it tends to flow and
+
+56
+00:02:08,959 --> 00:02:11,900
+we adjusted our model several times
+
+57
+00:02:11,900 --> 00:02:13,670
+through our development but we
+
+58
+00:02:13,670 --> 00:02:15,020
+eventually got something that performs
+
+59
+00:02:15,020 --> 00:02:16,790
+extremely well for us
+
+60
+00:02:16,790 --> 00:02:20,060
+and very well at scale Wow okay so when
+
+61
+00:02:20,060 --> 00:02:21,980
+you say it's scaled so pretty quick yeah
+
+62
+00:02:21,980 --> 00:02:24,170
+it's very fast you know it's a we're
+
+63
+00:02:24,170 --> 00:02:26,180
+about one second it was a performance
+
+64
+00:02:26,180 --> 00:02:27,590
+client one second average processing
+
+65
+00:02:27,590 --> 00:02:29,480
+time without from a user experience
+
+66
+00:02:29,480 --> 00:02:31,609
+perspective it's great you know it's
+
+67
+00:02:31,609 --> 00:02:34,069
+it's not ruining anyone's expectations
+
+68
+00:02:34,069 --> 00:02:36,980
+when they engage with our platform now
+
+69
+00:02:36,980 --> 00:02:38,390
+you went to a tense float to do this
+
+70
+00:02:38,390 --> 00:02:39,980
+because an m/l based platform you know
+
+71
+00:02:39,980 --> 00:02:41,180
+what would it have been like what's the
+
+72
+00:02:41,180 --> 00:02:42,500
+difference if you had done this more in
+
+73
+00:02:42,500 --> 00:02:44,569
+more traditional programming right so if
+
+74
+00:02:44,569 --> 00:02:46,819
+we had say apply to more heuristic model
+
+75
+00:02:46,819 --> 00:02:51,159
+right of trying to use rules to to
+
+76
+00:02:51,159 --> 00:02:53,989
+interpret these codes so I could imagine
+
+77
+00:02:53,989 --> 00:02:55,639
+a situation right like where we create
+
+78
+00:02:55,639 --> 00:02:57,439
+our model and it works really well for
+
+79
+00:02:57,439 --> 00:02:59,569
+let's say zero degree rotation on the
+
+80
+00:02:59,569 --> 00:03:01,129
+cap users are holding this thing
+
+81
+00:03:01,129 --> 00:03:02,239
+perfectly and they're holding their
+
+82
+00:03:02,239 --> 00:03:05,239
+phone perfectly the second they twist
+
+83
+00:03:05,239 --> 00:03:06,889
+that thing to degrees in any direction
+
+84
+00:03:06,889 --> 00:03:09,319
+that heuristic model would fall apart so
+
+85
+00:03:09,319 --> 00:03:12,049
+you find yourself having to encode all
+
+86
+00:03:12,049 --> 00:03:14,150
+these different variations through istic
+
+87
+00:03:14,150 --> 00:03:18,620
+s-- and that sounds arduous definitely
+
+88
+00:03:18,620 --> 00:03:20,569
+so because the caps circular you don't
+
+89
+00:03:20,569 --> 00:03:21,979
+really have a frame of reference you
+
+90
+00:03:21,979 --> 00:03:23,419
+need to know that it's been working yeah
+
+91
+00:03:23,419 --> 00:03:25,280
+I mean just simple something simple is a
+
+92
+00:03:25,280 --> 00:03:27,769
+slight to you know twist on the axis and
+
+93
+00:03:27,769 --> 00:03:30,109
+then rotation which is very natural for
+
+94
+00:03:30,109 --> 00:03:31,430
+someone holding a cap in their hand to
+
+95
+00:03:31,430 --> 00:03:34,459
+do so you know with a machine learning
+
+96
+00:03:34,459 --> 00:03:39,079
+approach we're able to accommodate that
+
+97
+00:03:39,079 --> 00:03:40,909
+translation invariance with a
+
+98
+00:03:40,909 --> 00:03:43,430
+convolutional neural net sure and I
+
+99
+00:03:43,430 --> 00:03:44,930
+think one of the things I found that
+
+100
+00:03:44,930 --> 00:03:47,120
+like it just to my eye that when I look
+
+101
+00:03:47,120 --> 00:03:48,799
+at these digits and the bottle caps it's
+
+102
+00:03:48,799 --> 00:03:51,109
+sometimes it's hard to tell mmm how to
+
+103
+00:03:51,109 --> 00:03:53,030
+tell the six from a five or an eight or
+
+104
+00:03:53,030 --> 00:03:54,949
+that kind of thing yeah so did you have
+
+105
+00:03:54,949 --> 00:03:57,699
+pretty good success with absolutely I
+
+106
+00:03:57,699 --> 00:04:02,479
+can say anecdotally that that the the
+
+107
+00:04:02,479 --> 00:04:04,939
+machine I if you wanna think about that
+
+108
+00:04:04,939 --> 00:04:07,760
+way is actually often works better than
+
+109
+00:04:07,760 --> 00:04:09,260
+the human eye and just for the reasons
+
+110
+00:04:09,260 --> 00:04:11,750
+you were saying that to human eye a lot
+
+111
+00:04:11,750 --> 00:04:14,780
+of the visual artifacts that are on
+
+112
+00:04:14,780 --> 00:04:16,400
+these caps with skew and pixel drift can
+
+113
+00:04:16,400 --> 00:04:19,070
+can start to complicate things but our
+
+114
+00:04:19,070 --> 00:04:20,720
+model is trained to look through that
+
+115
+00:04:20,720 --> 00:04:23,539
+okay so how did you get training data by
+
+116
+00:04:23,539 --> 00:04:25,430
+the way well we started with a synthetic
+
+117
+00:04:25,430 --> 00:04:26,780
+data set
+
+118
+00:04:26,780 --> 00:04:30,800
+and then that that got us a baseline we
+
+119
+00:04:30,800 --> 00:04:32,690
+actually got I would say about 50%
+
+120
+00:04:32,690 --> 00:04:34,220
+accuracy just on synthetic data alone
+
+121
+00:04:34,220 --> 00:04:37,430
+okay and that was used for transfer
+
+122
+00:04:37,430 --> 00:04:40,040
+learning actually so we created a where
+
+123
+00:04:40,040 --> 00:04:42,860
+will a real-world data set just printing
+
+124
+00:04:42,860 --> 00:04:44,900
+stuff I mean you know we dialed up our
+
+125
+00:04:44,900 --> 00:04:46,400
+printing facilities and we said hey give
+
+126
+00:04:46,400 --> 00:04:49,130
+us a bunch and then just we need a whole
+
+127
+00:04:49,130 --> 00:04:50,240
+bunch of all just print a whole bunch of
+
+128
+00:04:50,240 --> 00:04:51,920
+gaps for a bank give them to us and then
+
+129
+00:04:51,920 --> 00:04:53,270
+we distributed those to multiple
+
+130
+00:04:53,270 --> 00:04:56,330
+suppliers and we derived them with some
+
+131
+00:04:56,330 --> 00:04:57,770
+custom-built tools that we created to
+
+132
+00:04:57,770 --> 00:04:59,660
+make it easy for them to take a picture
+
+133
+00:04:59,660 --> 00:05:03,050
+and label it we started moving into a
+
+134
+00:05:03,050 --> 00:05:04,790
+much more similar line approach one team
+
+135
+00:05:04,790 --> 00:05:05,990
+would take images and the other team
+
+136
+00:05:05,990 --> 00:05:08,600
+through like a portal would verify the
+
+137
+00:05:08,600 --> 00:05:10,400
+image enter in the code make sure the
+
+138
+00:05:10,400 --> 00:05:12,410
+quality of the image itself was good but
+
+139
+00:05:12,410 --> 00:05:15,650
+we were able to very quickly within a
+
+140
+00:05:15,650 --> 00:05:18,590
+matter of weeks generate enough data for
+
+141
+00:05:18,590 --> 00:05:21,169
+us to train the model that's so cool now
+
+142
+00:05:21,169 --> 00:05:22,460
+you mentioned that there are a number of
+
+143
+00:05:22,460 --> 00:05:23,840
+initiatives you're working on not just
+
+144
+00:05:23,840 --> 00:05:25,190
+this one right that's right
+
+145
+00:05:25,190 --> 00:05:28,010
+can you share any of the others I can so
+
+146
+00:05:28,010 --> 00:05:29,900
+in particular with computer vision and
+
+147
+00:05:29,900 --> 00:05:33,220
+marketing this code scanning initiative
+
+148
+00:05:33,220 --> 00:05:38,000
+was the beginning of our kind of our
+
+149
+00:05:38,000 --> 00:05:40,490
+computer vision platform we this year
+
+150
+00:05:40,490 --> 00:05:43,790
+have launched a new digital icon a
+
+151
+00:05:43,790 --> 00:05:46,400
+visual icon that we're starting to put
+
+152
+00:05:46,400 --> 00:05:49,280
+on the exterior of our packaging and it
+
+153
+00:05:49,280 --> 00:05:52,060
+it's a delightful looking very beautiful
+
+154
+00:05:52,060 --> 00:05:55,160
+image and it fits in well with all of
+
+155
+00:05:55,160 --> 00:05:56,360
+our other branded elements which is
+
+156
+00:05:56,360 --> 00:05:59,960
+critical but it encodes information for
+
+157
+00:05:59,960 --> 00:06:03,050
+that product so it's a QR code but not a
+
+158
+00:06:03,050 --> 00:06:06,440
+QR code it is not a QR code but it's
+
+159
+00:06:06,440 --> 00:06:08,240
+this principle it's a principle the same
+
+160
+00:06:08,240 --> 00:06:09,680
+idea I would think of it more as like a
+
+161
+00:06:09,680 --> 00:06:12,200
+bespoke QR code it's something that is
+
+162
+00:06:12,200 --> 00:06:14,030
+appealing from a visual person
+
+163
+00:06:14,030 --> 00:06:16,070
+interested so instead of just lots of
+
+164
+00:06:16,070 --> 00:06:18,530
+black and white squares it's yeah it's
+
+165
+00:06:18,530 --> 00:06:20,240
+three concentric rings with a little
+
+166
+00:06:20,240 --> 00:06:21,500
+coke bottle on them and have to take a
+
+167
+00:06:21,500 --> 00:06:23,210
+look at let's check it out so cool
+
+168
+00:06:23,210 --> 00:06:27,020
+so go back to the bottle classifier that
+
+169
+00:06:27,020 --> 00:06:28,340
+you have I'd like to have a play how
+
+170
+00:06:28,340 --> 00:06:30,680
+would I get started step one is buy one
+
+171
+00:06:30,680 --> 00:06:33,290
+of our products not all of our brands
+
+172
+00:06:33,290 --> 00:06:35,390
+have these caps printed on them but but
+
+173
+00:06:35,390 --> 00:06:36,919
+most of them do and certainly our core
+
+174
+00:06:36,919 --> 00:06:39,440
+brands you know any coca-cola product
+
+175
+00:06:39,440 --> 00:06:43,550
+powerade etc well as well but you buy a
+
+176
+00:06:43,550 --> 00:06:46,160
+product twist off the cap and you now
+
+177
+00:06:46,160 --> 00:06:48,050
+have everything you need to enter into
+
+178
+00:06:48,050 --> 00:06:49,910
+our promotions you know you would create
+
+179
+00:06:49,910 --> 00:06:52,790
+a count on coke calm slash rewards or on
+
+180
+00:06:52,790 --> 00:06:54,590
+the new app that we launched two days
+
+181
+00:06:54,590 --> 00:06:55,040
+ago
+
+182
+00:06:55,040 --> 00:06:58,220
+I hope ol USA app in the hope is that
+
+183
+00:06:58,220 --> 00:07:00,350
+you know it becomes an experience that's
+
+184
+00:07:00,350 --> 00:07:02,900
+rewarding enough to continue engaging
+
+185
+00:07:02,900 --> 00:07:04,820
+with our consumers sounds good I'll have
+
+186
+00:07:04,820 --> 00:07:06,740
+to give it a shot so thanks so much
+
+187
+00:07:06,740 --> 00:07:07,340
+Patrick
+
+188
+00:07:07,340 --> 00:07:09,050
+yeah you're welcome Lawrence so thanks
+
+189
+00:07:09,050 --> 00:07:10,670
+everybody for watching this episode if
+
+190
+00:07:10,670 --> 00:07:12,170
+you've got any questions for me or any
+
+191
+00:07:12,170 --> 00:07:14,090
+questions for Patrick please just leave
+
+192
+00:07:14,090 --> 00:07:14,960
+them in the comments below
+
+193
+00:07:14,960 --> 00:07:16,640
+and any of the links that we discussed
+
+194
+00:07:16,640 --> 00:07:17,960
+I'll put them in the description for
+
+195
+00:07:17,960 --> 00:07:18,470
+this video
+
+196
+00:07:18,470 --> 00:07:20,120
+and whatever you do don't forget to hit
+
+197
+00:07:20,120 --> 00:07:22,520
+that subscribe button thank you
+
+198
+00:07:22,520 --> 00:07:35,010
+[Music]
+
+199
+00:07:35,010 --> 00:07:44,070
+[Music]
+

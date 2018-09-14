@@ -1,0 +1,636 @@
+﻿1
+00:00:01,650 --> 00:00:03,290
+[Applause]
+
+2
+00:00:03,290 --> 00:00:05,910
+hi and welcome to coding tensorflow
+
+3
+00:00:05,910 --> 00:00:07,799
+where you'll learn all about coding
+
+4
+00:00:07,799 --> 00:00:09,599
+machine learning and AI apps using
+
+5
+00:00:09,599 --> 00:00:11,730
+tensorflow I'm Laurence Moroney a
+
+6
+00:00:11,730 --> 00:00:13,349
+developer advocate for tensorflow
+
+7
+00:00:13,349 --> 00:00:15,059
+and today I'll be looking at tensorflow
+
+8
+00:00:15,059 --> 00:00:16,949
+Lite and getting it to run models on
+
+9
+00:00:16,949 --> 00:00:20,039
+Android tensorflow light is tensor flows
+
+10
+00:00:20,039 --> 00:00:22,080
+lightweight solution for mobile and
+
+11
+00:00:22,080 --> 00:00:24,119
+embedded devices and lets you run
+
+12
+00:00:24,119 --> 00:00:26,279
+machine learn models on mobile devices
+
+13
+00:00:26,279 --> 00:00:28,740
+with low latency quickly so you can take
+
+14
+00:00:28,740 --> 00:00:30,570
+advantage of them to do classification
+
+15
+00:00:30,570 --> 00:00:32,430
+regression or anything else you might
+
+16
+00:00:32,430 --> 00:00:34,230
+want to do without necessarily incurring
+
+17
+00:00:34,230 --> 00:00:36,780
+a round trip to a server it's presently
+
+18
+00:00:36,780 --> 00:00:39,600
+supported on Android and iOS via a C++
+
+19
+00:00:39,600 --> 00:00:41,910
+API as well as a Java wrapper for
+
+20
+00:00:41,910 --> 00:00:44,550
+Android devices on devices that support
+
+21
+00:00:44,550 --> 00:00:46,890
+it the interpreter can also use the
+
+22
+00:00:46,890 --> 00:00:49,350
+Android neural networks API for hardware
+
+23
+00:00:49,350 --> 00:00:51,329
+acceleration otherwise it will default
+
+24
+00:00:51,329 --> 00:00:54,750
+to using the CPU here you can see me
+
+25
+00:00:54,750 --> 00:00:56,640
+running the app on my Android device and
+
+26
+00:00:56,640 --> 00:00:59,039
+using it to classify a number of objects
+
+27
+00:00:59,039 --> 00:01:01,469
+it's quite fun to play with and note how
+
+28
+00:01:01,469 --> 00:01:04,049
+the interpretation of a mouse changes as
+
+29
+00:01:04,049 --> 00:01:07,080
+I move the camera around or the first
+
+30
+00:01:07,080 --> 00:01:09,210
+mug has a high handle which kind of
+
+31
+00:01:09,210 --> 00:01:10,710
+makes it look like a picture so that
+
+32
+00:01:10,710 --> 00:01:12,030
+shows up as a possibility
+
+33
+00:01:12,030 --> 00:01:14,939
+finally my Google mug is broad and looks
+
+34
+00:01:14,939 --> 00:01:16,979
+a bit like a mixing bowl and the app
+
+35
+00:01:16,979 --> 00:01:19,080
+detects that so how does all of this
+
+36
+00:01:19,080 --> 00:01:21,030
+work well let's first talk about the
+
+37
+00:01:21,030 --> 00:01:23,939
+model the app is built using a mobile
+
+38
+00:01:23,939 --> 00:01:26,880
+net model mobile nets are small low
+
+39
+00:01:26,880 --> 00:01:29,340
+latency low-power models that are
+
+40
+00:01:29,340 --> 00:01:30,950
+designed to meet a number of use cases
+
+41
+00:01:30,950 --> 00:01:34,170
+such as object detection face attributes
+
+42
+00:01:34,170 --> 00:01:36,900
+fine grained classification and landmark
+
+43
+00:01:36,900 --> 00:01:39,659
+recognition what's nice about them is
+
+44
+00:01:39,659 --> 00:01:41,310
+that there are a number of different
+
+45
+00:01:41,310 --> 00:01:44,939
+ones that are pre-trained including the
+
+46
+00:01:44,939 --> 00:01:47,430
+model at this link which works for image
+
+47
+00:01:47,430 --> 00:01:49,619
+classification that is compatible with
+
+48
+00:01:49,619 --> 00:01:52,770
+tensorflow lite download that file and
+
+49
+00:01:52,770 --> 00:01:55,439
+you learn zip it to see two files a dot
+
+50
+00:01:55,439 --> 00:01:58,170
+TF Lite file describing the model and a
+
+51
+00:01:58,170 --> 00:02:00,270
+labels file describing the labels that
+
+52
+00:02:00,270 --> 00:02:02,729
+the model is trained for as you can see
+
+53
+00:02:02,729 --> 00:02:05,100
+because your model is already in the TF
+
+54
+00:02:05,100 --> 00:02:07,290
+Lite format it's ready to be run on
+
+55
+00:02:07,290 --> 00:02:09,599
+tensorflow lite so let's take a look at
+
+56
+00:02:09,599 --> 00:02:12,300
+the api's for that in fact i would
+
+57
+00:02:12,300 --> 00:02:13,830
+recommend that you stick with
+
+58
+00:02:13,830 --> 00:02:16,140
+built models for the time being as
+
+59
+00:02:16,140 --> 00:02:18,090
+tensorflow light is a Developer Preview
+
+60
+00:02:18,090 --> 00:02:20,970
+it doesn't support all the operations of
+
+61
+00:02:20,970 --> 00:02:23,460
+tensorflow yet and you might encounter
+
+62
+00:02:23,460 --> 00:02:26,370
+some issues with unsupported ones when
+
+63
+00:02:26,370 --> 00:02:28,200
+you're converting your model to the TF
+
+64
+00:02:28,200 --> 00:02:29,700
+light format okay
+
+65
+00:02:29,700 --> 00:02:31,230
+let's get down to looking at it on a
+
+66
+00:02:31,230 --> 00:02:33,990
+mobile now first of all to use
+
+67
+00:02:33,990 --> 00:02:36,120
+tensorflow light in your android app you
+
+68
+00:02:36,120 --> 00:02:38,010
+need to include the tensorflow light
+
+69
+00:02:38,010 --> 00:02:40,410
+libraries you do this by editing your
+
+70
+00:02:40,410 --> 00:02:42,050
+build up Gradle file to include them
+
+71
+00:02:42,050 --> 00:02:44,580
+once you've done that in synced you'll
+
+72
+00:02:44,580 --> 00:02:46,320
+be able to import a tensorflow
+
+73
+00:02:46,320 --> 00:02:49,710
+interpreter an interpreter loads a model
+
+74
+00:02:49,710 --> 00:02:51,810
+and allows you to run it by providing it
+
+75
+00:02:51,810 --> 00:02:54,360
+with a set of inputs tensorflow light
+
+76
+00:02:54,360 --> 00:02:56,250
+will then execute the model and write
+
+77
+00:02:56,250 --> 00:02:58,320
+the outputs it's really as simple as
+
+78
+00:02:58,320 --> 00:03:00,660
+that of course you have to load the
+
+79
+00:03:00,660 --> 00:03:02,430
+model and the API makes that very
+
+80
+00:03:02,430 --> 00:03:04,800
+straightforward now a good place to
+
+81
+00:03:04,800 --> 00:03:06,810
+store your model is in your app assets
+
+82
+00:03:06,810 --> 00:03:08,400
+the code will then read the model
+
+83
+00:03:08,400 --> 00:03:10,320
+directly from there it doesn't have to
+
+84
+00:03:10,320 --> 00:03:11,790
+be there of course you can load a model
+
+85
+00:03:11,790 --> 00:03:13,260
+from just about anywhere but make sure
+
+86
+00:03:13,260 --> 00:03:15,780
+you get your powers right once you've
+
+87
+00:03:15,780 --> 00:03:17,160
+done that you can instantiate an
+
+88
+00:03:17,160 --> 00:03:19,260
+interpreter and in this case I called it
+
+89
+00:03:19,260 --> 00:03:21,269
+tensorflow light and loaded the model
+
+90
+00:03:21,269 --> 00:03:24,840
+into it let's look at the app again now
+
+91
+00:03:24,840 --> 00:03:26,790
+what's going on here is that it's
+
+92
+00:03:26,790 --> 00:03:28,560
+reading frames from the camera and
+
+93
+00:03:28,560 --> 00:03:31,650
+turning those into images it then uses
+
+94
+00:03:31,650 --> 00:03:33,570
+those images as an input to the model
+
+95
+00:03:33,570 --> 00:03:36,630
+which in turn outputs values these
+
+96
+00:03:36,630 --> 00:03:39,209
+values are an index to the appropriate
+
+97
+00:03:39,209 --> 00:03:41,850
+label and the value for that label the
+
+98
+00:03:41,850 --> 00:03:43,739
+probability that the image matches that
+
+99
+00:03:43,739 --> 00:03:46,530
+label will pick the top three and will
+
+100
+00:03:46,530 --> 00:03:48,690
+write them to the user interface let's
+
+101
+00:03:48,690 --> 00:03:51,150
+take a look at the code first you can
+
+102
+00:03:51,150 --> 00:03:53,340
+see is the input we're getting the image
+
+103
+00:03:53,340 --> 00:03:55,380
+data which is received from the camera
+
+104
+00:03:55,380 --> 00:03:58,080
+as a bitmap we convert that bitmap into
+
+105
+00:03:58,080 --> 00:04:00,030
+a byte buffer which the model can read
+
+106
+00:04:00,030 --> 00:04:03,780
+this buffer is called IMG data remember
+
+107
+00:04:03,780 --> 00:04:05,510
+that we'll come back to it in a moment
+
+108
+00:04:05,510 --> 00:04:08,310
+when you downloaded the model you also
+
+109
+00:04:08,310 --> 00:04:11,310
+had a TF Lite file and a txt file
+
+110
+00:04:11,310 --> 00:04:14,370
+containing labels these labels are a
+
+111
+00:04:14,370 --> 00:04:16,169
+list of all of the objects that the
+
+112
+00:04:16,169 --> 00:04:18,150
+model can recognize here's the first
+
+113
+00:04:18,150 --> 00:04:20,729
+view so for example labeled zero is
+
+114
+00:04:20,729 --> 00:04:22,950
+background label two is goldfish and so
+
+115
+00:04:22,950 --> 00:04:25,830
+on remember the image data from a moment
+
+116
+00:04:25,830 --> 00:04:27,630
+ago well we'll load
+
+117
+00:04:27,630 --> 00:04:29,640
+into our tensorflow light interpreter
+
+118
+00:04:29,640 --> 00:04:32,190
+and we'll get an output called label
+
+119
+00:04:32,190 --> 00:04:34,920
+proper ray it's probably easiest if we
+
+120
+00:04:34,920 --> 00:04:37,260
+look at that in the debugger so here you
+
+121
+00:04:37,260 --> 00:04:39,930
+can see I had a breakpoint on looking at
+
+122
+00:04:39,930 --> 00:04:42,330
+a picture of my mug as you can see the
+
+123
+00:04:42,330 --> 00:04:44,910
+top elements unless the goldfish etc
+
+124
+00:04:44,910 --> 00:04:47,520
+have very very low probability indeed
+
+125
+00:04:47,520 --> 00:04:50,160
+it's like 1.7 nine times 10 to the minus
+
+126
+00:04:50,160 --> 00:04:53,070
+5 but when you scroll through the output
+
+127
+00:04:53,070 --> 00:04:55,710
+lists you'll see for example that label
+
+128
+00:04:55,710 --> 00:04:59,000
+505 has a relatively high priority and
+
+129
+00:04:59,000 --> 00:05:02,190
+number 505 corresponds to coffee cup
+
+130
+00:05:02,190 --> 00:05:04,470
+which as you'll remember from the video
+
+131
+00:05:04,470 --> 00:05:08,280
+that's what I was looking at if you want
+
+132
+00:05:08,280 --> 00:05:09,870
+to try an app for yourself that does all
+
+133
+00:05:09,870 --> 00:05:12,150
+of this you can get it on github at this
+
+134
+00:05:12,150 --> 00:05:15,030
+link and that's a starter intensive flow
+
+135
+00:05:15,030 --> 00:05:17,130
+light for Android this exciting
+
+136
+00:05:17,130 --> 00:05:18,810
+technology will let you load all your
+
+137
+00:05:18,810 --> 00:05:21,330
+models onto an Android device taking
+
+138
+00:05:21,330 --> 00:05:23,730
+advantage of onboard hardware and allow
+
+139
+00:05:23,730 --> 00:05:25,800
+you to execute them I showed an example
+
+140
+00:05:25,800 --> 00:05:27,870
+using image recognition in a video
+
+141
+00:05:27,870 --> 00:05:29,700
+stream but of course you're not limited
+
+142
+00:05:29,700 --> 00:05:32,040
+to that at the moment tensorflow light
+
+143
+00:05:32,040 --> 00:05:33,870
+is in Developer Preview so you may
+
+144
+00:05:33,870 --> 00:05:35,640
+encounter some restrictions in
+
+145
+00:05:35,640 --> 00:05:37,920
+operations that are supported but we're
+
+146
+00:05:37,920 --> 00:05:40,380
+updating it all the time finally if you
+
+147
+00:05:40,380 --> 00:05:41,970
+want to learn more including how to
+
+148
+00:05:41,970 --> 00:05:43,830
+retrain the model I showed in this video
+
+149
+00:05:43,830 --> 00:05:46,380
+to tailor it for specific scenarios
+
+150
+00:05:46,380 --> 00:05:48,660
+check out the tensor flow for poet code
+
+151
+00:05:48,660 --> 00:05:50,880
+labs on the Google developer site I
+
+152
+00:05:50,880 --> 00:05:53,010
+can't wait to see what you build on
+
+153
+00:05:53,010 --> 00:05:54,930
+mobile with tensorflow Lite and don't
+
+154
+00:05:54,930 --> 00:05:56,430
+forget to hit that subscribe button for
+
+155
+00:05:56,430 --> 00:05:58,320
+more great coding with tensorflow videos
+
+156
+00:05:58,320 --> 00:06:00,110
+Cheers
+
+157
+00:06:00,110 --> 00:06:01,770
+don't forget to click the subscribe
+
+158
+00:06:01,770 --> 00:06:03,480
+button for more great videos like these
+
+159
+00:06:03,480 --> 00:06:05,720
+what's
+

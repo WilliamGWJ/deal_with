@@ -1,0 +1,456 @@
+﻿1
+00:00:00,000 --> 00:00:08,040
+I get questions all the time about some
+
+2
+00:00:08,040 --> 00:00:09,780
+of the new concepts in machine learning
+
+3
+00:00:09,780 --> 00:00:12,630
+and what they really mean so for example
+
+4
+00:00:12,630 --> 00:00:14,969
+I get asked what is one hot encoding and
+
+5
+00:00:14,969 --> 00:00:16,500
+why should I use it it does seem very
+
+6
+00:00:16,500 --> 00:00:18,869
+inefficient you know that's a great
+
+7
+00:00:18,869 --> 00:00:20,850
+question so let's take a look at the
+
+8
+00:00:20,850 --> 00:00:23,369
+answer by digging into some code will
+
+9
+00:00:23,369 --> 00:00:25,470
+also see how a function called Arg max
+
+10
+00:00:25,470 --> 00:00:28,080
+complements this perfectly and saves you
+
+11
+00:00:28,080 --> 00:00:30,840
+a lot of coding here's the popular iris
+
+12
+00:00:30,840 --> 00:00:33,329
+classification data set where the values
+
+13
+00:00:33,329 --> 00:00:36,210
+implemented in a JavaScript array you'll
+
+14
+00:00:36,210 --> 00:00:37,890
+notice that there are five values in
+
+15
+00:00:37,890 --> 00:00:39,809
+each entry four of which are features of
+
+16
+00:00:39,809 --> 00:00:41,879
+the iris and the fifth which will be
+
+17
+00:00:41,879 --> 00:00:42,750
+zero one or two
+
+18
+00:00:42,750 --> 00:00:45,270
+is the classification the classes are
+
+19
+00:00:45,270 --> 00:00:47,969
+shown here with iris setosa being zero
+
+20
+00:00:47,969 --> 00:00:51,000
+iris versicolor being one an iris
+
+21
+00:00:51,000 --> 00:00:53,489
+virginica being two now this seems to be
+
+22
+00:00:53,489 --> 00:00:55,710
+a really efficient encoding but when
+
+23
+00:00:55,710 --> 00:00:57,750
+doing machine learning you often have to
+
+24
+00:00:57,750 --> 00:00:59,640
+transform this into something that
+
+25
+00:00:59,640 --> 00:01:02,190
+appears to be less efficient such as one
+
+26
+00:01:02,190 --> 00:01:04,760
+hot encoding which you can see here and
+
+27
+00:01:04,760 --> 00:01:08,340
+instead of 0 1 & 2 for the values you
+
+28
+00:01:08,340 --> 00:01:10,350
+have an array with 3 values in it and
+
+29
+00:01:10,350 --> 00:01:12,299
+here we've only got three options of
+
+30
+00:01:12,299 --> 00:01:14,250
+flower if we had more options this array
+
+31
+00:01:14,250 --> 00:01:16,860
+would be much bigger the index of the
+
+32
+00:01:16,860 --> 00:01:18,780
+array is set to 1 for the relative
+
+33
+00:01:18,780 --> 00:01:21,060
+flower so for example for its Atossa
+
+34
+00:01:21,060 --> 00:01:22,860
+the first element is 1 and everything
+
+35
+00:01:22,860 --> 00:01:25,830
+else is 0 and for virginica the third
+
+36
+00:01:25,830 --> 00:01:27,650
+element is 1 and everything else is 0
+
+37
+00:01:27,650 --> 00:01:30,750
+now this might seem a little strange but
+
+38
+00:01:30,750 --> 00:01:32,490
+when you consider the neural network
+
+39
+00:01:32,490 --> 00:01:34,890
+that's doing the classification they're
+
+40
+00:01:34,890 --> 00:01:36,960
+designed with the number of output nodes
+
+41
+00:01:36,960 --> 00:01:39,180
+equal to the number of classes that you
+
+42
+00:01:39,180 --> 00:01:41,549
+want to determine we're picking between
+
+43
+00:01:41,549 --> 00:01:43,350
+three classes here so I have three
+
+44
+00:01:43,350 --> 00:01:46,439
+output nodes these three output nodes
+
+45
+00:01:46,439 --> 00:01:48,630
+will then produce three probabilities
+
+46
+00:01:48,630 --> 00:01:51,420
+the probability that you match class 0
+
+47
+00:01:51,420 --> 00:01:54,090
+the probability match class 1 or the
+
+48
+00:01:54,090 --> 00:01:56,490
+probability in match class 2 so it might
+
+49
+00:01:56,490 --> 00:01:57,659
+look something like this
+
+50
+00:01:57,659 --> 00:02:00,570
+so now when training the network we can
+
+51
+00:02:00,570 --> 00:02:03,600
+train it from matching values ie if the
+
+52
+00:02:03,600 --> 00:02:06,659
+flowers of classes who we want to train
+
+53
+00:02:06,659 --> 00:02:09,289
+it with a 0 desired output from neuron 0
+
+54
+00:02:09,289 --> 00:02:12,010
+0 desired output from neuron
+
+55
+00:02:12,010 --> 00:02:14,530
+and a one desired output from neuron two
+
+56
+00:02:14,530 --> 00:02:17,440
+so that's one hard encoding it may not
+
+57
+00:02:17,440 --> 00:02:19,090
+look efficient from a storage
+
+58
+00:02:19,090 --> 00:02:21,879
+perspective but it Maps really neatly to
+
+59
+00:02:21,879 --> 00:02:24,099
+our desired output and thus is very
+
+60
+00:02:24,099 --> 00:02:27,010
+efficient for training another function
+
+61
+00:02:27,010 --> 00:02:29,830
+called Arg max is then really handy for
+
+62
+00:02:29,830 --> 00:02:32,650
+helping you find the desired values so
+
+63
+00:02:32,650 --> 00:02:34,569
+instead of searching through a list to
+
+64
+00:02:34,569 --> 00:02:36,489
+find the biggest value it would
+
+65
+00:02:36,489 --> 00:02:38,620
+transform that list of priorities into
+
+66
+00:02:38,620 --> 00:02:41,440
+something like this and from there you
+
+67
+00:02:41,440 --> 00:02:43,510
+can derive the correct class so let's
+
+68
+00:02:43,510 --> 00:02:45,069
+jump back into the code and we'll see
+
+69
+00:02:45,069 --> 00:02:45,870
+this in action
+
+70
+00:02:45,870 --> 00:02:48,760
+here I'm going to evaluate a flower with
+
+71
+00:02:48,760 --> 00:02:51,010
+the features five point eight two point
+
+72
+00:02:51,010 --> 00:02:53,590
+seven five point one and one point nine
+
+73
+00:02:53,590 --> 00:02:56,590
+I know that this is an iris virginica
+
+74
+00:02:56,590 --> 00:02:59,200
+which is class two but let's see what
+
+75
+00:02:59,200 --> 00:03:01,660
+the neural network gives me well first
+
+76
+00:03:01,660 --> 00:03:03,340
+take a look at the raw prediction and
+
+77
+00:03:03,340 --> 00:03:05,109
+then we'll take a look at the prediction
+
+78
+00:03:05,109 --> 00:03:06,670
+that's been determined using Arg max
+
+79
+00:03:06,670 --> 00:03:09,160
+let's run this in the browser when i
+
+80
+00:03:09,160 --> 00:03:11,200
+refresh the JavaScript will start
+
+81
+00:03:11,200 --> 00:03:13,810
+executing and here you can see my epochs
+
+82
+00:03:13,810 --> 00:03:16,540
+and my loss at that epoch it's steadily
+
+83
+00:03:16,540 --> 00:03:20,230
+decreasing which is good and now I get
+
+84
+00:03:20,230 --> 00:03:22,299
+my classification and you can see that
+
+85
+00:03:22,299 --> 00:03:24,849
+has very low probabilities for 0 and 1
+
+86
+00:03:24,849 --> 00:03:27,519
+and a very high probability for 2 which
+
+87
+00:03:27,519 --> 00:03:30,700
+is what we'd expect if I then execute
+
+88
+00:03:30,700 --> 00:03:34,299
+Arg max on this I will get to consider
+
+89
+00:03:34,299 --> 00:03:35,980
+the amount of code that you would have
+
+90
+00:03:35,980 --> 00:03:38,349
+to write in this case it's not a lot
+
+91
+00:03:38,349 --> 00:03:39,910
+with just two classes but if there are a
+
+92
+00:03:39,910 --> 00:03:41,109
+lot more classes
+
+93
+00:03:41,109 --> 00:03:43,209
+and you needed to find the biggest you'd
+
+94
+00:03:43,209 --> 00:03:45,370
+have a lot of coding to do but Arg max
+
+95
+00:03:45,370 --> 00:03:47,410
+does this for you given that these
+
+96
+00:03:47,410 --> 00:03:50,109
+values are in a tensor I hope this was a
+
+97
+00:03:50,109 --> 00:03:52,389
+useful explanation of one heart encoding
+
+98
+00:03:52,389 --> 00:03:54,310
+and how it complements an Arg max
+
+99
+00:03:54,310 --> 00:03:56,799
+function these are some of the concepts
+
+100
+00:03:56,799 --> 00:03:58,359
+that are a bit different when you're
+
+101
+00:03:58,359 --> 00:04:00,250
+coding for machine learning but they're
+
+102
+00:04:00,250 --> 00:04:02,079
+incredibly useful and powerful
+
+103
+00:04:02,079 --> 00:04:04,989
+one harden coding is great because it's
+
+104
+00:04:04,989 --> 00:04:06,849
+a way of mapping your classes to the
+
+105
+00:04:06,849 --> 00:04:08,650
+shape that a neural network outputs
+
+106
+00:04:08,650 --> 00:04:11,169
+values an Arg max is a function that
+
+107
+00:04:11,169 --> 00:04:13,720
+saves you writing a lot of code to go
+
+108
+00:04:13,720 --> 00:04:15,340
+over all those values to find the
+
+109
+00:04:15,340 --> 00:04:17,829
+biggest there's lots of useful functions
+
+110
+00:04:17,829 --> 00:04:19,599
+and transforms like these intensive flow
+
+111
+00:04:19,599 --> 00:04:21,340
+and we'll continue to cover them on this
+
+112
+00:04:21,340 --> 00:04:22,840
+channel so go ahead and hit that
+
+113
+00:04:22,840 --> 00:04:25,560
+subscribe button now thank you
+
+114
+00:04:25,560 --> 00:04:34,769
+[Music]
+
